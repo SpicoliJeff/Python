@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Python Head On</title>
+  <style>
+    /* Python snake skin theme: Black base for shadowy depths, dark green for scaly patterns, silver for iridescent sheen */
+    :root {
+      --bg: #000000; /* Black - dark underbelly */
+      --header-bg: #001a00; /* Darker green-tinged black */
+      --code-bg: #002200; /* Subtle green undertone for code area */
+      --text: #C0C0C0; /* Silver - metallic text for readability */
+      --comment: #228B22; /* Forest green - for comments, evoking snake scales */
+      --hint: #A9A9A9; /* Dark silver - subtle hints */
+      --accent: #006400; /* Dark green - accents and highlights */
+      --btn: #228B22; /* Green - button base */
+      --btn-hover: #32CD32; /* Lime green - hover for energy */
+      --border: #C0C0C0; /* Silver - borders with metallic edge */
+      --shine: #D3D3D3; /* Light silver - shine effects */
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Courier New', monospace;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: var(--header-bg);
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 4px solid var(--border);
+      position: relative;
+      z-index: 10;
+    }
+    h1 { font-size: 22px; color: var(--shine); text-shadow: 0 0 10px var(--accent); }
+    #chapter-btn {
+      background: var(--btn);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    }
+    #chapter-btn:hover { background: var(--btn-hover); }
+    #chapter-list {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background: var(--header-bg);
+      border: 3px solid var(--border);
+      border-radius: 10px;
+      max-height: 65vh;
+      overflow-y: auto;
+      width: 340px;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.8);
+    }
+    #chapter-list.show { display: block; }
+    .chapter-item {
+      padding: 16px 20px;
+      cursor: pointer;
+      border-bottom: 1px solid var(--border);
+      font-size: 16px;
+      color: var(--shine);
+    }
+    .chapter-item:hover { background: #003300; } /* Dark green hover */
+    #main { flex: 1; display: flex; flex-direction: column; }
+    #code-area {
+      flex: 1;
+      background: var(--code-bg);
+      padding: 20px 30px;
+      overflow-y: auto;
+      line-height: 1.5;
+      font-size: 16px;
+      white-space: pre;
+      border-bottom: 4px solid var(--border);
+    }
+    .line { display: block; padding: 1px 0; color: var(--text); }
+    .line.new { animation: addLine 0.8s ease-out; }
+    .line.action-shine { background: #003300; animation: actionGlow 1s ease-in-out; }
+    .line.line-shine { background: #004400; animation: lineGlow 1.8s ease-in-out; box-shadow: 0 0 40px var(--shine); }
+    @keyframes addLine { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes actionGlow { 0%,100% { background: var(--code-bg); } 50% { background: #004400; } }
+    @keyframes lineGlow { 0%,100% { background: var(--code-bg); } 50% { background: #006600; box-shadow: 0 0 60px var(--shine); } }
+    #comment-box {
+      background: var(--header-bg);
+      color: var(--comment);
+      padding: 25px 30px;
+      font-size: 19px;
+      border-top: 4px solid var(--border);
+      min-height: 110px;
+      line-height: 1.7;
+    }
+    #hint-area {
+      background: var(--bg);
+      padding: 16px 25px;
+      font-size: 17px;
+      color: var(--shine);
+      font-weight: bold;
+      border-top: 4px solid var(--border);
+    }
+    #input-area {
+      background: var(--header-bg);
+      padding: 20px 25px;
+      border-top: 4px solid var(--border);
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    #code-input {
+      flex: 1;
+      background: var(--bg);
+      color: var(--text);
+      border: 4px solid var(--border);
+      padding: 16px;
+      font-family: 'Courier New', monospace;
+      font-size: 19px;
+      border-radius: 10px;
+    }
+    #code-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 25px var(--accent); }
+    #code-input::placeholder { color: var(--comment); opacity: 1; transition: opacity 0.6s ease; }
+    #code-input.fade::placeholder { opacity: 0; }
+    #submit-btn, #skip-btn {
+      border: none;
+      padding: 16px 25px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 17px;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.7);
+    }
+    #submit-btn { background: var(--btn); color: #fff; }
+    #submit-btn:hover { background: var(--btn-hover); }
+    #skip-btn { background: #ff6b35; color: white; } /* Kept original for contrast, but can adjust */
+    #skip-btn:hover { background: #ff4500; }
+    #controls {
+      background: var(--bg);
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      border-top: 4px solid var(--border);
+    }
+    button {
+      background: var(--btn);
+      color: #fff;
+      border: none;
+      padding: 14px 25px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.7);
+    }
+    button:hover:not(:disabled) { background: var(--btn-hover); }
+    button:disabled { background: #444; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Python Head On</h1>
+  <div id="chapter-selector">
+    <button id="chapter-btn">Select Chapter</button>
+    <div id="chapter-list"></div>
+  </div>
+</header>
+<div id="main">
+  <div id="code-area"></div>
+  <div id="comment-box"></div>
+  <div id="hint-area">Type exactly:</div>
+  <div id="input-area">
+    <input type="text" id="code-input" autocomplete="off" />
+    <button id="submit-btn">Submit</button>
+    <button id="skip-btn">Skip</button>
+  </div>
+  <div id="controls">
+    <button id="prev">Previous</button>
+    <button id="next" disabled>Next</button>
+    <button id="reset">Reset</button>
+  </div>
+</div>
+<script>
+let chapters = [
+  {
+    "title": "CHAPTER 1: Python Basics — Hello World",
+    "steps": [
+      { "comment": "# No includes needed — Python has built-in support for input/output via the print function, no need for external libraries for basic console operations.", "code": "" },
+      { "comment": "# print('Hello, World!') — The print function outputs text to the console. Strings can use single or double quotes. No semicolon required at the end.", "code": "print('Hello, World!')" },
+      { "comment": "# Blank line — Adds readability, separating code sections. Python relies on indentation for structure, not braces.", "code": "" },
+      { "comment": "# No main function — Python scripts run from top to bottom. No explicit entry point like in C++; execution starts immediately.", "code": "" },
+      { "comment": "# Final Output — When run, the console displays:", "code": "# Hello, World!" }
+    ]
+  },
+  {
+    "title": "CHAPTER 2: Variables and Data Types",
+    "steps": [
+      { "comment": "# Variables — In Python, variables are created when assigned. No type declaration needed.", "code": "name = 'Python Learner'" },
+      { "comment": "# Integers — Whole numbers, dynamically typed.", "code": "age = 25" },
+      { "comment": "# Floats — Decimal numbers.", "code": "height = 5.9" },
+      { "comment": "# Strings — Text data, enclosed in quotes.", "code": "greeting = \"Hello, \" + name" },
+      { "comment": "# Booleans — True or False values.", "code": "is_learning = True" },
+      { "comment": "# Printing variables — Use print to display values.", "code": "print(greeting)" },
+      { "comment": "# Type checking — Use type() to see variable types.", "code": "print(type(age))" },
+      { "comment": "# Final Output — Example output:", "code": "# Hello, Python Learner\n# <class 'int'>" }
+    ]
+  },
+  {
+    "title": "CHAPTER 3: Control Structures — If Statements",
+    "steps": [
+      { "comment": "# If statement — Checks a condition and executes code if true.", "code": "if age >= 18:" },
+      { "comment": "# Indentation — Python uses spaces or tabs for blocks (4 spaces recommended).", "code": "    print('You are an adult.')" },
+      { "comment": "# Else clause — Runs if the if condition is false.", "code": "else:" },
+      { "comment": "# Alternative block.", "code": "    print('You are a minor.')" },
+      { "comment": "# Elif for multiple conditions.", "code": "elif age < 0:" },
+      { "comment": "# Handles edge cases.", "code": "    print('Invalid age.')" },
+      { "comment": "# Final Output — Depending on age:", "code": "# You are an adult." }
+    ]
+  },
+  {
+    "title": "CHAPTER 4: Loops — For and While",
+    "steps": [
+      { "comment": "# For loop — Iterates over a sequence like range or list.", "code": "for i in range(5):" },
+      { "comment": "# Prints numbers 0 to 4.", "code": "    print(i)" },
+      { "comment": "# While loop — Repeats while condition is true.", "code": "count = 0" },
+      { "comment": "# Loop body.", "code": "while count < 3:" },
+      { "comment": "# Increment to avoid infinite loop.", "code": "    print('Looping...')" },
+      { "comment": "# Update variable.", "code": "    count += 1" },
+      { "comment": "# Break and continue — Control flow inside loops.", "code": "# Use break to exit, continue to skip." },
+      { "comment": "# Final Output — Example:", "code": "# 0\n# 1\n# 2\n# 3\n# 4\n# Looping...\n# Looping...\n# Looping..." }
+    ]
+  },
+  {
+    "title": "CHAPTER 5: Functions",
+    "steps": [
+      { "comment": "# Defining a function — Use def keyword.", "code": "def greet(name):" },
+      { "comment": "# Function body — Indented.", "code": "    return f'Hello, {name}!'" },
+      { "comment": "# Calling the function.", "code": "message = greet('World')" },
+      { "comment": "# Print result.", "code": "print(message)" },
+      { "comment": "# Default parameters.", "code": "def add(a, b=0):" },
+      { "comment": "# Returns sum.", "code": "    return a + b" },
+      { "comment": "# Lambda functions — Anonymous one-liners.", "code": "double = lambda x: x * 2" },
+      { "comment": "# Final Output:", "code": "# Hello, World!" }
+    ]
+  },
+  {
+    "title": "CHAPTER 6: Lists and Dictionaries",
+    "steps": [
+      { "comment": "# Lists — Ordered, mutable collections.", "code": "fruits = ['apple', 'banana', 'cherry']" },
+      { "comment": "# Access by index.", "code": "print(fruits[0])" },
+      { "comment": "# Append item.", "code": "fruits.append('date')" },
+      { "comment": "# Dictionaries — Key-value pairs.", "code": "person = {'name': 'Alice', 'age': 30}" },
+      { "comment": "# Access value.", "code": "print(person['name'])" },
+      { "comment": "# Add key.", "code": "person['city'] = 'Wonderland'" },
+      { "comment": "# Iteration.", "code": "for key, value in person.items():" },
+      { "comment": "# Print pairs.", "code": "    print(f'{key}: {value}')" },
+      { "comment": "# Final Output — Example:", "code": "# apple\n# Alice\n# name: Alice\n# age: 30\n# city: Wonderland" }
+    ]
+  },
+  {
+    "title": "CHAPTER 7: Exception Handling",
+    "steps": [
+      { "comment": "# Try-except — Handles errors gracefully.", "code": "try:" },
+      { "comment": "# Code that might fail.", "code": "    result = 10 / 0" },
+      { "comment": "# Catch specific exception.", "code": "except ZeroDivisionError:" },
+      { "comment": "# Handle error.", "code": "    print('Cannot divide by zero.')" },
+      { "comment": "# Else — Runs if no exception.", "code": "else:" },
+      { "comment": "# Success code.", "code": "    print('Division successful.')" },
+      { "comment": "# Finally — Always runs.", "code": "finally:" },
+      { "comment": "# Cleanup.", "code": "    print('Execution complete.')" },
+      { "comment": "# Raise exceptions manually.", "code": "# raise ValueError('Invalid input')" },
+      { "comment": "# Final Output:", "code": "# Cannot divide by zero.\n# Execution complete." }
+    ]
+  },
+  {
+    "title": "CHAPTER 8: File Handling",
+    "steps": [
+      { "comment": "# Opening a file — Use open() with mode.", "code": "with open('example.txt', 'w') as file:" },
+      { "comment": "# Write to file.", "code": "    file.write('Hello, Python!')" },
+      { "comment": "# Reading a file.", "code": "with open('example.txt', 'r') as file:" },
+      { "comment": "# Read content.", "code": "    content = file.read()" },
+      { "comment": "# Print content.", "code": "print(content)" },
+      { "comment": "# Append mode.", "code": "with open('example.txt', 'a') as file:" },
+      { "comment": "# Add more text.", "code": "    file.write('\\nMore text.')" },
+      { "comment": "# Handle file not found.", "code": "# Use try-except for errors." },
+      { "comment": "# Final Output:", "code": "# Hello, Python!" }
+    ]
+  },
+  {
+    "title": "CHAPTER 9: Modules and Packages",
+    "steps": [
+      { "comment": "# Import module — Access external code.", "code": "import math" },
+      { "comment": "# Use function from module.", "code": "print(math.sqrt(16))" },
+      { "comment": "# From import — Specific items.", "code": "from datetime import datetime" },
+      { "comment": "# Use imported item.", "code": "now = datetime.now()" },
+      { "comment": "# Print current time.", "code": "print(now)" },
+      { "comment": "# Alias import.", "code": "import random as rnd" },
+      { "comment": "# Random number.", "code": "print(rnd.randint(1, 10))" },
+      { "comment": "# Creating modules — Save functions in .py files.", "code": "# Then import them." },
+      { "comment": "# Final Output — Example:", "code": "# 4.0\n# 2026-01-15 07:48:00 (approx)\n# Random number like 7" }
+    ]
+  },
+  {
+    "title": "CHAPTER 10: Object-Oriented Programming",
+    "steps": [
+      { "comment": "# Class definition — Blueprint for objects.", "code": "class Animal:" },
+      { "comment": "# Constructor — Special method called when an instance is created. Indented under the class.", "code": "    def __init__(self, name):" },
+      { "comment": "# Instance variable — Stores data unique to each instance. Further indented under the method.", "code": "        self.name = name" },
+      { "comment": "# Method — Function defined inside a class. Indented under the class.", "code": "    def speak(self):" },
+      { "comment": "# Default behavior — Code inside the method, further indented.", "code": "        print('Animal sound')" },
+      { "comment": "# Inheritance — Creating a subclass that inherits from the base class. No indentation for new class definition.", "code": "class Dog(Animal):" },
+      { "comment": "# Override method — Redefine a method from the parent class. Indented under the subclass.", "code": "    def speak(self):" },
+      { "comment": "# Specific sound — Customized behavior in the overridden method.", "code": "        print('Woof!')" },
+      { "comment": "# Create instance — Instantiate the subclass with arguments for the constructor.", "code": "my_dog = Dog('Buddy')" },
+      { "comment": "# Call method — Invoke the overridden method on the instance.", "code": "my_dog.speak()" },
+      { "comment": "# Final Output — When run, the console displays:", "code": "# Woof!" }
+    ]
+  }
+];
+
+// The rest of the script remains the same as the original, handling the interactive typing logic.
+// For brevity, assuming the JavaScript logic is identical; it populates chapters, handles steps, animations, etc.
+// If needed, the full script can be expanded, but this focuses on the theme and content adaptation.
+let currentChapter = 0;
+let currentStep = 0;
+const codeArea = document.getElementById('code-area');
+const commentBox = document.getElementById('comment-box');
+const hintArea = document.getElementById('hint-area');
+const codeInput = document.getElementById('code-input');
+const submitBtn = document.getElementById('submit-btn');
+const skipBtn = document.getElementById('skip-btn');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+const resetBtn = document.getElementById('reset');
+const chapterBtn = document.getElementById('chapter-btn');
+const chapterList = document.getElementById('chapter-list');
+
+function populateChapters() {
+  chapterList.innerHTML = '';
+  chapters.forEach((ch, idx) => {
+    const item = document.createElement('div');
+    item.classList.add('chapter-item');
+    item.textContent = ch.title;
+    item.onclick = () => selectChapter(idx);
+    chapterList.appendChild(item);
+  });
+}
+
+function selectChapter(idx) {
+  currentChapter = idx;
+  currentStep = 0;
+  chapterList.classList.remove('show');
+  resetChapter();
+}
+
+function resetChapter() {
+  codeArea.innerHTML = '';
+  commentBox.textContent = '';
+  codeInput.value = '';
+  hintArea.textContent = 'Type exactly:';
+  nextBtn.disabled = true;
+  loadStep();
+}
+
+function loadStep() {
+  const step = chapters[currentChapter].steps[currentStep];
+  if (step) {
+    commentBox.textContent = step.comment;
+    hintArea.textContent = `Type exactly: ${step.code}`;
+    codeInput.placeholder = step.code;
+    codeInput.focus();
+  } else {
+    hintArea.textContent = 'Chapter complete!';
+    codeInput.disabled = true;
+    submitBtn.disabled = true;
+    skipBtn.disabled = true;
+    nextBtn.disabled = false;
+  }
+}
+
+function addLine(code) {
+  const line = document.createElement('div');
+  line.classList.add('line', 'new');
+  line.textContent = code;
+  codeArea.appendChild(line);
+  codeArea.scrollTop = codeArea.scrollHeight;
+}
+
+function shineLine() {
+  const lines = codeArea.querySelectorAll('.line');
+  if (lines.length > 0) {
+    const lastLine = lines[lines.length - 1];
+    lastLine.classList.add('line-shine');
+    setTimeout(() => lastLine.classList.remove('line-shine'), 1800);
+  }
+}
+
+submitBtn.onclick = () => {
+  const input = codeInput.value.trim();
+  const expected = chapters[currentChapter].steps[currentStep].code.trim();
+  if (input === expected) {
+    addLine(input);
+    shineLine();
+    currentStep++;
+    codeInput.value = '';
+    loadStep();
+  } else {
+    codeInput.classList.add('action-shine');
+    setTimeout(() => codeInput.classList.remove('action-shine'), 1000);
+  }
+};
+
+skipBtn.onclick = () => {
+  const step = chapters[currentChapter].steps[currentStep];
+  addLine(step.code);
+  currentStep++;
+  loadStep();
+};
+
+prevBtn.onclick = () => {
+  if (currentChapter > 0) {
+    currentChapter--;
+    resetChapter();
+  }
+};
+
+nextBtn.onclick = () => {
+  if (currentChapter < chapters.length - 1) {
+    currentChapter++;
+    resetChapter();
+  }
+};
+
+resetBtn.onclick = resetChapter;
+
+chapterBtn.onclick = () => {
+  chapterList.classList.toggle('show');
+};
+
+populateChapters();
+resetChapter();
+</script>
+</body>
+</html>
