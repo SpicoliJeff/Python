@@ -365,7 +365,50 @@ let chapters = [
     { "comment": "# Print None value.", "code": "    print('None value:', my_none)" },
     { "comment": "# Show type.", "code": "    print('Type:', type(my_none))  # <class 'NoneType'>" }
   ]
-}  {
+},
+  {
+  "title": "CHAPTER 1.5: Checking Data Types in Python",
+  "steps": [
+    { "comment": "# Function definition — Creates a reusable block to demonstrate type checking.", "code": "def demonstrate_type_checking():" },
+
+    { "comment": "# Declare a string variable — Python infers type dynamically.", "code": "    my_var_1 = 'Hello world'" },
+    { "comment": "# Declare an integer variable — Python knows this is an int.", "code": "    my_var_2 = 21" },
+
+    { "comment": "# Use type() — Built-in function that returns the data type of a variable.", "code": "    print(type(my_var_1))  # <class 'str'>" },
+    { "comment": "# Example output shows that my_var_1 is a string.", "code": "    print(type(my_var_2))  # <class 'int'>" },
+
+    { "comment": "# Use isinstance() — Checks if a variable matches a specific type.", "code": "    print(isinstance(my_var_1, str))  # True" },
+    { "comment": "# isinstance() returns True if variable is of given type, False otherwise.", "code": "    print(isinstance(my_var_2, float))  # False" },
+
+    { "comment": "# Demonstrate with boolean variable.", "code": "    my_bool = True" },
+    { "comment": "# type() reveals it is a bool.", "code": "    print(type(my_bool))  # <class 'bool'>" },
+    { "comment": "# isinstance() confirms the type.", "code": "    print(isinstance(my_bool, bool))  # True" },
+
+    { "comment": "# Final note — type() shows the exact class, isinstance() checks membership.", "code": "    # Together they give you full control over type checking in Python." }
+  ]
+},
+  {
+  "title": "CHAPTER 1.8: Difference Between Integer and Float",
+  "steps": [
+    { "comment": "# Function definition — Creates a reusable block to demonstrate integer vs float difference.", "code": "def demonstrate_difference_integer_float():" },
+
+    { "comment": "# Declare an integer variable — whole number without decimals.", "code": "    my_integer = 10" },
+    { "comment": "# Declare a float variable — number with decimals.", "code": "    my_float = 3.5" },
+
+    { "comment": "# Perform subtraction — Python automatically handles mixed types.", "code": "    difference = my_integer - my_float" },
+
+    { "comment": "# Print integer value.", "code": "    print('Integer:', my_integer)" },
+    { "comment": "# Print float value.", "code": "    print('Float:', my_float)" },
+    { "comment": "# Print the difference — result is a float because one operand is a float.", "code": "    print('Difference (int - float):', difference)" },
+
+    { "comment": "# Show types — type() reveals the data type of each variable.", "code": "    print('Type of integer:', type(my_integer))  # <class 'int'>" },
+    { "comment": "# Show type of float.", "code": "    print('Type of float:', type(my_float))  # <class 'float'>" },
+    { "comment": "# Show type of result — subtraction with float produces a float.", "code": "    print('Type of difference:', type(difference))  # <class 'float'>" },
+
+    { "comment": "# Final note — Mixing int and float in arithmetic promotes the result to float for precision.", "code": "    # This ensures decimal accuracy in calculations." }
+  ]
+},
+  {
   "title": "CHAPTER 5: Exploring Python Data Types with New Examples",
   "steps": [
     { "comment": "# Function definition — Creates a reusable block to demonstrate data types with fresh values.", "code": "def demonstrate_data_types_v2():" },
