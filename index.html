@@ -200,6 +200,27 @@ let chapters = [
     ]
   },
   {
+  "title": "CHAPTER. Calculating Plant Density",
+  "steps": [
+    { "comment": "# Function definition — Declares a reusable block of code with parameters.", "code": "def get_number_of_plants(field_size, unit, crop):" },
+    { "comment": "# Conversion dictionary — Maps units to their square meter equivalents.", "code": "    conversion = {" },
+    { "comment": "# Key-value pair — 'acres' corresponds to 4046.86 m².", "code": "        \"acres\": 4046.86," },
+    { "comment": "# Key-value pair — 'hectares' corresponds to 10,000 m².", "code": "        \"hectares\": 10000" },
+    { "comment": "# Closing brace — Ends the conversion dictionary.", "code": "    }" },
+    { "comment": "# Crop spacing dictionary — Maps crop names to required area per plant in m².", "code": "    crop_space = {" },
+    { "comment": "# Corn requires 1 m² per plant.", "code": "        \"corn\": 1," },
+    { "comment": "# Wheat requires 0.1 m² per plant.", "code": "        \"wheat\": 0.1," },
+    { "comment": "# Soybeans require 0.5 m² per plant.", "code": "        \"soybeans\": 0.5," },
+    { "comment": "# Tomatoes require 0.25 m² per plant.", "code": "        \"tomatoes\": 0.25," },
+    { "comment": "# Lettuce requires 0.2 m² per plant.", "code": "        \"lettuce\": 0.2" },
+    { "comment": "# Closing brace — Ends the crop_space dictionary.", "code": "    }" },
+    { "comment": "# Step 1 — Convert field size into square meters using the appropriate unit multiplier.", "code": "    field_size_in_sqm = field_size * conversion[unit]" },
+    { "comment": "# Step 2 — Divide total area by crop spacing to calculate raw plant count.", "code": "    plants = field_size_in_sqm / crop_space[crop]" },
+    { "comment": "# Step 3 — Round down to nearest whole number since fractional plants are not possible.", "code": "    return int(plants)" },
+    { "comment": "# Final Output — When run with inputs, returns the integer number of plants fitting in the field.", "code": "# Example: get_number_of_plants(1, \"acres\", \"corn\") → 4046" }
+  ]
+},
+  {
     "title": "CHAPTER 2: Variables and Data Types",
     "steps": [
       { "comment": "# Variables — In Python, variables are created when assigned. No type declaration needed.", "code": "name = 'Python Learner'" },
