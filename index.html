@@ -409,6 +409,48 @@ let chapters = [
   ]
 },
   {
+  "title": "CHAPTER 1.9: Strings and String Immutability in Python vs C++",
+  "steps": [
+    { "comment": "# Function definition — Demonstrates strings and immutability in Python.", "code": "def demonstrate_strings():" },
+
+    { "comment": "# Strings in Python — sequence of characters inside single or double quotes.", "code": "    my_str_1 = 'Hello'" },
+    { "comment": "# Strings can also use double quotes — treated equally in Python.", "code": "    my_str_2 = \"World\"" },
+    { "comment": "# Print both strings.", "code": "    print(my_str_1, my_str_2)" },
+
+    { "comment": "# Multi-line strings — use triple quotes.", "code": "    my_str_3 = '''This is a" },
+    { "comment": "# Multi-line string continued.", "code": "    multiline string'''" },
+    { "comment": "# Print multi-line string.", "code": "    print(my_str_3)" },
+
+    { "comment": "# Strings containing quotes — use opposite quotes or escape with backslash.", "code": "    msg = \"It's a sunny day\"" },
+    { "comment": "# Escaping quotes with backslash.", "code": "    quote = 'She said, \\\"Hello!\\\"'" },
+    { "comment": "# Print both strings with quotes inside.", "code": "    print(msg)" },
+    { "comment": "# Print escaped string.", "code": "    print(quote)" },
+
+    { "comment": "# Membership test — 'in' operator checks if substring exists.", "code": "    my_str = 'Hello world'" },
+    { "comment": "# True because 'Hello' exists.", "code": "    print('Hello' in my_str)" },
+    { "comment": "# False because 'hey' does not exist.", "code": "    print('hey' in my_str)" },
+
+    { "comment": "# Length of string — len() returns number of characters.", "code": "    print(len(my_str))  # 11" },
+
+    { "comment": "# Indexing — access characters by position (zero-based).", "code": "    print(my_str[0])  # H" },
+    { "comment": "# Index 6 gives 'w'.", "code": "    print(my_str[6])  # w" },
+
+    { "comment": "# Negative indexing — access from the end.", "code": "    print(my_str[-1])  # d" },
+    { "comment": "# Second-to-last character.", "code": "    print(my_str[-2])  # l" },
+
+    { "comment": "# Strings are immutable — cannot change characters directly.", "code": "    greeting = 'hi'" },
+    { "comment": "# Reassignment is allowed — variable points to new string.", "code": "    greeting = 'hello'" },
+    { "comment": "# Print reassigned string.", "code": "    print(greeting)" },
+    { "comment": "# Attempting direct modification causes error.", "code": "    # greeting[0] = 'H'  # TypeError" },
+
+    { "comment": "# Immutable types in Python include int, float, bool, tuple, range, and str.", "code": "    # These cannot be modified in place." },
+
+    { "comment": "# Comparison with C++ — Strings in C++ are mutable.", "code": "    # Example in C++: std::string greeting = \"hi\";" },
+    { "comment": "# In C++ you can modify characters directly.", "code": "    # greeting[0] = 'H'; // Works in C++" },
+    { "comment": "# Difference — Python strings are immutable, while C++ std::string allows direct modification.", "code": "    # This shows Python prioritizes safety and consistency, while C++ gives more control." }
+  ]
+},
+  {
   "title": "CHAPTER 5: Exploring Python Data Types with New Examples",
   "steps": [
     { "comment": "# Function definition — Creates a reusable block to demonstrate data types with fresh values.", "code": "def demonstrate_data_types_v2():" },
