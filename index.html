@@ -540,6 +540,27 @@ let chapters = [
     ]
   },
   {
+  "title": "CHAPTER 2.1: Escape Characters and String Syntax in Python vs C++",
+  "steps": [
+    { "comment": "# Function definition — Demonstrates escape characters in Python strings.", "code": "def demonstrate_escape_characters():" },
+
+    { "comment": "# String with single quotes inside — escaped with backslash.", "code": "    msg = 'It\\'s a sunny day'" },
+    { "comment": "# Print string — backslash tells Python to treat the quote literally.", "code": "    print(msg)  # Output: It's a sunny day" },
+
+    { "comment": "# String with double quotes inside — escaped with backslash.", "code": "    quote = \"She said, \\\"Hello!\\\"\"" },
+    { "comment": "# Print string — backslash makes inner quotes part of the text.", "code": "    print(quote)  # Output: She said, \"Hello!\"" },
+
+    { "comment": "# Explanation — The backslash (\\) is an escape character in Python.", "code": "    # It prevents Python from misinterpreting quotes as the end of the string." },
+
+    { "comment": "# Alternative — Use opposite quotes to avoid escaping.", "code": "    msg_alt = \"It's a sunny day\"" },
+    { "comment": "# Print alternative string — no backslash needed here.", "code": "    print(msg_alt)" },
+
+    { "comment": "# Comparison with C++ — Strings in C++ also use escape characters.", "code": "    # Example in C++: std::string msg = \"It\\'s a sunny day\";" },
+    { "comment": "# In C++ you can also use opposite quotes, but std::string is mutable unlike Python str.", "code": "    # Example in C++: std::string quote = \"She said, \\\"Hello!\\\"\";" },
+    { "comment": "# Difference — Python strings are immutable objects, while C++ std::string allows direct modification.", "code": "    # Both languages use backslash for escaping, but Python enforces immutability for safety." }
+  ]
+},
+  {
     "title": "CHAPTER 3: Control Structures — If Statements",
     "steps": [
       { "comment": "# If statement — Checks a condition and executes code if true.", "code": "if age >= 18:" },
