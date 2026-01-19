@@ -384,6 +384,26 @@ let chapters = [
   ]
 },
   {
+  "title": "CHAPTER: Python Basics — Common String Methods",
+  "steps": [
+    { "comment": "# upper() — Converts all characters to uppercase. Useful for normalization or emphasis.", "code": "my_str = 'hello world'\nprint(my_str.upper())  # HELLO WORLD" },
+    { "comment": "# lower() — Converts all characters to lowercase. Helpful for case-insensitive comparisons.", "code": "my_str = 'Hello World'\nprint(my_str.lower())  # hello world" },
+    { "comment": "# strip() — Removes leading and trailing whitespace (or specified characters). Prevents accidental spacing issues.", "code": "my_str = '  hello world  '\nprint(my_str.strip())  # hello world" },
+    { "comment": "# replace(old, new) — Replaces all occurrences of a substring with another. Great for quick text edits.", "code": "my_str = 'hello world'\nprint(my_str.replace('hello', 'hi'))  # hi world" },
+    { "comment": "# split(separator) — Splits a string into a list of substrings. Defaults to whitespace if no separator is given.", "code": "my_str = 'hello world'\nprint(my_str.split())  # ['hello', 'world']" },
+    { "comment": "# join(iterable) — Joins elements of an iterable into a single string, separated by the string used to call join().", "code": "my_list = ['hello', 'world']\nprint(' '.join(my_list))  # hello world" },
+    { "comment": "# startswith(prefix) — Returns True if the string begins with the given prefix.", "code": "my_str = 'hello world'\nprint(my_str.startswith('hello'))  # True" },
+    { "comment": "# endswith(suffix) — Returns True if the string ends with the given suffix.", "code": "my_str = 'hello world'\nprint(my_str.endswith('world'))  # True" },
+    { "comment": "# find(substring) — Returns the index of the first occurrence of substring, or -1 if not found.", "code": "my_str = 'hello world'\nprint(my_str.find('world'))  # 6" },
+    { "comment": "# count(substring) — Counts how many times a substring appears in the string.", "code": "my_str = 'hello world'\nprint(my_str.count('o'))  # 2" },
+    { "comment": "# capitalize() — Capitalizes the first character and lowercases the rest. Good for sentence formatting.", "code": "my_str = 'hello world'\nprint(my_str.capitalize())  # Hello world" },
+    { "comment": "# isupper() — Returns True if all letters are uppercase, False otherwise.", "code": "my_str = 'hello world'\nprint(my_str.isupper())  # False" },
+    { "comment": "# islower() — Returns True if all letters are lowercase, False otherwise.", "code": "my_str = 'hello world'\nprint(my_str.islower())  # True" },
+    { "comment": "# title() — Capitalizes the first letter of each word. Useful for formatting names or titles.", "code": "my_str = 'hello world'\nprint(my_str.title())  # Hello World" },
+    { "comment": "# Final Output — These built-in methods make string manipulation concise, expressive, and safer than manual loops.", "code": "# Example outputs: HELLO WORLD, hello world, hello world, hi world, ['hello','world'], hello world, True, True, 6, 2, Hello world, False, True, Hello World" }
+  ]
+},
+  {
   "title": "CHAPTER 1.8: Difference Between Integer and Float",
   "steps": [
     { "comment": "# Function definition — Creates a reusable block to demonstrate integer vs float difference.", "code": "def demonstrate_difference_integer_float():" },
