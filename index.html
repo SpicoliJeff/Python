@@ -162,6 +162,16 @@
     }
     button:hover:not(:disabled) { background: var(--btn-hover); }
     button:disabled { background: #444; cursor: not-allowed; }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(6px); }
+    }
+    #code-input.action-shine {
+      animation: shake 1s ease-in-out;
+    }
   </style>
 </head>
 <body>
@@ -203,18 +213,18 @@ let chapters = [
   "title": "CHAPTER 1.1: Variables and Naming in Python",
   "steps": [
     { "comment": "# Function definition — Declares a reusable block of code.", "code": "def demonstrate_variables():" },
-    { "comment": "# String variable — Stores text data inside quotes.", "code": "    name = \"John Doe\"" },
-    { "comment": "# Integer variable — Stores a whole number.", "code": "    age = 25" },
-    { "comment": "# Snake case naming convention — lowercase words separated by underscores.", "code": "    user_age = 30" },
-    { "comment": "# Single-letter variable — technically valid but not descriptive.", "code": "    x = 56" },
-    { "comment": "# Single-line comment — starts with # and is ignored by Python.", "code": "    # This is a single-line comment" },
-    { "comment": "# Multi-line comment — consecutive # lines form a block of explanation.", "code": "    # This is a" },
-    { "comment": "# Multi-line comment continued.", "code": "    # multi-line" },
-    { "comment": "# Multi-line comment continued.", "code": "    # comment" },
-    { "comment": "# Print statement — Displays the value of 'name'.", "code": "    print(\"Name:\", name)" },
-    { "comment": "# Print statement — Displays the value of 'age'.", "code": "    print(\"Age:\", age)" },
-    { "comment": "# Print statement — Displays the value of 'user_age'.", "code": "    print(\"User Age:\", user_age)" },
-    { "comment": "# Print statement — Displays the value of 'x'.", "code": "    print(\"Undescriptive variable x:\", x)" },
+    { "comment": "# String variable — Stores text data inside quotes.", "code": " name = \"John Doe\"" },
+    { "comment": "# Integer variable — Stores a whole number.", "code": " age = 25" },
+    { "comment": "# Snake case naming convention — lowercase words separated by underscores.", "code": " user_age = 30" },
+    { "comment": "# Single-letter variable — technically valid but not descriptive.", "code": " x = 56" },
+    { "comment": "# Single-line comment — starts with # and is ignored by Python.", "code": " # This is a single-line comment" },
+    { "comment": "# Multi-line comment — consecutive # lines form a block of explanation.", "code": " # This is a" },
+    { "comment": "# Multi-line comment continued.", "code": " # multi-line" },
+    { "comment": "# Multi-line comment continued.", "code": " # comment" },
+    { "comment": "# Print statement — Displays the value of 'name'.", "code": " print(\"Name:\", name)" },
+    { "comment": "# Print statement — Displays the value of 'age'.", "code": " print(\"Age:\", age)" },
+    { "comment": "# Print statement — Displays the value of 'user_age'.", "code": " print(\"User Age:\", user_age)" },
+    { "comment": "# Print statement — Displays the value of 'x'.", "code": " print(\"Undescriptive variable x:\", x)" },
     { "comment": "# Final Output — When run, prints all variable values to the console.", "code": "# Example output: Name: John Doe, Age: 25, User Age: 30, Undescriptive variable x: 56" }
   ]
 },
@@ -222,307 +232,248 @@ let chapters = [
   "title": "CHAPTER 1.2: Understanding print() Arguments and Commas",
   "steps": [
     { "comment": "# Function definition — Creates a reusable block to demonstrate print behavior.", "code": "def demonstrate_print_arguments():" },
-    { "comment": "# Basic print — The parentheses () are part of the function call syntax.", "code": "    print('Hello world!')" },
-    { "comment": "# Inside the parentheses, 'Hello world!' is an argument — data passed into the function.", "code": "    # Output: Hello world!" },
-    { "comment": "# Multiple arguments — You can separate values with commas inside the parentheses.", "code": "    print('My favorite colors are', 'blue', 'green', 'red')" },
-    { "comment": "# How commas work — In Python's print(), each comma means 'separate these arguments'.", "code": "    # Output: My favorite colors are blue green red" },
-    { "comment": "# Why spaces appear — print() automatically inserts a single space between arguments.", "code": "    # This is built-in behavior: commas don't literally mean space, but print() adds them." },
-    { "comment": "# Parentheses role — They define the boundary of the function call and hold arguments.", "code": "    # Arguments are the values inside (), telling print() what to display." },
-    { "comment": "# Example with numbers — Multiple arguments can be of different types.", "code": "    print('The answer is', 42)" },
-    { "comment": "# Output shows automatic spacing between string and integer.", "code": "    # Output: The answer is 42" },
-    { "comment": "# Comparison with C++ — Instead of commas, C++ uses the << operator with cout.", "code": "    # Example: cout << \"My favorite colors are \" << \"blue\" << \"green\" << \"red\";" },
-    { "comment": "# Difference — In C++, << directly chains values together without automatic spaces, so you must add them manually.", "code": "    # Python's print() is simpler for beginners because commas automatically insert spaces." },
-    { "comment": "# Final note — Commas separate arguments, parentheses group them, and print() handles spacing.", "code": "    # This makes print flexible for combining text and data." }
+    { "comment": "# Basic print — The parentheses () are part of the function call syntax.", "code": " print('Hello world!')" },
+    { "comment": "# Inside the parentheses, 'Hello world!' is an argument — data passed into the function.", "code": " # Output: Hello world!" },
+    { "comment": "# Multiple arguments — You can separate values with commas inside the parentheses.", "code": " print('My favorite colors are', 'blue', 'green', 'red')" },
+    { "comment": "# How commas work — In Python's print(), each comma means 'separate these arguments'.", "code": " # Output: My favorite colors are blue green red" },
+    { "comment": "# Why spaces appear — print() automatically inserts a single space between arguments.", "code": " # This is built-in behavior: commas don't literally mean space, but print() adds them." },
+    { "comment": "# Parentheses role — They define the boundary of the function call and hold arguments.", "code": " # Arguments are the values inside (), telling print() what to display." },
+    { "comment": "# Example with numbers — Multiple arguments can be of different types.", "code": " print('The answer is', 42)" },
+    { "comment": "# Output shows automatic spacing between string and integer.", "code": " # Output: The answer is 42" },
+    { "comment": "# Comparison with C++ — Instead of commas, C++ uses the << operator with cout.", "code": " # Example: cout << \"My favorite colors are \" << \"blue\" << \"green\" << \"red\";" },
+    { "comment": "# Difference — In C++, << directly chains values together without automatic spaces, so you must add them manually.", "code": " # Python's print() is simpler for beginners because commas automatically insert spaces." },
+    { "comment": "# Final note — Commas separate arguments, parentheses group them, and print() handles spacing.", "code": " # This makes print flexible for combining text and data." }
   ]
 },
   {
   "title": "CHAPTER 1.3: Python Data Types and Dynamic Typing",
   "steps": [
     { "comment": "# Function definition — Creates a reusable block to demonstrate Python data types.", "code": "def demonstrate_data_types():" },
-
-    { "comment": "# String variable — Python infers type dynamically, no explicit keyword needed.", "code": "    name = 'John Doe'" },
-    { "comment": "# Integer variable — Whole number, Python knows it's an int.", "code": "    age = 25" },
-    { "comment": "# Print values — Shows Python automatically recognizes types.", "code": "    print('Name:', name)" },
-    { "comment": "# Print values — Demonstrates integer output.", "code": "    print('Age:', age)" },
-
-    { "comment": "# Integer type — Whole numbers without decimals.", "code": "    my_integer_var = 10" },
-    { "comment": "# Print integer value.", "code": "    print('Integer:', my_integer_var)" },
-
-    { "comment": "# Float type — Numbers with decimals.", "code": "    my_float_var = 4.50" },
-    { "comment": "# Print float value.", "code": "    print('Float:', my_float_var)" },
-
-    { "comment": "# String type — Sequence of characters in quotes.", "code": "    my_string_var = 'hello'" },
-    { "comment": "# Print string value.", "code": "    print('String:', my_string_var)" },
-
-    { "comment": "# Boolean type — True or False values.", "code": "    my_boolean_var = True" },
-    { "comment": "# Print boolean value.", "code": "    print('Boolean:', my_boolean_var)" },
-
-    { "comment": "# Set type — Unordered collection of unique elements.", "code": "    my_set_var = {7, 5, 8}" },
-    { "comment": "# Print set value.", "code": "    print('Set:', my_set_var)" },
-
-    { "comment": "# Dictionary type — Key-value pairs inside curly braces.", "code": "    my_dictionary_var = {'name': 'Alice', 'age': 25}" },
-    { "comment": "# Print dictionary value.", "code": "    print('Dictionary:', my_dictionary_var)" },
-
-    { "comment": "# Tuple type — Immutable ordered collection inside parentheses.", "code": "    my_tuple_var = (7, 5, 8)" },
-    { "comment": "# Print tuple value.", "code": "    print('Tuple:', my_tuple_var)" },
-
-    { "comment": "# Range type — Sequence of numbers, often used in loops.", "code": "    my_range_var = range(5)" },
-    { "comment": "# Print range value.", "code": "    print('Range:', my_range_var)" },
-
-    { "comment": "# List type — Ordered collection, supports mixed data types.", "code": "    my_list = [22, 'Hello world', 3.14, True]" },
-    { "comment": "# Print list value.", "code": "    print('List:', my_list)" },
-
-    { "comment": "# None type — Represents absence of a value.", "code": "    my_none_var = None" },
-    { "comment": "# Print None value.", "code": "    print('None:', my_none_var)" },
-
-    { "comment": "# type() function — Reveals the data type of a variable.", "code": "    print(type(my_integer_var))" },
-    { "comment": "# Example: <class 'int'> is shown in terminal.", "code": "    print(type(my_float_var))" },
-    { "comment": "# Example: <class 'str'> for strings.", "code": "    print(type(my_string_var))" },
-    { "comment": "# Example: <class 'bool'> for booleans.", "code": "    print(type(my_boolean_var))" },
-    { "comment": "# Example: <class 'set'> for sets.", "code": "    print(type(my_set_var))" },
-    { "comment": "# Example: <class 'dict'> for dictionaries.", "code": "    print(type(my_dictionary_var))" },
-    { "comment": "# Example: <class 'tuple'> for tuples.", "code": "    print(type(my_tuple_var))" },
-    { "comment": "# Example: <class 'range'> for ranges.", "code": "    print(type(my_range_var))" },
-    { "comment": "# Example: <class 'list'> for lists.", "code": "    print(type(my_list))" },
-    { "comment": "# Example: <class 'NoneType'> for None.", "code": "    print(type(my_none_var))" },
-
-    { "comment": "# isinstance() function — Checks if a variable matches a specific type.", "code": "    print(isinstance('Hello world', str))  # True" },
-    { "comment": "# isinstance() example with boolean.", "code": "    print(isinstance(True, bool))  # True" },
-    { "comment": "# isinstance() example with integer.", "code": "    print(isinstance(42, int))  # True" },
-    { "comment": "# isinstance() example with mismatched type.", "code": "    print(isinstance('John Doe', int))  # False" },
-
-    { "comment": "# Comparison note — Python is dynamically typed, unlike C++, Java, or C# which require explicit type declarations.", "code": "    # Example in C++: string name = 'John Doe'; int age = 25;" },
-    { "comment": "# Final note — Python determines types at runtime, so type errors appear only when the program executes.", "code": "    # Compiled languages catch type errors earlier, during the compile step." }
+    { "comment": "# String variable — Python infers type dynamically, no explicit keyword needed.", "code": " name = 'John Doe'" },
+    { "comment": "# Integer variable — Whole number, Python knows it's an int.", "code": " age = 25" },
+    { "comment": "# Print values — Shows Python automatically recognizes types.", "code": " print('Name:', name)" },
+    { "comment": "# Print values — Demonstrates integer output.", "code": " print('Age:', age)" },
+    { "comment": "# Integer type — Whole numbers without decimals.", "code": " my_integer_var = 10" },
+    { "comment": "# Print integer value.", "code": " print('Integer:', my_integer_var)" },
+    { "comment": "# Float type — Numbers with decimals.", "code": " my_float_var = 4.50" },
+    { "comment": "# Print float value.", "code": " print('Float:', my_float_var)" },
+    { "comment": "# String type — Sequence of characters in quotes.", "code": " my_string_var = 'hello'" },
+    { "comment": "# Print string value.", "code": " print('String:', my_string_var)" },
+    { "comment": "# Boolean type — True or False values.", "code": " my_boolean_var = True" },
+    { "comment": "# Print boolean value.", "code": " print('Boolean:', my_boolean_var)" },
+    { "comment": "# Set type — Unordered collection of unique elements.", "code": " my_set_var = {7, 5, 8}" },
+    { "comment": "# Print set value.", "code": " print('Set:', my_set_var)" },
+    { "comment": "# Dictionary type — Key-value pairs inside curly braces.", "code": " my_dictionary_var = {'name': 'Alice', 'age': 25}" },
+    { "comment": "# Print dictionary value.", "code": " print('Dictionary:', my_dictionary_var)" },
+    { "comment": "# Tuple type — Immutable ordered collection inside parentheses.", "code": " my_tuple_var = (7, 5, 8)" },
+    { "comment": "# Print tuple value.", "code": " print('Tuple:', my_tuple_var)" },
+    { "comment": "# Range type — Sequence of numbers, often used in loops.", "code": " my_range_var = range(5)" },
+    { "comment": "# Print range value.", "code": " print('Range:', my_range_var)" },
+    { "comment": "# List type — Ordered collection, supports mixed data types.", "code": " my_list = [22, 'Hello world', 3.14, True]" },
+    { "comment": "# Print list value.", "code": " print('List:', my_list)" },
+    { "comment": "# None type — Represents absence of a value.", "code": " my_none_var = None" },
+    { "comment": "# Print None value.", "code": " print('None:', my_none_var)" },
+    { "comment": "# type() function — Reveals the data type of a variable.", "code": " print(type(my_integer_var))" },
+    { "comment": "# Example: <class 'int'> is shown in terminal.", "code": " print(type(my_float_var))" },
+    { "comment": "# Example: <class 'str'> for strings.", "code": " print(type(my_string_var))" },
+    { "comment": "# Example: <class 'bool'> for booleans.", "code": " print(type(my_boolean_var))" },
+    { "comment": "# Example: <class 'set'> for sets.", "code": " print(type(my_set_var))" },
+    { "comment": "# Example: <class 'dict'> for dictionaries.", "code": " print(type(my_dictionary_var))" },
+    { "comment": "# Example: <class 'tuple'> for tuples.", "code": " print(type(my_tuple_var))" },
+    { "comment": "# Example: <class 'range'> for ranges.", "code": " print(type(my_range_var))" },
+    { "comment": "# Example: <class 'list'> for lists.", "code": " print(type(my_list))" },
+    { "comment": "# Example: <class 'NoneType'> for None.", "code": " print(type(my_none_var))" },
+    { "comment": "# isinstance() function — Checks if a variable matches a specific type.", "code": " print(isinstance('Hello world', str)) # True" },
+    { "comment": "# isinstance() example with boolean.", "code": " print(isinstance(True, bool)) # True" },
+    { "comment": "# isinstance() example with integer.", "code": " print(isinstance(42, int)) # True" },
+    { "comment": "# isinstance() example with mismatched type.", "code": " print(isinstance('John Doe', int)) # False" },
+    { "comment": "# Comparison note — Python is dynamically typed, unlike C++, Java, or C# which require explicit type declarations.", "code": " # Example in C++: string name = 'John Doe'; int age = 25;" },
+    { "comment": "# Final note — Python determines types at runtime, so type errors appear only when the program executes.", "code": " # Compiled languages catch type errors earlier, during the compile step." }
   ]
 },
   {
   "title": "CHAPTER 1.4: Python Data Types Demonstrations",
   "steps": [
     { "comment": "# Function for whole number (integer).", "code": "def demonstrate_integer():" },
-    { "comment": "# Integer — whole numbers without decimals.", "code": "    my_integer = 100" },
-    { "comment": "# Print integer value.", "code": "    print('Integer value:', my_integer)" },
-    { "comment": "# Show type of variable.", "code": "    print('Type:', type(my_integer))  # <class 'int'>" },
-
+    { "comment": "# Integer — whole numbers without decimals.", "code": " my_integer = 100" },
+    { "comment": "# Print integer value.", "code": " print('Integer value:', my_integer)" },
+    { "comment": "# Show type of variable.", "code": " print('Type:', type(my_integer)) # <class 'int'>" },
     { "comment": "# Function for decimal (float).", "code": "def demonstrate_float():" },
-    { "comment": "# Float — numbers with decimals.", "code": "    my_float = 3.14159" },
-    { "comment": "# Print float value.", "code": "    print('Float value:', my_float)" },
-    { "comment": "# Show type of variable.", "code": "    print('Type:', type(my_float))  # <class 'float'>" },
-
+    { "comment": "# Float — numbers with decimals.", "code": " my_float = 3.14159" },
+    { "comment": "# Print float value.", "code": " print('Float value:', my_float)" },
+    { "comment": "# Show type of variable.", "code": " print('Type:', type(my_float)) # <class 'float'>" },
     { "comment": "# Function for string.", "code": "def demonstrate_string():" },
-    { "comment": "# String — sequence of characters.", "code": "    my_string = 'Hello Python'" },
-    { "comment": "# Print string value.", "code": "    print('String value:', my_string)" },
-    { "comment": "# Show type of variable.", "code": "    print('Type:', type(my_string))  # <class 'str'>" },
-
+    { "comment": "# String — sequence of characters.", "code": " my_string = 'Hello Python'" },
+    { "comment": "# Print string value.", "code": " print('String value:', my_string)" },
+    { "comment": "# Show type of variable.", "code": " print('Type:', type(my_string)) # <class 'str'>" },
     { "comment": "# Function for text data enclosed in quotes.", "code": "def demonstrate_text_quotes():" },
-    { "comment": "# Text data — can use single or double quotes.", "code": "    text_single = 'Single quoted text'" },
-    { "comment": "# Another string using double quotes.", "code": "    text_double = \"Double quoted text\"" },
-    { "comment": "# Print both values.", "code": "    print('Single quoted:', text_single)" },
-    { "comment": "# Print double quoted string.", "code": "    print('Double quoted:', text_double)" },
-    { "comment": "# Show types.", "code": "    print('Type:', type(text_single), type(text_double))  # <class 'str'>" },
-
+    { "comment": "# Text data — can use single or double quotes.", "code": " text_single = 'Single quoted text'" },
+    { "comment": "# Another string using double quotes.", "code": " text_double = \"Double quoted text\"" },
+    { "comment": "# Print both values.", "code": " print('Single quoted:', text_single)" },
+    { "comment": "# Print double quoted string.", "code": " print('Double quoted:', text_double)" },
+    { "comment": "# Show types.", "code": " print('Type:', type(text_single), type(text_double)) # <class 'str'>" },
     { "comment": "# Function for boolean True.", "code": "def demonstrate_boolean_true():" },
-    { "comment": "# Boolean — True condition.", "code": "    my_bool = True" },
-    { "comment": "# Print boolean value.", "code": "    print('Boolean True:', my_bool)" },
-    { "comment": "# Show type.", "code": "    print('Type:', type(my_bool))  # <class 'bool'>" },
-
+    { "comment": "# Boolean — True condition.", "code": " my_bool = True" },
+    { "comment": "# Print boolean value.", "code": " print('Boolean True:', my_bool)" },
+    { "comment": "# Show type.", "code": " print('Type:', type(my_bool)) # <class 'bool'>" },
     { "comment": "# Function for boolean False.", "code": "def demonstrate_boolean_false():" },
-    { "comment": "# Boolean — False condition.", "code": "    my_bool = False" },
-    { "comment": "# Print boolean value.", "code": "    print('Boolean False:', my_bool)" },
-    { "comment": "# Show type.", "code": "    print('Type:', type(my_bool))  # <class 'bool'>" },
-
+    { "comment": "# Boolean — False condition.", "code": " my_bool = False" },
+    { "comment": "# Print boolean value.", "code": " print('Boolean False:', my_bool)" },
+    { "comment": "# Show type.", "code": " print('Type:', type(my_bool)) # <class 'bool'>" },
     { "comment": "# Function for set.", "code": "def demonstrate_set():" },
-    { "comment": "# Set — unordered collection of unique elements.", "code": "    my_set = {1, 2, 2, 3, 4}" },
-    { "comment": "# Print set value (duplicates removed automatically).", "code": "    print('Set value:', my_set)" },
-    { "comment": "# Show type.", "code": "    print('Type:', type(my_set))  # <class 'set'>" },
-
+    { "comment": "# Set — unordered collection of unique elements.", "code": " my_set = {1, 2, 2, 3, 4}" },
+    { "comment": "# Print set value (duplicates removed automatically).", "code": " print('Set value:', my_set)" },
+    { "comment": "# Show type.", "code": " print('Type:', type(my_set)) # <class 'set'>" },
     { "comment": "# Function for dictionary.", "code": "def demonstrate_dictionary():" },
-    { "comment": "# Dictionary — key-value pairs.", "code": "    my_dict = {'name': 'Cody', 'role': 'Developer'}" },
-    { "comment": "# Print dictionary value.", "code": "    print('Dictionary value:', my_dict)" },
-    { "comment": "# Show type.", "code": "    print('Type:', type(my_dict))  # <class 'dict'>" },
-
+    { "comment": "# Dictionary — key-value pairs.", "code": " my_dict = {'name': 'Cody', 'role': 'Developer'}" },
+    { "comment": "# Print dictionary value.", "code": " print('Dictionary value:', my_dict)" },
+    { "comment": "# Show type.", "code": " print('Type:', type(my_dict)) # <class 'dict'>" },
     { "comment": "# Function for tuple.", "code": "def demonstrate_tuple():" },
-    { "comment": "# Tuple — immutable ordered collection.", "code": "    my_tuple = (10, 20, 30)" },
-    { "comment": "# Print tuple value.", "code": "    print('Tuple value:', my_tuple)" },
-    { "comment": "# Show type.", "code": "    print('Type:', type(my_tuple))  # <class 'tuple'>" },
-
+    { "comment": "# Tuple — immutable ordered collection.", "code": " my_tuple = (10, 20, 30)" },
+    { "comment": "# Print tuple value.", "code": " print('Tuple value:', my_tuple)" },
+    { "comment": "# Show type.", "code": " print('Type:', type(my_tuple)) # <class 'tuple'>" },
     { "comment": "# Function for range.", "code": "def demonstrate_range():" },
-    { "comment": "# Range — sequence of numbers.", "code": "    my_range = range(5)" },
-    { "comment": "# Print range object.", "code": "    print('Range value:', my_range)" },
-    { "comment": "# Convert to list to show sequence.", "code": "    print('Range as list:', list(my_range))" },
-    { "comment": "# Show type.", "code": "    print('Type:', type(my_range))  # <class 'range'>" },
-
+    { "comment": "# Range — sequence of numbers.", "code": " my_range = range(5)" },
+    { "comment": "# Print range object.", "code": " print('Range value:', my_range)" },
+    { "comment": "# Convert to list to show sequence.", "code": " print('Range as list:', list(my_range))" },
+    { "comment": "# Show type.", "code": " print('Type:', type(my_range)) # <class 'range'>" },
     { "comment": "# Function for loop with range.", "code": "def demonstrate_loop_with_range():" },
-    { "comment": "# Loop — iterate through a range of numbers.", "code": "    for i in range(3):" },
-    { "comment": "# Print each iteration value.", "code": "        print('Loop iteration:', i)" },
-
+    { "comment": "# Loop — iterate through a range of numbers.", "code": " for i in range(3):" },
+    { "comment": "# Print each iteration value.", "code": " print('Loop iteration:', i)" },
     { "comment": "# Function for list.", "code": "def demonstrate_list():" },
-    { "comment": "# List — ordered collection, can mix types.", "code": "    my_list = [42, 'Python', 3.14, True]" },
-    { "comment": "# Print list value.", "code": "    print('List value:', my_list)" },
-    { "comment": "# Show type.", "code": "    print('Type:', type(my_list))  # <class 'list'>" },
-
+    { "comment": "# List — ordered collection, can mix types.", "code": " my_list = [42, 'Python', 3.14, True]" },
+    { "comment": "# Print list value.", "code": " print('List value:', my_list)" },
+    { "comment": "# Show type.", "code": " print('Type:', type(my_list)) # <class 'list'>" },
     { "comment": "# Function for None.", "code": "def demonstrate_none():" },
-    { "comment": "# None — special value representing no value or empty.", "code": "    my_none = None" },
-    { "comment": "# Print None value.", "code": "    print('None value:', my_none)" },
-    { "comment": "# Show type.", "code": "    print('Type:', type(my_none))  # <class 'NoneType'>" }
+    { "comment": "# None — special value representing no value or empty.", "code": " my_none = None" },
+    { "comment": "# Print None value.", "code": " print('None value:', my_none)" },
+    { "comment": "# Show type.", "code": " print('Type:', type(my_none)) # <class 'NoneType'>" }
   ]
 },
   {
   "title": "CHAPTER 1.5: Checking Data Types in Python",
   "steps": [
     { "comment": "# Function definition — Creates a reusable block to demonstrate type checking.", "code": "def demonstrate_type_checking():" },
-
-    { "comment": "# Declare a string variable — Python infers type dynamically.", "code": "    my_var_1 = 'Hello world'" },
-    { "comment": "# Declare an integer variable — Python knows this is an int.", "code": "    my_var_2 = 21" },
-
-    { "comment": "# Use type() — Built-in function that returns the data type of a variable.", "code": "    print(type(my_var_1))  # <class 'str'>" },
-    { "comment": "# Example output shows that my_var_1 is a string.", "code": "    print(type(my_var_2))  # <class 'int'>" },
-
-    { "comment": "# Use isinstance() — Checks if a variable matches a specific type.", "code": "    print(isinstance(my_var_1, str))  # True" },
-    { "comment": "# isinstance() returns True if variable is of given type, False otherwise.", "code": "    print(isinstance(my_var_2, float))  # False" },
-
-    { "comment": "# Demonstrate with boolean variable.", "code": "    my_bool = True" },
-    { "comment": "# type() reveals it is a bool.", "code": "    print(type(my_bool))  # <class 'bool'>" },
-    { "comment": "# isinstance() confirms the type.", "code": "    print(isinstance(my_bool, bool))  # True" },
-
-    { "comment": "# Final note — type() shows the exact class, isinstance() checks membership.", "code": "    # Together they give you full control over type checking in Python." }
+    { "comment": "# Declare a string variable — Python infers type dynamically.", "code": " my_var_1 = 'Hello world'" },
+    { "comment": "# Declare an integer variable — Python knows this is an int.", "code": " my_var_2 = 21" },
+    { "comment": "# Use type() — Built-in function that returns the data type of a variable.", "code": " print(type(my_var_1)) # <class 'str'>" },
+    { "comment": "# Example output shows that my_var_1 is a string.", "code": " print(type(my_var_2)) # <class 'int'>" },
+    { "comment": "# Use isinstance() — Checks if a variable matches a specific type.", "code": " print(isinstance(my_var_1, str)) # True" },
+    { "comment": "# isinstance() returns True if variable is of given type, False otherwise.", "code": " print(isinstance(my_var_2, float)) # False" },
+    { "comment": "# Demonstrate with boolean variable.", "code": " my_bool = True" },
+    { "comment": "# type() reveals it is a bool.", "code": " print(type(my_bool)) # <class 'bool'>" },
+    { "comment": "# isinstance() confirms the type.", "code": " print(isinstance(my_bool, bool)) # True" },
+    { "comment": "# Final note — type() shows the exact class, isinstance() checks membership.", "code": " # Together they give you full control over type checking in Python." }
   ]
 },
   {
   "title": "CHAPTER 1.8: Difference Between Integer and Float",
   "steps": [
     { "comment": "# Function definition — Creates a reusable block to demonstrate integer vs float difference.", "code": "def demonstrate_difference_integer_float():" },
-
-    { "comment": "# Declare an integer variable — whole number without decimals.", "code": "    my_integer = 10" },
-    { "comment": "# Declare a float variable — number with decimals.", "code": "    my_float = 3.5" },
-
-    { "comment": "# Perform subtraction — Python automatically handles mixed types.", "code": "    difference = my_integer - my_float" },
-
-    { "comment": "# Print integer value.", "code": "    print('Integer:', my_integer)" },
-    { "comment": "# Print float value.", "code": "    print('Float:', my_float)" },
-    { "comment": "# Print the difference — result is a float because one operand is a float.", "code": "    print('Difference (int - float):', difference)" },
-
-    { "comment": "# Show types — type() reveals the data type of each variable.", "code": "    print('Type of integer:', type(my_integer))  # <class 'int'>" },
-    { "comment": "# Show type of float.", "code": "    print('Type of float:', type(my_float))  # <class 'float'>" },
-    { "comment": "# Show type of result — subtraction with float produces a float.", "code": "    print('Type of difference:', type(difference))  # <class 'float'>" },
-
-    { "comment": "# Final note — Mixing int and float in arithmetic promotes the result to float for precision.", "code": "    # This ensures decimal accuracy in calculations." }
+    { "comment": "# Declare an integer variable — whole number without decimals.", "code": " my_integer = 10" },
+    { "comment": "# Declare a float variable — number with decimals.", "code": " my_float = 3.5" },
+    { "comment": "# Perform subtraction — Python automatically handles mixed types.", "code": " difference = my_integer - my_float" },
+    { "comment": "# Print integer value.", "code": " print('Integer:', my_integer)" },
+    { "comment": "# Print float value.", "code": " print('Float:', my_float)" },
+    { "comment": "# Print the difference — result is a float because one operand is a float.", "code": " print('Difference (int - float):', difference)" },
+    { "comment": "# Show types — type() reveals the data type of each variable.", "code": " print('Type of integer:', type(my_integer)) # <class 'int'>" },
+    { "comment": "# Show type of float.", "code": " print('Type of float:', type(my_float)) # <class 'float'>" },
+    { "comment": "# Show type of result — subtraction with float produces a float.", "code": " print('Type of difference:', type(difference)) # <class 'float'>" },
+    { "comment": "# Final note — Mixing int and float in arithmetic promotes the result to float for precision.", "code": " # This ensures decimal accuracy in calculations." }
   ]
 },
   {
   "title": "CHAPTER 1.9: Strings and String Immutability in Python vs C++",
   "steps": [
     { "comment": "# Function definition — Demonstrates strings and immutability in Python.", "code": "def demonstrate_strings():" },
-
-    { "comment": "# Strings in Python — sequence of characters inside single or double quotes.", "code": "    my_str_1 = 'Hello'" },
-    { "comment": "# Strings can also use double quotes — treated equally in Python.", "code": "    my_str_2 = \"World\"" },
-    { "comment": "# Print both strings.", "code": "    print(my_str_1, my_str_2)" },
-
-    { "comment": "# Multi-line strings — use triple quotes.", "code": "    my_str_3 = '''This is a" },
-    { "comment": "# Multi-line string continued.", "code": "    multiline string'''" },
-    { "comment": "# Print multi-line string.", "code": "    print(my_str_3)" },
-
-    { "comment": "# Strings containing quotes — use opposite quotes or escape with backslash.", "code": "    msg = \"It's a sunny day\"" },
-    { "comment": "# Escaping quotes with backslash.", "code": "    quote = 'She said, \\\"Hello!\\\"'" },
-    { "comment": "# Print both strings with quotes inside.", "code": "    print(msg)" },
-    { "comment": "# Print escaped string.", "code": "    print(quote)" },
-
-    { "comment": "# Membership test — 'in' operator checks if substring exists.", "code": "    my_str = 'Hello world'" },
-    { "comment": "# True because 'Hello' exists.", "code": "    print('Hello' in my_str)" },
-    { "comment": "# False because 'hey' does not exist.", "code": "    print('hey' in my_str)" },
-
-    { "comment": "# Length of string — len() returns number of characters.", "code": "    print(len(my_str))  # 11" },
-
-    { "comment": "# Indexing — access characters by position (zero-based).", "code": "    print(my_str[0])  # H" },
-    { "comment": "# Index 6 gives 'w'.", "code": "    print(my_str[6])  # w" },
-
-    { "comment": "# Negative indexing — access from the end.", "code": "    print(my_str[-1])  # d" },
-    { "comment": "# Second-to-last character.", "code": "    print(my_str[-2])  # l" },
-
-    { "comment": "# Strings are immutable — cannot change characters directly.", "code": "    greeting = 'hi'" },
-    { "comment": "# Reassignment is allowed — variable points to new string.", "code": "    greeting = 'hello'" },
-    { "comment": "# Print reassigned string.", "code": "    print(greeting)" },
-    { "comment": "# Attempting direct modification causes error.", "code": "    # greeting[0] = 'H'  # TypeError" },
-
-    { "comment": "# Immutable types in Python include int, float, bool, tuple, range, and str.", "code": "    # These cannot be modified in place." },
-
-    { "comment": "# Comparison with C++ — Strings in C++ are mutable.", "code": "    # Example in C++: std::string greeting = \"hi\";" },
-    { "comment": "# In C++ you can modify characters directly.", "code": "    # greeting[0] = 'H'; // Works in C++" },
-    { "comment": "# Difference — Python strings are immutable, while C++ std::string allows direct modification.", "code": "    # This shows Python prioritizes safety and consistency, while C++ gives more control." }
+    { "comment": "# Strings in Python — sequence of characters inside single or double quotes.", "code": " my_str_1 = 'Hello'" },
+    { "comment": "# Strings can also use double quotes — treated equally in Python.", "code": " my_str_2 = \"World\"" },
+    { "comment": "# Print both strings.", "code": " print(my_str_1, my_str_2)" },
+    { "comment": "# Multi-line strings — use triple quotes.", "code": " my_str_3 = '''This is a" },
+    { "comment": "# Multi-line string continued.", "code": " multiline string'''" },
+    { "comment": "# Print multi-line string.", "code": " print(my_str_3)" },
+    { "comment": "# Strings containing quotes — use opposite quotes or escape with backslash.", "code": " msg = \"It's a sunny day\"" },
+    { "comment": "# Escaping quotes with backslash.", "code": " quote = 'She said, \\\"Hello!\\\"'" },
+    { "comment": "# Print both strings with quotes inside.", "code": " print(msg)" },
+    { "comment": "# Print escaped string.", "code": " print(quote)" },
+    { "comment": "# Membership test — 'in' operator checks if substring exists.", "code": " my_str = 'Hello world'" },
+    { "comment": "# True because 'Hello' exists.", "code": " print('Hello' in my_str)" },
+    { "comment": "# False because 'hey' does not exist.", "code": " print('hey' in my_str)" },
+    { "comment": "# Length of string — len() returns number of characters.", "code": " print(len(my_str)) # 11" },
+    { "comment": "# Indexing — access characters by position (zero-based).", "code": " print(my_str[0]) # H" },
+    { "comment": "# Index 6 gives 'w'.", "code": " print(my_str[6]) # w" },
+    { "comment": "# Negative indexing — access from the end.", "code": " print(my_str[-1]) # d" },
+    { "comment": "# Second-to-last character.", "code": " print(my_str[-2]) # l" },
+    { "comment": "# Strings are immutable — cannot change characters directly.", "code": " greeting = 'hi'" },
+    { "comment": "# Reassignment is allowed — variable points to new string.", "code": " greeting = 'hello'" },
+    { "comment": "# Print reassigned string.", "code": " print(greeting)" },
+    { "comment": "# Attempting direct modification causes error.", "code": " # greeting[0] = 'H' # TypeError" },
+    { "comment": "# Immutable types in Python include int, float, bool, tuple, range, and str.", "code": " # These cannot be modified in place." },
+    { "comment": "# Comparison with C++ — Strings in C++ are mutable.", "code": " # Example in C++: std::string greeting = \"hi\";" },
+    { "comment": "# In C++ you can modify characters directly.", "code": " # greeting[0] = 'H'; // Works in C++" },
+    { "comment": "# Difference — Python strings are immutable, while C++ std::string allows direct modification.", "code": " # This shows Python prioritizes safety and consistency, while C++ gives more control." }
   ]
 },
   {
   "title": "CHAPTER 5: Exploring Python Data Types with New Examples",
   "steps": [
     { "comment": "# Function definition — Creates a reusable block to demonstrate data types with fresh values.", "code": "def demonstrate_data_types_v2():" },
-
-    { "comment": "# Integer — Whole number, often used for counts or IDs.", "code": "    my_integer_var = 42" },
-    { "comment": "# Print integer value.", "code": "    print('Integer:', my_integer_var)" },
-
-    { "comment": "# Float — Number with decimals, useful for precise measurements.", "code": "    my_float_var = -3.14159" },
-    { "comment": "# Print float value.", "code": "    print('Float:', my_float_var)" },
-
-    { "comment": "# String — Text data, enclosed in quotes.", "code": "    my_string_var = \"Python is powerful\"" },
-    { "comment": "# Print string value.", "code": "    print('String:', my_string_var)" },
-
-    { "comment": "# Boolean — True or False values, often used in conditions.", "code": "    my_boolean_var = False" },
-    { "comment": "# Print boolean value.", "code": "    print('Boolean:', my_boolean_var)" },
-
-    { "comment": "# Set — Unordered collection of unique elements.", "code": "    my_set_var = {1, 2, 2, 3, 4}" },
-    { "comment": "# Print set value — duplicates are removed automatically.", "code": "    print('Set:', my_set_var)" },
-
-    { "comment": "# Dictionary — Key-value pairs, useful for structured data.", "code": "    my_dictionary_var = {'language': 'Python', 'version': 3.11}" },
-    { "comment": "# Print dictionary value.", "code": "    print('Dictionary:', my_dictionary_var)" },
-
-    { "comment": "# Tuple — Immutable ordered collection.", "code": "    my_tuple_var = ('apple', 'banana', 'cherry')" },
-    { "comment": "# Print tuple value.", "code": "    print('Tuple:', my_tuple_var)" },
-
-    { "comment": "# Range — Sequence of numbers, commonly used in loops.", "code": "    my_range_var = range(1, 6)" },
-    { "comment": "# Print range value.", "code": "    print('Range:', my_range_var)" },
-
-    { "comment": "# List — Ordered collection, can mix types.", "code": "    my_list = ['Cody', 99, 3.14, False]" },
-    { "comment": "# Print list value.", "code": "    print('List:', my_list)" },
-
-    { "comment": "# None — Special value representing 'no value' or 'empty'.", "code": "    my_none_var = None" },
-    { "comment": "# Print None value.", "code": "    print('None:', my_none_var)" },
-
-    { "comment": "# type() function — Reveals the data type of each variable.", "code": "    print(type(my_integer_var))  # <class 'int'>" },
-    { "comment": "# Example with float.", "code": "    print(type(my_float_var))  # <class 'float'>" },
-    { "comment": "# Example with string.", "code": "    print(type(my_string_var))  # <class 'str'>" },
-    { "comment": "# Example with boolean.", "code": "    print(type(my_boolean_var))  # <class 'bool'>" },
-    { "comment": "# Example with set.", "code": "    print(type(my_set_var))  # <class 'set'>" },
-    { "comment": "# Example with dictionary.", "code": "    print(type(my_dictionary_var))  # <class 'dict'>" },
-    { "comment": "# Example with tuple.", "code": "    print(type(my_tuple_var))  # <class 'tuple'>" },
-    { "comment": "# Example with range.", "code": "    print(type(my_range_var))  # <class 'range'>" },
-    { "comment": "# Example with list.", "code": "    print(type(my_list))  # <class 'list'>" },
-    { "comment": "# Example with None.", "code": "    print(type(my_none_var))  # <class 'NoneType'>" },
-
-    { "comment": "# isinstance() — Checks if a variable matches a specific type.", "code": "    print(isinstance(my_string_var, str))  # True" },
-    { "comment": "# isinstance() example with integer.", "code": "    print(isinstance(my_integer_var, int))  # True" },
-    { "comment": "# isinstance() example with float.", "code": "    print(isinstance(my_float_var, float))  # True" },
-    { "comment": "# isinstance() example with mismatched type.", "code": "    print(isinstance(my_boolean_var, str))  # False" },
-
-    { "comment": "# Comparison note — Python infers types dynamically, unlike C++ or Java which require explicit type declarations.", "code": "    # Example in C++: int number = 42; string text = \"Python is powerful\";" },
-    { "comment": "# Final note — Python catches type errors only at runtime, while compiled languages catch them at compile time.", "code": "    # This makes Python flexible but requires careful testing." }
+    { "comment": "# Integer — Whole number, often used for counts or IDs.", "code": " my_integer_var = 42" },
+    { "comment": "# Print integer value.", "code": " print('Integer:', my_integer_var)" },
+    { "comment": "# Float — Number with decimals, useful for precise measurements.", "code": " my_float_var = -3.14159" },
+    { "comment": "# Print float value.", "code": " print('Float:', my_float_var)" },
+    { "comment": "# String — Text data, enclosed in quotes.", "code": " my_string_var = \"Python is powerful\"" },
+    { "comment": "# Print string value.", "code": " print('String:', my_string_var)" },
+    { "comment": "# Boolean — True or False values, often used in conditions.", "code": " my_boolean_var = False" },
+    { "comment": "# Print boolean value.", "code": " print('Boolean:', my_boolean_var)" },
+    { "comment": "# Set — Unordered collection of unique elements.", "code": " my_set_var = {1, 2, 2, 3, 4}" },
+    { "comment": "# Print set value — duplicates are removed automatically.", "code": " print('Set:', my_set_var)" },
+    { "comment": "# Dictionary — Key-value pairs, useful for structured data.", "code": " my_dictionary_var = {'language': 'Python', 'version': 3.11}" },
+    { "comment": "# Print dictionary value.", "code": " print('Dictionary:', my_dictionary_var)" },
+    { "comment": "# Tuple — Immutable ordered collection.", "code": " my_tuple_var = ('apple', 'banana', 'cherry')" },
+    { "comment": "# Print tuple value.", "code": " print('Tuple:', my_tuple_var)" },
+    { "comment": "# Range — Sequence of numbers, commonly used in loops.", "code": " my_range_var = range(1, 6)" },
+    { "comment": "# Print range value.", "code": " print('Range:', my_range_var)" },
+    { "comment": "# List — Ordered collection, can mix types.", "code": " my_list = ['Cody', 99, 3.14, False]" },
+    { "comment": "# Print list value.", "code": " print('List:', my_list)" },
+    { "comment": "# None — Special value representing 'no value' or 'empty'.", "code": " my_none_var = None" },
+    { "comment": "# Print None value.", "code": " print('None:', my_none_var)" },
+    { "comment": "# type() function — Reveals the data type of each variable.", "code": " print(type(my_integer_var)) # <class 'int'>" },
+    { "comment": "# Example with float.", "code": " print(type(my_float_var)) # <class 'float'>" },
+    { "comment": "# Example with string.", "code": " print(type(my_string_var)) # <class 'str'>" },
+    { "comment": "# Example with boolean.", "code": " print(type(my_boolean_var)) # <class 'bool'>" },
+    { "comment": "# Example with set.", "code": " print(type(my_set_var)) # <class 'set'>" },
+    { "comment": "# Example with dictionary.", "code": " print(type(my_dictionary_var)) # <class 'dict'>" },
+    { "comment": "# Example with tuple.", "code": " print(type(my_tuple_var)) # <class 'tuple'>" },
+    { "comment": "# Example with range.", "code": " print(type(my_range_var)) # <class 'range'>" },
+    { "comment": "# Example with list.", "code": " print(type(my_list)) # <class 'list'>" },
+    { "comment": "# Example with None.", "code": " print(type(my_none_var)) # <class 'NoneType'>" },
+    { "comment": "# isinstance() — Checks if a variable matches a specific type.", "code": " print(isinstance(my_string_var, str)) # True" },
+    { "comment": "# isinstance() example with integer.", "code": " print(isinstance(my_integer_var, int)) # True" },
+    { "comment": "# isinstance() example with float.", "code": " print(isinstance(my_float_var, float)) # True" },
+    { "comment": "# isinstance() example with mismatched type.", "code": " print(isinstance(my_boolean_var, str)) # False" },
+    { "comment": "# Comparison note — Python infers types dynamically, unlike C++ or Java which require explicit type declarations.", "code": " # Example in C++: int number = 42; string text = \"Python is powerful\";" },
+    { "comment": "# Final note — Python catches type errors only at runtime, while compiled languages catch them at compile time.", "code": " # This makes Python flexible but requires careful testing." }
   ]
 },
   {
   "title": "CHAPTER. Calculating Plant Density",
   "steps": [
     { "comment": "# Function definition — Declares a reusable block of code with parameters.", "code": "def get_number_of_plants(field_size, unit, crop):" },
-    { "comment": "# Conversion dictionary — Maps units to their square meter equivalents.", "code": "    conversion = {" },
-    { "comment": "# Key-value pair — 'acres' corresponds to 4046.86 m².", "code": "        \"acres\": 4046.86," },
-    { "comment": "# Key-value pair — 'hectares' corresponds to 10,000 m².", "code": "        \"hectares\": 10000" },
-    { "comment": "# Closing brace — Ends the conversion dictionary.", "code": "    }" },
-    { "comment": "# Crop spacing dictionary — Maps crop names to required area per plant in m².", "code": "    crop_space = {" },
-    { "comment": "# Corn requires 1 m² per plant.", "code": "        \"corn\": 1," },
-    { "comment": "# Wheat requires 0.1 m² per plant.", "code": "        \"wheat\": 0.1," },
-    { "comment": "# Soybeans require 0.5 m² per plant.", "code": "        \"soybeans\": 0.5," },
-    { "comment": "# Tomatoes require 0.25 m² per plant.", "code": "        \"tomatoes\": 0.25," },
-    { "comment": "# Lettuce requires 0.2 m² per plant.", "code": "        \"lettuce\": 0.2" },
-    { "comment": "# Closing brace — Ends the crop_space dictionary.", "code": "    }" },
-    { "comment": "# Step 1 — Convert field size into square meters using the appropriate unit multiplier.", "code": "    field_size_in_sqm = field_size * conversion[unit]" },
-    { "comment": "# Step 2 — Divide total area by crop spacing to calculate raw plant count.", "code": "    plants = field_size_in_sqm / crop_space[crop]" },
-    { "comment": "# Step 3 — Round down to nearest whole number since fractional plants are not possible.", "code": "    return int(plants)" },
+    { "comment": "# Conversion dictionary — Maps units to their square meter equivalents.", "code": " conversion = {" },
+    { "comment": "# Key-value pair — 'acres' corresponds to 4046.86 m².", "code": " \"acres\": 4046.86," },
+    { "comment": "# Key-value pair — 'hectares' corresponds to 10,000 m².", "code": " \"hectares\": 10000" },
+    { "comment": "# Closing brace — Ends the conversion dictionary.", "code": " }" },
+    { "comment": "# Crop spacing dictionary — Maps crop names to required area per plant in m².", "code": " crop_space = {" },
+    { "comment": "# Corn requires 1 m² per plant.", "code": " \"corn\": 1," },
+    { "comment": "# Wheat requires 0.1 m² per plant.", "code": " \"wheat\": 0.1," },
+    { "comment": "# Soybeans require 0.5 m² per plant.", "code": " \"soybeans\": 0.5," },
+    { "comment": "# Tomatoes require 0.25 m² per plant.", "code": " \"tomatoes\": 0.25," },
+    { "comment": "# Lettuce requires 0.2 m² per plant.", "code": " \"lettuce\": 0.2" },
+    { "comment": "# Closing brace — Ends the crop_space dictionary.", "code": " }" },
+    { "comment": "# Step 1 — Convert field size into square meters using the appropriate unit multiplier.", "code": " field_size_in_sqm = field_size * conversion[unit]" },
+    { "comment": "# Step 2 — Divide total area by crop spacing to calculate raw plant count.", "code": " plants = field_size_in_sqm / crop_space[crop]" },
+    { "comment": "# Step 3 — Round down to nearest whole number since fractional plants are not possible.", "code": " return int(plants)" },
     { "comment": "# Final Output — When run with inputs, returns the integer number of plants fitting in the field.", "code": "# Example: get_number_of_plants(1, \"acres\", \"corn\") → 4046" }
   ]
 },
@@ -543,32 +494,27 @@ let chapters = [
   "title": "CHAPTER 2.1: Escape Characters and String Syntax in Python vs C++",
   "steps": [
     { "comment": "# Function definition — Demonstrates escape characters in Python strings.", "code": "def demonstrate_escape_characters():" },
-
-    { "comment": "# String with single quotes inside — escaped with backslash.", "code": "    msg = 'It\\'s a sunny day'" },
-    { "comment": "# Print string — backslash tells Python to treat the quote literally.", "code": "    print(msg)  # Output: It's a sunny day" },
-
-    { "comment": "# String with double quotes inside — escaped with backslash.", "code": "    quote = \"She said, \\\"Hello!\\\"\"" },
-    { "comment": "# Print string — backslash makes inner quotes part of the text.", "code": "    print(quote)  # Output: She said, \"Hello!\"" },
-
-    { "comment": "# Explanation — The backslash (\\) is an escape character in Python.", "code": "    # It prevents Python from misinterpreting quotes as the end of the string." },
-
-    { "comment": "# Alternative — Use opposite quotes to avoid escaping.", "code": "    msg_alt = \"It's a sunny day\"" },
-    { "comment": "# Print alternative string — no backslash needed here.", "code": "    print(msg_alt)" },
-
-    { "comment": "# Comparison with C++ — Strings in C++ also use escape characters.", "code": "    # Example in C++: std::string msg = \"It\\'s a sunny day\";" },
-    { "comment": "# In C++ you can also use opposite quotes, but std::string is mutable unlike Python str.", "code": "    # Example in C++: std::string quote = \"She said, \\\"Hello!\\\"\";" },
-    { "comment": "# Difference — Python strings are immutable objects, while C++ std::string allows direct modification.", "code": "    # Both languages use backslash for escaping, but Python enforces immutability for safety." }
+    { "comment": "# String with single quotes inside — escaped with backslash.", "code": " msg = 'It\\'s a sunny day'" },
+    { "comment": "# Print string — backslash tells Python to treat the quote literally.", "code": " print(msg) # Output: It's a sunny day" },
+    { "comment": "# String with double quotes inside — escaped with backslash.", "code": " quote = \"She said, \\\"Hello!\\\"\"" },
+    { "comment": "# Print string — backslash makes inner quotes part of the text.", "code": " print(quote) # Output: She said, \"Hello!\"" },
+    { "comment": "# Explanation — The backslash (\\) is an escape character in Python.", "code": " # It prevents Python from misinterpreting quotes as the end of the string." },
+    { "comment": "# Alternative — Use opposite quotes to avoid escaping.", "code": " msg_alt = \"It's a sunny day\"" },
+    { "comment": "# Print alternative string — no backslash needed here.", "code": " print(msg_alt)" },
+    { "comment": "# Comparison with C++ — Strings in C++ also use escape characters.", "code": " # Example in C++: std::string msg = \"It\\'s a sunny day\";" },
+    { "comment": "# In C++ you can also use opposite quotes, but std::string is mutable unlike Python str.", "code": " # Example in C++: std::string quote = \"She said, \\\"Hello!\\\"\";" },
+    { "comment": "# Difference — Python strings are immutable objects, while C++ std::string allows direct modification.", "code": " # Both languages use backslash for escaping, but Python enforces immutability for safety." }
   ]
 },
   {
     "title": "CHAPTER 3: Control Structures — If Statements",
     "steps": [
       { "comment": "# If statement — Checks a condition and executes code if true.", "code": "if age >= 18:" },
-      { "comment": "# Indentation — Python uses spaces or tabs for blocks (4 spaces recommended).", "code": "    print('You are an adult.')" },
+      { "comment": "# Indentation — Python uses spaces or tabs for blocks (4 spaces recommended).", "code": " print('You are an adult.')" },
       { "comment": "# Else clause — Runs if the if condition is false.", "code": "else:" },
-      { "comment": "# Alternative block.", "code": "    print('You are a minor.')" },
+      { "comment": "# Alternative block.", "code": " print('You are a minor.')" },
       { "comment": "# Elif for multiple conditions.", "code": "elif age < 0:" },
-      { "comment": "# Handles edge cases.", "code": "    print('Invalid age.')" },
+      { "comment": "# Handles edge cases.", "code": " print('Invalid age.')" },
       { "comment": "# Final Output — Depending on age:", "code": "# You are an adult." }
     ]
   },
@@ -576,11 +522,11 @@ let chapters = [
     "title": "CHAPTER 4: Loops — For and While",
     "steps": [
       { "comment": "# For loop — Iterates over a sequence like range or list.", "code": "for i in range(5):" },
-      { "comment": "# Prints numbers 0 to 4.", "code": "    print(i)" },
+      { "comment": "# Prints numbers 0 to 4.", "code": " print(i)" },
       { "comment": "# While loop — Repeats while condition is true.", "code": "count = 0" },
       { "comment": "# Loop body.", "code": "while count < 3:" },
-      { "comment": "# Increment to avoid infinite loop.", "code": "    print('Looping...')" },
-      { "comment": "# Update variable.", "code": "    count += 1" },
+      { "comment": "# Increment to avoid infinite loop.", "code": " print('Looping...')" },
+      { "comment": "# Update variable.", "code": " count += 1" },
       { "comment": "# Break and continue — Control flow inside loops.", "code": "# Use break to exit, continue to skip." },
       { "comment": "# Final Output — Example:", "code": "# 0\n# 1\n# 2\n# 3\n# 4\n# Looping...\n# Looping...\n# Looping..." }
     ]
@@ -589,11 +535,11 @@ let chapters = [
     "title": "CHAPTER 5: Functions",
     "steps": [
       { "comment": "# Defining a function — Use def keyword.", "code": "def greet(name):" },
-      { "comment": "# Function body — Indented.", "code": "    return f'Hello, {name}!'" },
+      { "comment": "# Function body — Indented.", "code": " return f'Hello, {name}!'" },
       { "comment": "# Calling the function.", "code": "message = greet('World')" },
       { "comment": "# Print result.", "code": "print(message)" },
       { "comment": "# Default parameters.", "code": "def add(a, b=0):" },
-      { "comment": "# Returns sum.", "code": "    return a + b" },
+      { "comment": "# Returns sum.", "code": " return a + b" },
       { "comment": "# Lambda functions — Anonymous one-liners.", "code": "double = lambda x: x * 2" },
       { "comment": "# Final Output:", "code": "# Hello, World!" }
     ]
@@ -608,7 +554,7 @@ let chapters = [
       { "comment": "# Access value.", "code": "print(person['name'])" },
       { "comment": "# Add key.", "code": "person['city'] = 'Wonderland'" },
       { "comment": "# Iteration.", "code": "for key, value in person.items():" },
-      { "comment": "# Print pairs.", "code": "    print(f'{key}: {value}')" },
+      { "comment": "# Print pairs.", "code": " print(f'{key}: {value}')" },
       { "comment": "# Final Output — Example:", "code": "# apple\n# Alice\n# name: Alice\n# age: 30\n# city: Wonderland" }
     ]
   },
@@ -616,13 +562,13 @@ let chapters = [
     "title": "CHAPTER 7: Exception Handling",
     "steps": [
       { "comment": "# Try-except — Handles errors gracefully.", "code": "try:" },
-      { "comment": "# Code that might fail.", "code": "    result = 10 / 0" },
+      { "comment": "# Code that might fail.", "code": " result = 10 / 0" },
       { "comment": "# Catch specific exception.", "code": "except ZeroDivisionError:" },
-      { "comment": "# Handle error.", "code": "    print('Cannot divide by zero.')" },
+      { "comment": "# Handle error.", "code": " print('Cannot divide by zero.')" },
       { "comment": "# Else — Runs if no exception.", "code": "else:" },
-      { "comment": "# Success code.", "code": "    print('Division successful.')" },
+      { "comment": "# Success code.", "code": " print('Division successful.')" },
       { "comment": "# Finally — Always runs.", "code": "finally:" },
-      { "comment": "# Cleanup.", "code": "    print('Execution complete.')" },
+      { "comment": "# Cleanup.", "code": " print('Execution complete.')" },
       { "comment": "# Raise exceptions manually.", "code": "# raise ValueError('Invalid input')" },
       { "comment": "# Final Output:", "code": "# Cannot divide by zero.\n# Execution complete." }
     ]
@@ -631,12 +577,12 @@ let chapters = [
     "title": "CHAPTER 8: File Handling",
     "steps": [
       { "comment": "# Opening a file — Use open() with mode.", "code": "with open('example.txt', 'w') as file:" },
-      { "comment": "# Write to file.", "code": "    file.write('Hello, Python!')" },
+      { "comment": "# Write to file.", "code": " file.write('Hello, Python!')" },
       { "comment": "# Reading a file.", "code": "with open('example.txt', 'r') as file:" },
-      { "comment": "# Read content.", "code": "    content = file.read()" },
+      { "comment": "# Read content.", "code": " content = file.read()" },
       { "comment": "# Print content.", "code": "print(content)" },
       { "comment": "# Append mode.", "code": "with open('example.txt', 'a') as file:" },
-      { "comment": "# Add more text.", "code": "    file.write('\\nMore text.')" },
+      { "comment": "# Add more text.", "code": " file.write('\\nMore text.')" },
       { "comment": "# Handle file not found.", "code": "# Use try-except for errors." },
       { "comment": "# Final Output:", "code": "# Hello, Python!" }
     ]
@@ -659,23 +605,19 @@ let chapters = [
     "title": "CHAPTER 10: Object-Oriented Programming",
     "steps": [
       { "comment": "# Class definition — Blueprint for objects.", "code": "class Animal:" },
-      { "comment": "# Constructor — Special method called when an instance is created. Indented under the class.", "code": "    def __init__(self, name):" },
-      { "comment": "# Instance variable — Stores data unique to each instance. Further indented under the method.", "code": "        self.name = name" },
-      { "comment": "# Method — Function defined inside a class. Indented under the class.", "code": "    def speak(self):" },
-      { "comment": "# Default behavior — Code inside the method, further indented.", "code": "        print('Animal sound')" },
+      { "comment": "# Constructor — Special method called when an instance is created. Indented under the class.", "code": " def __init__(self, name):" },
+      { "comment": "# Instance variable — Stores data unique to each instance. Further indented under the method.", "code": " self.name = name" },
+      { "comment": "# Method — Function defined inside a class. Indented under the class.", "code": " def speak(self):" },
+      { "comment": "# Default behavior — Code inside the method, further indented.", "code": " print('Animal sound')" },
       { "comment": "# Inheritance — Creating a subclass that inherits from the base class. No indentation for new class definition.", "code": "class Dog(Animal):" },
-      { "comment": "# Override method — Redefine a method from the parent class. Indented under the subclass.", "code": "    def speak(self):" },
-      { "comment": "# Specific sound — Customized behavior in the overridden method.", "code": "        print('Woof!')" },
+      { "comment": "# Override method — Redefine a method from the parent class. Indented under the subclass.", "code": " def speak(self):" },
+      { "comment": "# Specific sound — Customized behavior in the overridden method.", "code": " print('Woof!')" },
       { "comment": "# Create instance — Instantiate the subclass with arguments for the constructor.", "code": "my_dog = Dog('Buddy')" },
       { "comment": "# Call method — Invoke the overridden method on the instance.", "code": "my_dog.speak()" },
       { "comment": "# Final Output — When run, the console displays:", "code": "# Woof!" }
     ]
   }
 ];
-
-// The rest of the script remains the same as the original, handling the interactive typing logic.
-// For brevity, assuming the JavaScript logic is identical; it populates chapters, handles steps, animations, etc.
-// If needed, the full script can be expanded, but this focuses on the theme and content adaptation.
 let currentChapter = 0;
 let currentStep = 0;
 const codeArea = document.getElementById('code-area');
@@ -689,7 +631,6 @@ const nextBtn = document.getElementById('next');
 const resetBtn = document.getElementById('reset');
 const chapterBtn = document.getElementById('chapter-btn');
 const chapterList = document.getElementById('chapter-list');
-
 function populateChapters() {
   chapterList.innerHTML = '';
   chapters.forEach((ch, idx) => {
@@ -700,14 +641,12 @@ function populateChapters() {
     chapterList.appendChild(item);
   });
 }
-
 function selectChapter(idx) {
   currentChapter = idx;
   currentStep = 0;
   chapterList.classList.remove('show');
   resetChapter();
 }
-
 function resetChapter() {
   codeArea.innerHTML = '';
   commentBox.textContent = '';
@@ -716,12 +655,11 @@ function resetChapter() {
   nextBtn.disabled = true;
   loadStep();
 }
-
 function loadStep() {
   const step = chapters[currentChapter].steps[currentStep];
   if (step) {
     commentBox.textContent = step.comment;
-    hintArea.textContent = `Type exactly: ${step.code}`;
+    hintArea.textContent = `Type exactly: ${step.code || '(empty line - just press submit)'}`;
     codeInput.placeholder = step.code;
     codeInput.focus();
   } else {
@@ -732,7 +670,6 @@ function loadStep() {
     nextBtn.disabled = false;
   }
 }
-
 function addLine(code) {
   const line = document.createElement('div');
   line.classList.add('line', 'new');
@@ -740,7 +677,6 @@ function addLine(code) {
   codeArea.appendChild(line);
   codeArea.scrollTop = codeArea.scrollHeight;
 }
-
 function shineLine() {
   const lines = codeArea.querySelectorAll('.line');
   if (lines.length > 0) {
@@ -749,7 +685,6 @@ function shineLine() {
     setTimeout(() => lastLine.classList.remove('line-shine'), 1800);
   }
 }
-
 submitBtn.onclick = () => {
   const input = codeInput.value.trim();
   const expected = chapters[currentChapter].steps[currentStep].code.trim();
@@ -764,34 +699,28 @@ submitBtn.onclick = () => {
     setTimeout(() => codeInput.classList.remove('action-shine'), 1000);
   }
 };
-
 skipBtn.onclick = () => {
   const step = chapters[currentChapter].steps[currentStep];
   addLine(step.code);
   currentStep++;
   loadStep();
 };
-
 prevBtn.onclick = () => {
   if (currentChapter > 0) {
     currentChapter--;
     resetChapter();
   }
 };
-
 nextBtn.onclick = () => {
   if (currentChapter < chapters.length - 1) {
     currentChapter++;
     resetChapter();
   }
 };
-
 resetBtn.onclick = resetChapter;
-
 chapterBtn.onclick = () => {
   chapterList.classList.toggle('show');
 };
-
 populateChapters();
 resetChapter();
 </script>
