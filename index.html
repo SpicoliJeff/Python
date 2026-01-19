@@ -436,7 +436,134 @@ let chapters = [
     { "comment": "# Final Output — Integers and floats support arithmetic, type conversion, and built-in functions for precision and control.", "code": "# Key takeaways: abs() strips sign, pow() raises to powers (with optional modulus), int() truncates decimals, round() performs true rounding." }
   ]
 },
-  {
+  Chapter(
+    title: "CHAPTER XX: Augmented Assignment with Binary Detail",
+    codeLines: [
+        CodeLine(code: "x = 10", comment: "Initialize variable x with decimal 10 (binary 1010)"),
+        CodeLine(code: "x += 5", comment: "Addition assignment → x = x + 5. Binary: 1010 + 0101 = 1111"),
+        CodeLine(code: "print(x) # 15", comment: "Result is 15 (binary 1111)"),
+
+        CodeLine(code: "count = 14", comment: "Initialize count with decimal 14 (binary 1110)"),
+        CodeLine(code: "count -= 3", comment: "Subtraction assignment → count = count - 3. Binary: 1110 - 0011 = 1011"),
+        CodeLine(code: "print(count) # 11", comment: "Result is 11 (binary 1011)"),
+
+        CodeLine(code: "product = 65", comment: "Initialize product with decimal 65 (binary 1000001)"),
+        CodeLine(code: "product *= 7", comment: "Multiplication assignment → product = product * 7. Binary multiplication expands bits"),
+        CodeLine(code: "print(product) # 455", comment: "Result is 455 (binary 111000111)"),
+
+        CodeLine(code: "price = 100", comment: "Initialize price with decimal 100 (binary 1100100)"),
+        CodeLine(code: "price /= 4", comment: "Division assignment → price = price / 4. Binary division shifts right by 2"),
+        CodeLine(code: "print(price) # 25.0", comment: "Result is 25 (binary 11001)"),
+
+        CodeLine(code: "pages = 23", comment: "Initialize pages with decimal 23 (binary 10111)"),
+        CodeLine(code: "pages //= 5", comment: "Floor division assignment → pages = pages // 5. Binary division discards remainder"),
+        CodeLine(code: "print(pages) # 4", comment: "Result is 4 (binary 100)"),
+
+        CodeLine(code: "bits = 35", comment: "Initialize bits with decimal 35 (binary 100011)"),
+        CodeLine(code: "bits %= 2", comment: "Modulo assignment → bits = bits % 2. Binary remainder after division by 10"),
+        CodeLine(code: "print(bits) # 1", comment: "Result is 1 (binary 1)"),
+
+        CodeLine(code: "power = 2", comment: "Initialize power with decimal 2 (binary 10)"),
+        CodeLine(code: "power **= 3", comment: "Exponentiation assignment → power = power ** 3. Binary exponentiation repeats multiplication"),
+        CodeLine(code: "print(power) # 8", comment: "Result is 8 (binary 1000)"),
+
+        CodeLine(code: "greet = 'Hello'", comment: "Initialize string greet"),
+        CodeLine(code: "greet += ' World'", comment: "Concatenation assignment → greet = greet + ' World'. Binary signals here are string memory operations"),
+        CodeLine(code: "print(greet) # Hello World", comment: "Result is 'Hello World'"),
+
+        CodeLine(code: "greet = 'Hi'", comment: "Initialize string greet"),
+        CodeLine(code: "greet *= 3", comment: "Repetition assignment → greet = greet * 3. Binary signals duplicate string memory three times"),
+        CodeLine(code: "print(greet) # HiHiHi", comment: "Result is 'HiHiHi'"),
+
+        CodeLine(code: "x = 6  # binary 110", comment: "Initialize x with decimal 6 (binary 110)"),
+        CodeLine(code: "x &= 3  # binary 011", comment: "Bitwise AND assignment → x = x & 3. Compare each bit: 110 & 011 = 010"),
+        CodeLine(code: "print(x) # 2 (binary 010)", comment: "Result is 2"),
+
+        CodeLine(code: "y = 4  # binary 100", comment: "Initialize y with decimal 4 (binary 100)"),
+        CodeLine(code: "y |= 1  # binary 001", comment: "Bitwise OR assignment → y = y | 1. Compare each bit: 100 | 001 = 101"),
+        CodeLine(code: "print(y) # 5 (binary 101)", comment: "Result is 5"),
+
+        CodeLine(code: "z = 5  # binary 101", comment: "Initialize z with decimal 5 (binary 101)"),
+        CodeLine(code: "z ^= 3  # binary 011", comment: "Bitwise XOR assignment → z = z ^ 3. Compare each bit: 101 ^ 011 = 110"),
+        CodeLine(code: "print(z) # 6 (binary 110)", comment: "Result is 6"),
+
+        CodeLine(code: "shift = 1  # binary 0001", comment: "Initialize shift with decimal 1 (binary 0001)"),
+        CodeLine(code: "shift <<= 3", comment: "Left shift assignment → shift = shift << 3. Move bits left 3 places: 0001 → 1000"),
+        CodeLine(code: "print(shift) # 8 (binary 1000)", comment: "Result is 8"),
+
+        CodeLine(code: "shift >>= 2", comment: "Right shift assignment → shift = shift >> 2. Move bits right 2 places: 1000 → 0010"),
+        CodeLine(code: "print(shift) # 2 (binary 0010)", comment: "Result is 2")
+    ]
+),
+  Chapter(
+    title: "CHAPTER XX: Augmented Assignment with Binary Detail",
+    description: """
+Augmented assignment combines a binary operation with reassignment in one step. It takes the **LHS (Left-Hand Side)** variable, applies the operator with the **RHS (Right-Hand Side)** value, and stores the result back into the same variable.
+
+Think of it as a three-step process:
+1. Take the binary representation of the LHS variable.
+2. Apply the operator’s binary rule with the RHS value.
+3. Store the new binary result back into the LHS variable.
+
+For example:
+- LHS = 6 → binary 110
+- RHS = 3 → binary 011
+- Operation: 110 & 011 = 010 (bitwise AND, only the middle bit matches)
+- Result = 2 → binary 010
+
+This shows how augmented assignment directly manipulates binary signals:
+- Arithmetic operators (`+=, -=, *=, /=, //=, %=, **=`) translate into CPU instructions that add, subtract, multiply, divide, or raise values at the binary level.
+- Bitwise operators (`&=, |=, ^=, <<=, >>=`) act on each bit individually:
+  • AND (`&=`): result bit is 1 only if both LHS and RHS bits are 1.  
+  • OR (`|=`): result bit is 1 if either LHS or RHS bit is 1.  
+  • XOR (`^=`): result bit is 1 if bits differ.  
+  • Left Shift (`<<=`): moves bits left, filling with zeros (like multiplying by powers of 2).  
+  • Right Shift (`>>=`): moves bits right, discarding bits (like dividing by powers of 2).
+
+The advantage of augmented assignment is clarity and efficiency: instead of writing `x = x + y`, you write `x += y`, which makes the binary operation and reassignment explicit in one concise step.
+""",
+    codeLines: [
+        CodeLine(code: "x = 10", comment: "Initialize variable x with decimal 10 (binary 1010)"),
+        CodeLine(code: "x += 5", comment: "Addition assignment → x = x + 5. Binary: 1010 + 0101 = 1111"),
+        CodeLine(code: "print(x) # 15", comment: "Result is 15 (binary 1111)"),
+
+        CodeLine(code: "count = 14", comment: "Initialize count with decimal 14 (binary 1110)"),
+        CodeLine(code: "count -= 3", comment: "Subtraction assignment → count = count - 3. Binary: 1110 - 0011 = 1011"),
+        CodeLine(code: "print(count) # 11", comment: "Result is 11 (binary 1011)"),
+
+        CodeLine(code: "product = 65", comment: "Initialize product with decimal 65 (binary 1000001)"),
+        CodeLine(code: "product *= 7", comment: "Multiplication assignment → product = product * 7. Binary multiplication expands bits"),
+        CodeLine(code: "print(product) # 455", comment: "Result is 455 (binary 111000111)"),
+
+        CodeLine(code: "price = 100", comment: "Initialize price with decimal 100 (binary 1100100)"),
+        CodeLine(code: "price /= 4", comment: "Division assignment → price = price / 4. Binary division shifts right by 2"),
+        CodeLine(code: "print(price) # 25.0", comment: "Result is 25 (binary 11001)"),
+
+        CodeLine(code: "bits = 35", comment: "Initialize bits with decimal 35 (binary 100011)"),
+        CodeLine(code: "bits %= 2", comment: "Modulo assignment → bits = bits % 2. Binary remainder after division by 10"),
+        CodeLine(code: "print(bits) # 1", comment: "Result is 1 (binary 1)"),
+
+        CodeLine(code: "x = 6  # binary 110", comment: "Initialize x with decimal 6 (binary 110)"),
+        CodeLine(code: "x &= 3  # binary 011", comment: "Bitwise AND assignment → x = x & 3. Compare each bit: 110 & 011 = 010"),
+        CodeLine(code: "print(x) # 2 (binary 010)", comment: "Result is 2"),
+
+        CodeLine(code: "y = 4  # binary 100", comment: "Initialize y with decimal 4 (binary 100)"),
+        CodeLine(code: "y |= 1  # binary 001", comment: "Bitwise OR assignment → y = y | 1. Compare each bit: 100 | 001 = 101"),
+        CodeLine(code: "print(y) # 5 (binary 101)", comment: "Result is 5"),
+
+        CodeLine(code: "z = 5  # binary 101", comment: "Initialize z with decimal 5 (binary 101)"),
+        CodeLine(code: "z ^= 3  # binary 011", comment: "Bitwise XOR assignment → z = z ^ 3. Compare each bit: 101 ^ 011 = 110"),
+        CodeLine(code: "print(z) # 6 (binary 110)", comment: "Result is 6"),
+
+        CodeLine(code: "shift = 1  # binary 0001", comment: "Initialize shift with decimal 1 (binary 0001)"),
+        CodeLine(code: "shift <<= 3", comment: "Left shift assignment → shift = shift << 3. Move bits left 3 places: 0001 → 1000"),
+        CodeLine(code: "print(shift) # 8 (binary 1000)", comment: "Result is 8"),
+
+        CodeLine(code: "shift >>= 2", comment: "Right shift assignment → shift = shift >> 2. Move bits right 2 places: 1000 → 0010"),
+        CodeLine(code: "print(shift) # 2 (binary 0010)", comment: "Result is 2")
+    ]
+),
+{
   "title": "CHAPTER 1.8: Difference Between Integer and Float",
   "steps": [
     { "comment": "# Function definition — Creates a reusable block to demonstrate integer vs float difference.", "code": "def demonstrate_difference_integer_float():" },
