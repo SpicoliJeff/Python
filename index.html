@@ -367,6 +367,23 @@ let chapters = [
   ]
 },
   {
+  "title": "CHAPTER: Python Basics — String Slicing",
+  "steps": [
+    { "comment": "# Strings in Python are sequences of characters. Each character has an index starting at 0, and negative indices count backward from the end.", "code": "my_str = 'Hello world'" },
+    { "comment": "# Accessing by index — my_str[0] returns the first character. my_str[6] returns the seventh character. Negative indices like -1 return the last character.", "code": "print(my_str[0])   # H\nprint(my_str[6])   # w\nprint(my_str[-1])  # d" },
+    { "comment": "# Basic slicing syntax: string[start:stop]. The slice starts at 'start' and goes up to, but does not include, 'stop'.", "code": "print(my_str[1:4])  # ell" },
+    { "comment": "# Omitting the start index defaults to 0. This extracts from the beginning up to (but not including) the stop index.", "code": "print(my_str[:7])   # Hello w" },
+    { "comment": "# Omitting the stop index defaults to the end of the string. This extracts from the start index through the end.", "code": "print(my_str[8:])   # rld" },
+    { "comment": "# Slicing does not modify the original string. It creates a new substring while leaving the original intact.", "code": "print(my_str[8:])   # rld\nprint(my_str)       # Hello world" },
+    { "comment": "# Omitting both start and stop returns the entire string. This is equivalent to copying the string.", "code": "print(my_str[:])    # Hello world" },
+    { "comment": "# Extended slicing syntax: string[start:stop:step]. The 'step' defines the increment between indices.", "code": "print(my_str[0:11:2])  # Hlowrd" },
+    { "comment": "# A common trick: reverse a string by setting step = -1. Leaving start and stop blank means the whole string is considered.", "code": "print(my_str[::-1])    # dlrow olleH" },
+    { "comment": "# Negative step with explicit start/stop — my_str[10:5:-1] starts at index 10 ('d'), moves backward one step at a time, and stops before index 5. Result: 'dlrow'.", "code": "print(my_str[10:5:-1]) # dlrow" },
+    { "comment": "# Another example: my_str[7:2:-2] starts at index 7 ('o'), moves backward two steps at a time, and stops before index 2. Result: 'o l'.", "code": "print(my_str[7:2:-2])  # o l" },
+    { "comment": "# Final Output — String slicing allows flexible extraction of substrings, skipping characters, and reversing, all without loops or manual iteration. Negative steps add the ability to reverse direction and stride backwards.", "code": "# Example outputs: ell, Hello w, rld, Hlowrd, dlrow olleH, dlrow, o l" }
+  ]
+},
+  {
   "title": "CHAPTER 1.8: Difference Between Integer and Float",
   "steps": [
     { "comment": "# Function definition — Creates a reusable block to demonstrate integer vs float difference.", "code": "def demonstrate_difference_integer_float():" },
