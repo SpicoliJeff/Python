@@ -563,6 +563,80 @@ The advantage of augmented assignment is clarity and efficiency: instead of writ
         CodeLine(code: "print(shift) # 2 (binary 0010)", comment: "Result is 2")
     ]
 ),
+  Chapter(
+    title: "CHAPTER XX: Augmented Assignment, Unary Operators, and Bitwise NOT",
+    description: """
+This chapter explores augmented assignment operators, unary operators, and the bitwise NOT (~) operator in Python.
+
+◦ Augmented assignment combines a binary operation with reassignment in one step:
+   LHS (Left-Hand Side) variable is updated by applying the operator with the RHS (Right-Hand Side) value.
+   Example: x += 5 → x = x + 5.
+
+◦ Unary operators act on a single operand:
+   +x (unary plus) returns the value unchanged.
+   -x (unary minus) returns the negation.
+   ~x (bitwise NOT) flips all bits.
+
+◦ Binary mechanics:
+   1. Take the binary representation of the LHS variable.
+   2. Apply the operator’s binary rule with the RHS value.
+   3. Store the new binary result back into the LHS variable.
+
+Worked example of bitwise NOT:
+   • LHS = 5 → binary 00000101
+   • Apply ~ → flip bits → 11111010
+   • Interpret with two’s complement:
+       - Invert bits → 00000101
+       - Add 1 → 00000110 → decimal 6
+       - So 11111010 represents -6
+   • Therefore, ~5 = -6
+
+General rule: ~n = -(n + 1).
+""",
+    codeLines: [
+        CodeLine(code: "x = 10", comment: "Initialize x with decimal 10 (binary 1010)"),
+        CodeLine(code: "x += 5", comment: "Addition assignment: x = x + 5. Binary: 1010 + 0101 = 1111"),
+        CodeLine(code: "print(x) # 15", comment: "Result is 15 (binary 1111)"),
+
+        CodeLine(code: "count = 14", comment: "Initialize count with decimal 14 (binary 1110)"),
+        CodeLine(code: "count -= 3", comment: "Subtraction assignment: count = count - 3. Binary: 1110 - 0011 = 1011"),
+        CodeLine(code: "print(count) # 11", comment: "Result is 11 (binary 1011)"),
+
+        CodeLine(code: "product = 65", comment: "Initialize product with decimal 65 (binary 1000001)"),
+        CodeLine(code: "product *= 7", comment: "Multiplication assignment: product = product * 7. Binary multiplication expands bits"),
+        CodeLine(code: "print(product) # 455", comment: "Result is 455 (binary 111000111)"),
+
+        CodeLine(code: "price = 100", comment: "Initialize price with decimal 100 (binary 1100100)"),
+        CodeLine(code: "price /= 4", comment: "Division assignment: price = price / 4. Binary division shifts right by 2"),
+        CodeLine(code: "print(price) # 25.0", comment: "Result is 25 (binary 11001)"),
+
+        CodeLine(code: "bits = 35", comment: "Initialize bits with decimal 35 (binary 100011)"),
+        CodeLine(code: "bits %= 2", comment: "Modulo assignment: bits = bits % 2. Binary remainder after division by 10"),
+        CodeLine(code: "print(bits) # 1", comment: "Result is 1 (binary 1)"),
+
+        CodeLine(code: "power = 2", comment: "Initialize power with decimal 2 (binary 10)"),
+        CodeLine(code: "power **= 3", comment: "Exponentiation assignment: power = power ** 3. Binary exponentiation repeats multiplication"),
+        CodeLine(code: "print(power) # 8", comment: "Result is 8 (binary 1000)"),
+
+        CodeLine(code: "greet = 'Hello'", comment: "Initialize string greet"),
+        CodeLine(code: "greet += ' World'", comment: "Concatenation assignment: greet = greet + ' World'. Binary signals here are string memory operations"),
+        CodeLine(code: "print(greet) # Hello World", comment: "Result is 'Hello World'"),
+
+        CodeLine(code: "greet = 'Hi'", comment: "Initialize string greet"),
+        CodeLine(code: "greet *= 3", comment: "Repetition assignment: greet = greet * 3. Binary signals duplicate string memory three times"),
+        CodeLine(code: "print(greet) # HiHiHi", comment: "Result is 'HiHiHi'"),
+
+        CodeLine(code: "x = 5", comment: "Initialize x with decimal 5 (binary 00000101)"),
+        CodeLine(code: "print(+x)", comment: "Unary plus: returns value unchanged → 5"),
+        CodeLine(code: "print(++x)", comment: "Two unary plus operators: +(+(5)) → still 5, no increment"),
+        CodeLine(code: "x += 1", comment: "Explicit increment using augmented assignment"),
+        CodeLine(code: "print(x) # 6", comment: "Result is 6"),
+
+        CodeLine(code: "n = 5", comment: "Initialize n with decimal 5 (binary 00000101)"),
+        CodeLine(code: "print(~n)", comment: "Bitwise NOT: flips all bits. 00000101 → 11111010"),
+        CodeLine(code: "# Two’s complement interpretation: 11111010 = -6", comment: "Rule: ~n = -(n + 1)")
+    ]
+),
 {
   "title": "CHAPTER 1.8: Difference Between Integer and Float",
   "steps": [
