@@ -404,6 +404,39 @@ let chapters = [
   ]
 },
   {
+  "title": "CHAPTER: Python Basics — Integers and Floating Point Numbers",
+  "steps": [
+    { "comment": "# Integers are whole numbers without decimals. They can be positive or negative.", "code": "my_int_1 = 56\nmy_int_2 = -4\nprint(type(my_int_1))  # <class 'int'>\nprint(type(my_int_2))  # <class 'int'>" },
+    { "comment": "# Integer addition — using the + operator.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Addition:', my_int_1 + my_int_2)  # 68" },
+    { "comment": "# Integer subtraction — using the - operator.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Subtraction:', my_int_1 - my_int_2)  # 44" },
+    { "comment": "# Integer multiplication — using the * operator.", "code": "my_int_1 = 12\nmy_int_2 = 4\nprint('Integer Multiplication:', my_int_1 * my_int_2)  # 48" },
+    { "comment": "# Integer division — using the / operator. Result is a float even if both operands are integers.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Division:', my_int_1 / my_int_2)  # 4.666..." },
+
+    { "comment": "# Floats are numbers with decimal points. They can also be positive or negative.", "code": "my_float_1 = -12.0\nmy_float_2 = 4.9\nprint(type(my_float_1))  # <class 'float'>\nprint(type(my_float_2))  # <class 'float'>" },
+    { "comment": "# Float addition — works the same way as integers.", "code": "print('Float Addition:', 5.4 + 12.0)  # 17.4" },
+    { "comment": "# Float subtraction — order matters.", "code": "print('Float Subtraction:', 12.0 - 5.4)  # 6.6" },
+    { "comment": "# Float multiplication — result may include floating point precision artifacts.", "code": "print('Float Multiplication:', 12.0 * 5.4)  # 64.80000000000001" },
+    { "comment": "# Float division — returns a float result.", "code": "print('Float Division:', 12.0 / 5.4)  # 2.222..." },
+
+    { "comment": "# Mixing integers and floats — result is promoted to float automatically.", "code": "my_int = 56\nmy_float = 5.4\nresult = my_int + my_float\nprint(result)  # 61.4\nprint(type(result))  # <class 'float'>" },
+
+    { "comment": "# Modulo operator % — returns the remainder of division.", "code": "print('Integer Modulus:', 56 % 12)  # 8\nprint('Float Modulus:', 12.0 % 5.4)  # 1.199..." },
+    { "comment": "# Floor division // — divides and rounds down to the nearest integer.", "code": "print('Integer Floor Division:', 56 // 12)  # 4\nprint('Float Floor Division:', 12.0 // 5.4)  # 2.0" },
+    { "comment": "# Exponentiation ** — raises a number to the power of another.", "code": "print('Integer Exponentiation:', 2 ** 3)   # 8\nprint('Float Exponentiation:', 5.4 ** 2.0) # 29.16" },
+
+    { "comment": "# abs() — returns the absolute value (distance from zero). It strips away the sign and leaves magnitude only.", "code": "print(abs(-15))  # 15\nprint(abs(15))   # 15" },
+    { "comment": "# pow() — raises a number to a power. pow(x, y) is the same as x ** y. pow(x, y, z) adds a modulus step.", "code": "print(pow(2, 3))     # 8\nprint(pow(2, 3, 5))  # 3  because (2 ** 3) % 5 = 3" },
+
+    { "comment": "# Converting between types — float() turns integers into floats.", "code": "my_int = 56\nprint(float(my_int))  # 56.0" },
+    { "comment": "# int() — converts a float to an integer by truncating the decimal part (no rounding).", "code": "print(int(12.9))   # 12\nprint(int(-12.9))  # -12" },
+    { "comment": "# round() — rounds to the nearest integer or specified decimal places. Unlike int(), it does proper rounding.", "code": "print(round(12.9))    # 13\nprint(round(-12.9))   # -13\nprint(round(4.253, 1)) # 4.3" },
+
+    { "comment": "# int() and float() can also convert numeric strings.", "code": "print(int('45'))   # 45\nprint(float('7.8')) # 7.8" },
+
+    { "comment": "# Final Output — Integers and floats support arithmetic, type conversion, and built-in functions for precision and control.", "code": "# Key takeaways: abs() strips sign, pow() raises to powers (with optional modulus), int() truncates decimals, round() performs true rounding." }
+  ]
+},
+  {
   "title": "CHAPTER 1.8: Difference Between Integer and Float",
   "steps": [
     { "comment": "# Function definition — Creates a reusable block to demonstrate integer vs float difference.", "code": "def demonstrate_difference_integer_float():" },
