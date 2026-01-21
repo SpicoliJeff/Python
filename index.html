@@ -696,6 +696,53 @@ General rule: ~n = -(n + 1).
     { "comment": "#     print('You are a toddler or an infant')", "code": "    print('You are a toddler or an infant')" }
   ]
 },
+  {
+  "title": "CHAPTER 3: What Are Truthy and Falsy Values, and How Do Boolean Operators and Short-Circuiting Work?",
+  "steps": [
+    { "comment": "# In the previous lesson, you learned how to use comparison operators and conditional statements to control program flow.", "code": "" },
+    { "comment": "# Sometimes you need to compare multiple values at once, which can lead to nested conditionals.", "code": "" },
+    { "comment": "# Example of nested conditionals:", "code": "" },
+    { "comment": "# is_citizen = True", "code": "is_citizen = True" },
+    { "comment": "# age = 25", "code": "age = 25" },
+    { "comment": "# if is_citizen:", "code": "if is_citizen:" },
+    { "comment": "#     if age >= 18:", "code": "    if age >= 18:" },
+    { "comment": "#         print('You are eligible to vote')", "code": "        print('You are eligible to vote')" },
+    { "comment": "# else:", "code": "else:" },
+    { "comment": "#     print('You are not eligible to vote')", "code": "    print('You are not eligible to vote')" },
+
+    { "comment": "# Every value in Python has an inherent boolean value — either truthy or falsy.", "code": "" },
+    { "comment": "# Falsy values include: None, False, 0, 0.0, empty strings \"\", empty lists [], empty dicts {}, empty sets set().", "code": "" },
+    { "comment": "# Truthy values include: non-zero numbers, non-empty strings, non-empty collections, and most other objects.", "code": "" },
+    { "comment": "# Example check with bool():", "code": "" },
+    { "comment": "# print(bool(0)) → False", "code": "print(bool(0))" },
+    { "comment": "# print(bool('')) → False", "code": "print(bool(''))" },
+    { "comment": "# print(bool('Hello')) → True", "code": "print(bool('Hello'))" },
+
+    { "comment": "# Boolean operators (logical operators) let you combine expressions: and, or, not.", "code": "" },
+
+    { "comment": "# AND operator: returns first falsy operand, otherwise returns the last operand.", "code": "" },
+    { "comment": "# Example:", "code": "" },
+    { "comment": "# print(True and 25) → 25", "code": "print(True and 25)" },
+    { "comment": "# print(False and 25) → False", "code": "print(False and 25)" },
+
+    { "comment": "# OR operator: returns the first truthy operand, otherwise the last operand.", "code": "" },
+    { "comment": "# Example:", "code": "" },
+    { "comment": "# print(0 or 5) → 5 (0 is falsy, so returns 5)", "code": "print(0 or 5)" },
+    { "comment": "# print(3 or 5) → 3 (3 is truthy, so returns 3)", "code": "print(3 or 5)" },
+    { "comment": "# print('' or 'Hi') → 'Hi' (empty string is falsy, so returns 'Hi')", "code": "print('' or 'Hi')" },
+
+    { "comment": "# NOT operator: inverts the boolean value. Always returns True or False.", "code": "" },
+    { "comment": "# Example:", "code": "" },
+    { "comment": "# print(not '') → True (empty string is falsy)", "code": "print(not '')" },
+    { "comment": "# print(not 'Hello') → False (non-empty string is truthy)", "code": "print(not 'Hello')" },
+
+    { "comment": "# Question: Which of the following is NOT falsy in Python?", "code": "" },
+    { "comment": "# Options: None, False, 0, '', 'Hello'", "code": "" },
+    { "comment": "# Answer: 'Hello' is NOT falsy. Non-empty strings are truthy.", "code": "" },
+
+    { "comment": "# Summary: Truthy/falsy values and logical operators (and, or, not) with short-circuiting let you write flexible, readable conditional logic.", "code": "" }
+  ]
+},
 {
   "title": "CHAPTER 1.8: Difference Between Integer and Float",
   "steps": [
