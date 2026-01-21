@@ -370,69 +370,62 @@ let chapters = [
   "title": "CHAPTER: Python Basics — String Slicing",
   "steps": [
     { "comment": "# Strings in Python are sequences of characters. Each character has an index starting at 0, and negative indices count backward from the end.", "code": "my_str = 'Hello world'" },
-    { "comment": "# Accessing by index — my_str[0] returns the first character. my_str[6] returns the seventh character. Negative indices like -1 return the last character.", "code": "print(my_str[0])   # H\nprint(my_str[6])   # w\nprint(my_str[-1])  # d" },
-    { "comment": "# Basic slicing syntax: string[start:stop]. The slice starts at 'start' and goes up to, but does not include, 'stop'.", "code": "print(my_str[1:4])  # ell" },
-    { "comment": "# Omitting the start index defaults to 0. This extracts from the beginning up to (but not including) the stop index.", "code": "print(my_str[:7])   # Hello w" },
-    { "comment": "# Omitting the stop index defaults to the end of the string. This extracts from the start index through the end.", "code": "print(my_str[8:])   # rld" },
-    { "comment": "# Slicing does not modify the original string. It creates a new substring while leaving the original intact.", "code": "print(my_str[8:])   # rld\nprint(my_str)       # Hello world" },
-    { "comment": "# Omitting both start and stop returns the entire string. This is equivalent to copying the string.", "code": "print(my_str[:])    # Hello world" },
-    { "comment": "# Extended slicing syntax: string[start:stop:step]. The 'step' defines the increment between indices.", "code": "print(my_str[0:11:2])  # Hlowrd" },
-    { "comment": "# A common trick: reverse a string by setting step = -1. Leaving start and stop blank means the whole string is considered.", "code": "print(my_str[::-1])    # dlrow olleH" },
+    { "comment": "# Accessing by index — my_str[0] returns the first character. my_str[6] returns the seventh character. Negative indices like -1 return the last character.", "code": "print(my_str[0]) # H\nprint(my_str[6]) # w\nprint(my_str[-1]) # d" },
+    { "comment": "# Basic slicing syntax: string[start:stop]. The slice starts at 'start' and goes up to, but does not include, 'stop'.", "code": "print(my_str[1:4]) # ell" },
+    { "comment": "# Omitting the start index defaults to 0. This extracts from the beginning up to (but not including) the stop index.", "code": "print(my_str[:7]) # Hello w" },
+    { "comment": "# Omitting the stop index defaults to the end of the string. This extracts from the start index through the end.", "code": "print(my_str[8:]) # rld" },
+    { "comment": "# Slicing does not modify the original string. It creates a new substring while leaving the original intact.", "code": "print(my_str[8:]) # rld\nprint(my_str) # Hello world" },
+    { "comment": "# Omitting both start and stop returns the entire string. This is equivalent to copying the string.", "code": "print(my_str[:]) # Hello world" },
+    { "comment": "# Extended slicing syntax: string[start:stop:step]. The 'step' defines the increment between indices.", "code": "print(my_str[0:11:2]) # Hlowrd" },
+    { "comment": "# A common trick: reverse a string by setting step = -1. Leaving start and stop blank means the whole string is considered.", "code": "print(my_str[::-1]) # dlrow olleH" },
     { "comment": "# Negative step with explicit start/stop — my_str[10:5:-1] starts at index 10 ('d'), moves backward one step at a time, and stops before index 5. Result: 'dlrow'.", "code": "print(my_str[10:5:-1]) # dlrow" },
-    { "comment": "# Another example: my_str[7:2:-2] starts at index 7 ('o'), moves backward two steps at a time, and stops before index 2. Result: 'o l'.", "code": "print(my_str[7:2:-2])  # o l" },
+    { "comment": "# Another example: my_str[7:2:-2] starts at index 7 ('o'), moves backward two steps at a time, and stops before index 2. Result: 'o l'.", "code": "print(my_str[7:2:-2]) # o l" },
     { "comment": "# Final Output — String slicing allows flexible extraction of substrings, skipping characters, and reversing, all without loops or manual iteration. Negative steps add the ability to reverse direction and stride backwards.", "code": "# Example outputs: ell, Hello w, rld, Hlowrd, dlrow olleH, dlrow, o l" }
   ]
 },
   {
   "title": "CHAPTER: Python Basics — Common String Methods",
   "steps": [
-    { "comment": "# upper() — Converts all characters to uppercase. Useful for normalization or emphasis.", "code": "my_str = 'hello world'\nprint(my_str.upper())  # HELLO WORLD" },
-    { "comment": "# lower() — Converts all characters to lowercase. Helpful for case-insensitive comparisons.", "code": "my_str = 'Hello World'\nprint(my_str.lower())  # hello world" },
-    { "comment": "# strip() — Removes leading and trailing whitespace (or specified characters). Prevents accidental spacing issues.", "code": "my_str = '  hello world  '\nprint(my_str.strip())  # hello world" },
-    { "comment": "# replace(old, new) — Replaces all occurrences of a substring with another. Great for quick text edits.", "code": "my_str = 'hello world'\nprint(my_str.replace('hello', 'hi'))  # hi world" },
-    { "comment": "# split(separator) — Splits a string into a list of substrings. Defaults to whitespace if no separator is given.", "code": "my_str = 'hello world'\nprint(my_str.split())  # ['hello', 'world']" },
-    { "comment": "# join(iterable) — Joins elements of an iterable into a single string, separated by the string used to call join().", "code": "my_list = ['hello', 'world']\nprint(' '.join(my_list))  # hello world" },
-    { "comment": "# startswith(prefix) — Returns True if the string begins with the given prefix.", "code": "my_str = 'hello world'\nprint(my_str.startswith('hello'))  # True" },
-    { "comment": "# endswith(suffix) — Returns True if the string ends with the given suffix.", "code": "my_str = 'hello world'\nprint(my_str.endswith('world'))  # True" },
-    { "comment": "# find(substring) — Returns the index of the first occurrence of substring, or -1 if not found.", "code": "my_str = 'hello world'\nprint(my_str.find('world'))  # 6" },
-    { "comment": "# count(substring) — Counts how many times a substring appears in the string.", "code": "my_str = 'hello world'\nprint(my_str.count('o'))  # 2" },
-    { "comment": "# capitalize() — Capitalizes the first character and lowercases the rest. Good for sentence formatting.", "code": "my_str = 'hello world'\nprint(my_str.capitalize())  # Hello world" },
-    { "comment": "# isupper() — Returns True if all letters are uppercase, False otherwise.", "code": "my_str = 'hello world'\nprint(my_str.isupper())  # False" },
-    { "comment": "# islower() — Returns True if all letters are lowercase, False otherwise.", "code": "my_str = 'hello world'\nprint(my_str.islower())  # True" },
-    { "comment": "# title() — Capitalizes the first letter of each word. Useful for formatting names or titles.", "code": "my_str = 'hello world'\nprint(my_str.title())  # Hello World" },
+    { "comment": "# upper() — Converts all characters to uppercase. Useful for normalization or emphasis.", "code": "my_str = 'hello world'\nprint(my_str.upper()) # HELLO WORLD" },
+    { "comment": "# lower() — Converts all characters to lowercase. Helpful for case-insensitive comparisons.", "code": "my_str = 'Hello World'\nprint(my_str.lower()) # hello world" },
+    { "comment": "# strip() — Removes leading and trailing whitespace (or specified characters). Prevents accidental spacing issues.", "code": "my_str = ' hello world '\nprint(my_str.strip()) # hello world" },
+    { "comment": "# replace(old, new) — Replaces all occurrences of a substring with another. Great for quick text edits.", "code": "my_str = 'hello world'\nprint(my_str.replace('hello', 'hi')) # hi world" },
+    { "comment": "# split(separator) — Splits a string into a list of substrings. Defaults to whitespace if no separator is given.", "code": "my_str = 'hello world'\nprint(my_str.split()) # ['hello', 'world']" },
+    { "comment": "# join(iterable) — Joins elements of an iterable into a single string, separated by the string used to call join().", "code": "my_list = ['hello', 'world']\nprint(' '.join(my_list)) # hello world" },
+    { "comment": "# startswith(prefix) — Returns True if the string begins with the given prefix.", "code": "my_str = 'hello world'\nprint(my_str.startswith('hello')) # True" },
+    { "comment": "# endswith(suffix) — Returns True if the string ends with the given suffix.", "code": "my_str = 'hello world'\nprint(my_str.endswith('world')) # True" },
+    { "comment": "# find(substring) — Returns the index of the first occurrence of substring, or -1 if not found.", "code": "my_str = 'hello world'\nprint(my_str.find('world')) # 6" },
+    { "comment": "# count(substring) — Counts how many times a substring appears in the string.", "code": "my_str = 'hello world'\nprint(my_str.count('o')) # 2" },
+    { "comment": "# capitalize() — Capitalizes the first character and lowercases the rest. Good for sentence formatting.", "code": "my_str = 'hello world'\nprint(my_str.capitalize()) # Hello world" },
+    { "comment": "# isupper() — Returns True if all letters are uppercase, False otherwise.", "code": "my_str = 'hello world'\nprint(my_str.isupper()) # False" },
+    { "comment": "# islower() — Returns True if all letters are lowercase, False otherwise.", "code": "my_str = 'hello world'\nprint(my_str.islower()) # True" },
+    { "comment": "# title() — Capitalizes the first letter of each word. Useful for formatting names or titles.", "code": "my_str = 'hello world'\nprint(my_str.title()) # Hello World" },
     { "comment": "# Final Output — These built-in methods make string manipulation concise, expressive, and safer than manual loops.", "code": "# Example outputs: HELLO WORLD, hello world, hello world, hi world, ['hello','world'], hello world, True, True, 6, 2, Hello world, False, True, Hello World" }
   ]
 },
   {
   "title": "CHAPTER: Python Basics — Integers and Floating Point Numbers",
   "steps": [
-    { "comment": "# Integers are whole numbers without decimals. They can be positive or negative.", "code": "my_int_1 = 56\nmy_int_2 = -4\nprint(type(my_int_1))  # <class 'int'>\nprint(type(my_int_2))  # <class 'int'>" },
-    { "comment": "# Integer addition — using the + operator.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Addition:', my_int_1 + my_int_2)  # 68" },
-    { "comment": "# Integer subtraction — using the - operator.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Subtraction:', my_int_1 - my_int_2)  # 44" },
-    { "comment": "# Integer multiplication — using the * operator.", "code": "my_int_1 = 12\nmy_int_2 = 4\nprint('Integer Multiplication:', my_int_1 * my_int_2)  # 48" },
-    { "comment": "# Integer division — using the / operator. Result is a float even if both operands are integers.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Division:', my_int_1 / my_int_2)  # 4.666..." },
-
-    { "comment": "# Floats are numbers with decimal points. They can also be positive or negative.", "code": "my_float_1 = -12.0\nmy_float_2 = 4.9\nprint(type(my_float_1))  # <class 'float'>\nprint(type(my_float_2))  # <class 'float'>" },
-    { "comment": "# Float addition — works the same way as integers.", "code": "print('Float Addition:', 5.4 + 12.0)  # 17.4" },
-    { "comment": "# Float subtraction — order matters.", "code": "print('Float Subtraction:', 12.0 - 5.4)  # 6.6" },
-    { "comment": "# Float multiplication — result may include floating point precision artifacts.", "code": "print('Float Multiplication:', 12.0 * 5.4)  # 64.80000000000001" },
-    { "comment": "# Float division — returns a float result.", "code": "print('Float Division:', 12.0 / 5.4)  # 2.222..." },
-
-    { "comment": "# Mixing integers and floats — result is promoted to float automatically.", "code": "my_int = 56\nmy_float = 5.4\nresult = my_int + my_float\nprint(result)  # 61.4\nprint(type(result))  # <class 'float'>" },
-
-    { "comment": "# Modulo operator % — returns the remainder of division.", "code": "print('Integer Modulus:', 56 % 12)  # 8\nprint('Float Modulus:', 12.0 % 5.4)  # 1.199..." },
-    { "comment": "# Floor division // — divides and rounds down to the nearest integer.", "code": "print('Integer Floor Division:', 56 // 12)  # 4\nprint('Float Floor Division:', 12.0 // 5.4)  # 2.0" },
-    { "comment": "# Exponentiation ** — raises a number to the power of another.", "code": "print('Integer Exponentiation:', 2 ** 3)   # 8\nprint('Float Exponentiation:', 5.4 ** 2.0) # 29.16" },
-
-    { "comment": "# abs() — returns the absolute value (distance from zero). It strips away the sign and leaves magnitude only.", "code": "print(abs(-15))  # 15\nprint(abs(15))   # 15" },
-    { "comment": "# pow() — raises a number to a power. pow(x, y) is the same as x ** y. pow(x, y, z) adds a modulus step.", "code": "print(pow(2, 3))     # 8\nprint(pow(2, 3, 5))  # 3  because (2 ** 3) % 5 = 3" },
-
-    { "comment": "# Converting between types — float() turns integers into floats.", "code": "my_int = 56\nprint(float(my_int))  # 56.0" },
-    { "comment": "# int() — converts a float to an integer by truncating the decimal part (no rounding).", "code": "print(int(12.9))   # 12\nprint(int(-12.9))  # -12" },
-    { "comment": "# round() — rounds to the nearest integer or specified decimal places. Unlike int(), it does proper rounding.", "code": "print(round(12.9))    # 13\nprint(round(-12.9))   # -13\nprint(round(4.253, 1)) # 4.3" },
-
-    { "comment": "# int() and float() can also convert numeric strings.", "code": "print(int('45'))   # 45\nprint(float('7.8')) # 7.8" },
-
+    { "comment": "# Integers are whole numbers without decimals. They can be positive or negative.", "code": "my_int_1 = 56\nmy_int_2 = -4\nprint(type(my_int_1)) # <class 'int'>\nprint(type(my_int_2)) # <class 'int'>" },
+    { "comment": "# Integer addition — using the + operator.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Addition:', my_int_1 + my_int_2) # 68" },
+    { "comment": "# Integer subtraction — using the - operator.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Subtraction:', my_int_1 - my_int_2) # 44" },
+    { "comment": "# Integer multiplication — using the * operator.", "code": "my_int_1 = 12\nmy_int_2 = 4\nprint('Integer Multiplication:', my_int_1 * my_int_2) # 48" },
+    { "comment": "# Integer division — using the / operator. Result is a float even if both operands are integers.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Division:', my_int_1 / my_int_2) # 4.666..." },
+    { "comment": "# Floats are numbers with decimal points. They can also be positive or negative.", "code": "my_float_1 = -12.0\nmy_float_2 = 4.9\nprint(type(my_float_1)) # <class 'float'>\nprint(type(my_float_2)) # <class 'float'>" },
+    { "comment": "# Float addition — works the same way as integers.", "code": "print('Float Addition:', 5.4 + 12.0) # 17.4" },
+    { "comment": "# Float subtraction — order matters.", "code": "print('Float Subtraction:', 12.0 - 5.4) # 6.6" },
+    { "comment": "# Float multiplication — result may include floating point precision artifacts.", "code": "print('Float Multiplication:', 12.0 * 5.4) # 64.80000000000001" },
+    { "comment": "# Float division — returns a float result.", "code": "print('Float Division:', 12.0 / 5.4) # 2.222..." },
+    { "comment": "# Mixing integers and floats — result is promoted to float automatically.", "code": "my_int = 56\nmy_float = 5.4\nresult = my_int + my_float\nprint(result) # 61.4\nprint(type(result)) # <class 'float'>" },
+    { "comment": "# Modulo operator % — returns the remainder of division.", "code": "print('Integer Modulus:', 56 % 12) # 8\nprint('Float Modulus:', 12.0 % 5.4) # 1.199..." },
+    { "comment": "# Floor division // — divides and rounds down to the nearest integer.", "code": "print('Integer Floor Division:', 56 // 12) # 4\nprint('Float Floor Division:', 12.0 // 5.4) # 2.0" },
+    { "comment": "# Exponentiation ** — raises a number to the power of another.", "code": "print('Integer Exponentiation:', 2 ** 3) # 8\nprint('Float Exponentiation:', 5.4 ** 2.0) # 29.16" },
+    { "comment": "# abs() — returns the absolute value (distance from zero). It strips away the sign and leaves magnitude only.", "code": "print(abs(-15)) # 15\nprint(abs(15)) # 15" },
+    { "comment": "# pow() — raises a number to a power. pow(x, y) is the same as x ** y. pow(x, y, z) adds a modulus step.", "code": "print(pow(2, 3)) # 8\nprint(pow(2, 3, 5)) # 3 because (2 ** 3) % 5 = 3" },
+    { "comment": "# Converting between types — float() turns integers into floats.", "code": "my_int = 56\nprint(float(my_int)) # 56.0" },
+    { "comment": "# int() — converts a float to an integer by truncating the decimal part (no rounding).", "code": "print(int(12.9)) # 12\nprint(int(-12.9)) # -12" },
+    { "comment": "# round() — rounds to the nearest integer or specified decimal places. Unlike int(), it does proper rounding.", "code": "print(round(12.9)) # 13\nprint(round(-12.9)) # -13\nprint(round(4.253, 1)) # 4.3" },
+    { "comment": "# int() and float() can also convert numeric strings.", "code": "print(int('45')) # 45\nprint(float('7.8')) # 7.8" },
     { "comment": "# Final Output — Integers and floats support arithmetic, type conversion, and built-in functions for precision and control.", "code": "# Key takeaways: abs() strips sign, pow() raises to powers (with optional modulus), int() truncates decimals, round() performs true rounding." }
   ]
 },
@@ -442,55 +435,42 @@ let chapters = [
         CodeLine(code: "x = 10", comment: "Initialize variable x with decimal 10 (binary 1010)"),
         CodeLine(code: "x += 5", comment: "Addition assignment → x = x + 5. Binary: 1010 + 0101 = 1111"),
         CodeLine(code: "print(x) # 15", comment: "Result is 15 (binary 1111)"),
-
         CodeLine(code: "count = 14", comment: "Initialize count with decimal 14 (binary 1110)"),
         CodeLine(code: "count -= 3", comment: "Subtraction assignment → count = count - 3. Binary: 1110 - 0011 = 1011"),
         CodeLine(code: "print(count) # 11", comment: "Result is 11 (binary 1011)"),
-
         CodeLine(code: "product = 65", comment: "Initialize product with decimal 65 (binary 1000001)"),
         CodeLine(code: "product *= 7", comment: "Multiplication assignment → product = product * 7. Binary multiplication expands bits"),
         CodeLine(code: "print(product) # 455", comment: "Result is 455 (binary 111000111)"),
-
         CodeLine(code: "price = 100", comment: "Initialize price with decimal 100 (binary 1100100)"),
         CodeLine(code: "price /= 4", comment: "Division assignment → price = price / 4. Binary division shifts right by 2"),
         CodeLine(code: "print(price) # 25.0", comment: "Result is 25 (binary 11001)"),
-
         CodeLine(code: "pages = 23", comment: "Initialize pages with decimal 23 (binary 10111)"),
         CodeLine(code: "pages //= 5", comment: "Floor division assignment → pages = pages // 5. Binary division discards remainder"),
         CodeLine(code: "print(pages) # 4", comment: "Result is 4 (binary 100)"),
-
         CodeLine(code: "bits = 35", comment: "Initialize bits with decimal 35 (binary 100011)"),
         CodeLine(code: "bits %= 2", comment: "Modulo assignment → bits = bits % 2. Binary remainder after division by 10"),
         CodeLine(code: "print(bits) # 1", comment: "Result is 1 (binary 1)"),
-
         CodeLine(code: "power = 2", comment: "Initialize power with decimal 2 (binary 10)"),
         CodeLine(code: "power **= 3", comment: "Exponentiation assignment → power = power ** 3. Binary exponentiation repeats multiplication"),
         CodeLine(code: "print(power) # 8", comment: "Result is 8 (binary 1000)"),
-
         CodeLine(code: "greet = 'Hello'", comment: "Initialize string greet"),
         CodeLine(code: "greet += ' World'", comment: "Concatenation assignment → greet = greet + ' World'. Binary signals here are string memory operations"),
         CodeLine(code: "print(greet) # Hello World", comment: "Result is 'Hello World'"),
-
         CodeLine(code: "greet = 'Hi'", comment: "Initialize string greet"),
         CodeLine(code: "greet *= 3", comment: "Repetition assignment → greet = greet * 3. Binary signals duplicate string memory three times"),
         CodeLine(code: "print(greet) # HiHiHi", comment: "Result is 'HiHiHi'"),
-
-        CodeLine(code: "x = 6  # binary 110", comment: "Initialize x with decimal 6 (binary 110)"),
-        CodeLine(code: "x &= 3  # binary 011", comment: "Bitwise AND assignment → x = x & 3. Compare each bit: 110 & 011 = 010"),
+        CodeLine(code: "x = 6 # binary 110", comment: "Initialize x with decimal 6 (binary 110)"),
+        CodeLine(code: "x &= 3 # binary 011", comment: "Bitwise AND assignment → x = x & 3. Compare each bit: 110 & 011 = 010"),
         CodeLine(code: "print(x) # 2 (binary 010)", comment: "Result is 2"),
-
-        CodeLine(code: "y = 4  # binary 100", comment: "Initialize y with decimal 4 (binary 100)"),
-        CodeLine(code: "y |= 1  # binary 001", comment: "Bitwise OR assignment → y = y | 1. Compare each bit: 100 | 001 = 101"),
+        CodeLine(code: "y = 4 # binary 100", comment: "Initialize y with decimal 4 (binary 100)"),
+        CodeLine(code: "y |= 1 # binary 001", comment: "Bitwise OR assignment → y = y | 1. Compare each bit: 100 | 001 = 101"),
         CodeLine(code: "print(y) # 5 (binary 101)", comment: "Result is 5"),
-
-        CodeLine(code: "z = 5  # binary 101", comment: "Initialize z with decimal 5 (binary 101)"),
-        CodeLine(code: "z ^= 3  # binary 011", comment: "Bitwise XOR assignment → z = z ^ 3. Compare each bit: 101 ^ 011 = 110"),
+        CodeLine(code: "z = 5 # binary 101", comment: "Initialize z with decimal 5 (binary 101)"),
+        CodeLine(code: "z ^= 3 # binary 011", comment: "Bitwise XOR assignment → z = z ^ 3. Compare each bit: 101 ^ 011 = 110"),
         CodeLine(code: "print(z) # 6 (binary 110)", comment: "Result is 6"),
-
-        CodeLine(code: "shift = 1  # binary 0001", comment: "Initialize shift with decimal 1 (binary 0001)"),
+        CodeLine(code: "shift = 1 # binary 0001", comment: "Initialize shift with decimal 1 (binary 0001)"),
         CodeLine(code: "shift <<= 3", comment: "Left shift assignment → shift = shift << 3. Move bits left 3 places: 0001 → 1000"),
         CodeLine(code: "print(shift) # 8 (binary 1000)", comment: "Result is 8"),
-
         CodeLine(code: "shift >>= 2", comment: "Right shift assignment → shift = shift >> 2. Move bits right 2 places: 1000 → 0010"),
         CodeLine(code: "print(shift) # 2 (binary 0010)", comment: "Result is 2")
     ]
@@ -499,66 +479,53 @@ let chapters = [
     title: "CHAPTER XX: Augmented Assignment with Binary Detail",
     description: """
 Augmented assignment combines a binary operation with reassignment in one step. It takes the **LHS (Left-Hand Side)** variable, applies the operator with the **RHS (Right-Hand Side)** value, and stores the result back into the same variable.
-
 Think of it as a three-step process:
 1. Take the binary representation of the LHS variable.
 2. Apply the operator’s binary rule with the RHS value.
 3. Store the new binary result back into the LHS variable.
-
 For example:
 - LHS = 6 → binary 110
 - RHS = 3 → binary 011
 - Operation: 110 & 011 = 010 (bitwise AND, only the middle bit matches)
 - Result = 2 → binary 010
-
 This shows how augmented assignment directly manipulates binary signals:
 - Arithmetic operators (`+=, -=, *=, /=, //=, %=, **=`) translate into CPU instructions that add, subtract, multiply, divide, or raise values at the binary level.
 - Bitwise operators (`&=, |=, ^=, <<=, >>=`) act on each bit individually:
-  • AND (`&=`): result bit is 1 only if both LHS and RHS bits are 1.  
-  • OR (`|=`): result bit is 1 if either LHS or RHS bit is 1.  
-  • XOR (`^=`): result bit is 1 if bits differ.  
-  • Left Shift (`<<=`): moves bits left, filling with zeros (like multiplying by powers of 2).  
+  • AND (`&=`): result bit is 1 only if both LHS and RHS bits are 1.
+  • OR (`|=`): result bit is 1 if either LHS or RHS bit is 1.
+  • XOR (`^=`): result bit is 1 if bits differ.
+  • Left Shift (`<<=`): moves bits left, filling with zeros (like multiplying by powers of 2).
   • Right Shift (`>>=`): moves bits right, discarding bits (like dividing by powers of 2).
-
 The advantage of augmented assignment is clarity and efficiency: instead of writing `x = x + y`, you write `x += y`, which makes the binary operation and reassignment explicit in one concise step.
 """,
     codeLines: [
         CodeLine(code: "x = 10", comment: "Initialize variable x with decimal 10 (binary 1010)"),
         CodeLine(code: "x += 5", comment: "Addition assignment → x = x + 5. Binary: 1010 + 0101 = 1111"),
         CodeLine(code: "print(x) # 15", comment: "Result is 15 (binary 1111)"),
-
         CodeLine(code: "count = 14", comment: "Initialize count with decimal 14 (binary 1110)"),
         CodeLine(code: "count -= 3", comment: "Subtraction assignment → count = count - 3. Binary: 1110 - 0011 = 1011"),
         CodeLine(code: "print(count) # 11", comment: "Result is 11 (binary 1011)"),
-
         CodeLine(code: "product = 65", comment: "Initialize product with decimal 65 (binary 1000001)"),
         CodeLine(code: "product *= 7", comment: "Multiplication assignment → product = product * 7. Binary multiplication expands bits"),
         CodeLine(code: "print(product) # 455", comment: "Result is 455 (binary 111000111)"),
-
         CodeLine(code: "price = 100", comment: "Initialize price with decimal 100 (binary 1100100)"),
         CodeLine(code: "price /= 4", comment: "Division assignment → price = price / 4. Binary division shifts right by 2"),
         CodeLine(code: "print(price) # 25.0", comment: "Result is 25 (binary 11001)"),
-
         CodeLine(code: "bits = 35", comment: "Initialize bits with decimal 35 (binary 100011)"),
         CodeLine(code: "bits %= 2", comment: "Modulo assignment → bits = bits % 2. Binary remainder after division by 10"),
         CodeLine(code: "print(bits) # 1", comment: "Result is 1 (binary 1)"),
-
-        CodeLine(code: "x = 6  # binary 110", comment: "Initialize x with decimal 6 (binary 110)"),
-        CodeLine(code: "x &= 3  # binary 011", comment: "Bitwise AND assignment → x = x & 3. Compare each bit: 110 & 011 = 010"),
+        CodeLine(code: "x = 6 # binary 110", comment: "Initialize x with decimal 6 (binary 110)"),
+        CodeLine(code: "x &= 3 # binary 011", comment: "Bitwise AND assignment → x = x & 3. Compare each bit: 110 & 011 = 010"),
         CodeLine(code: "print(x) # 2 (binary 010)", comment: "Result is 2"),
-
-        CodeLine(code: "y = 4  # binary 100", comment: "Initialize y with decimal 4 (binary 100)"),
-        CodeLine(code: "y |= 1  # binary 001", comment: "Bitwise OR assignment → y = y | 1. Compare each bit: 100 | 001 = 101"),
+        CodeLine(code: "y = 4 # binary 100", comment: "Initialize y with decimal 4 (binary 100)"),
+        CodeLine(code: "y |= 1 # binary 001", comment: "Bitwise OR assignment → y = y | 1. Compare each bit: 100 | 001 = 101"),
         CodeLine(code: "print(y) # 5 (binary 101)", comment: "Result is 5"),
-
-        CodeLine(code: "z = 5  # binary 101", comment: "Initialize z with decimal 5 (binary 101)"),
-        CodeLine(code: "z ^= 3  # binary 011", comment: "Bitwise XOR assignment → z = z ^ 3. Compare each bit: 101 ^ 011 = 110"),
+        CodeLine(code: "z = 5 # binary 101", comment: "Initialize z with decimal 5 (binary 101)"),
+        CodeLine(code: "z ^= 3 # binary 011", comment: "Bitwise XOR assignment → z = z ^ 3. Compare each bit: 101 ^ 011 = 110"),
         CodeLine(code: "print(z) # 6 (binary 110)", comment: "Result is 6"),
-
-        CodeLine(code: "shift = 1  # binary 0001", comment: "Initialize shift with decimal 1 (binary 0001)"),
+        CodeLine(code: "shift = 1 # binary 0001", comment: "Initialize shift with decimal 1 (binary 0001)"),
         CodeLine(code: "shift <<= 3", comment: "Left shift assignment → shift = shift << 3. Move bits left 3 places: 0001 → 1000"),
         CodeLine(code: "print(shift) # 8 (binary 1000)", comment: "Result is 8"),
-
         CodeLine(code: "shift >>= 2", comment: "Right shift assignment → shift = shift >> 2. Move bits right 2 places: 1000 → 0010"),
         CodeLine(code: "print(shift) # 2 (binary 0010)", comment: "Result is 2")
     ]
@@ -567,21 +534,17 @@ The advantage of augmented assignment is clarity and efficiency: instead of writ
     title: "CHAPTER XX: Augmented Assignment, Unary Operators, and Bitwise NOT",
     description: """
 This chapter explores augmented assignment operators, unary operators, and the bitwise NOT (~) operator in Python.
-
 ◦ Augmented assignment combines a binary operation with reassignment in one step:
    LHS (Left-Hand Side) variable is updated by applying the operator with the RHS (Right-Hand Side) value.
    Example: x += 5 → x = x + 5.
-
 ◦ Unary operators act on a single operand:
    +x (unary plus) returns the value unchanged.
    -x (unary minus) returns the negation.
    ~x (bitwise NOT) flips all bits.
-
 ◦ Binary mechanics:
    1. Take the binary representation of the LHS variable.
    2. Apply the operator’s binary rule with the RHS value.
    3. Store the new binary result back into the LHS variable.
-
 Worked example of bitwise NOT:
    • LHS = 5 → binary 00000101
    • Apply ~ → flip bits → 11111010
@@ -590,48 +553,38 @@ Worked example of bitwise NOT:
        - Add 1 → 00000110 → decimal 6
        - So 11111010 represents -6
    • Therefore, ~5 = -6
-
 General rule: ~n = -(n + 1).
 """,
     codeLines: [
         CodeLine(code: "x = 10", comment: "Initialize x with decimal 10 (binary 1010)"),
         CodeLine(code: "x += 5", comment: "Addition assignment: x = x + 5. Binary: 1010 + 0101 = 1111"),
         CodeLine(code: "print(x) # 15", comment: "Result is 15 (binary 1111)"),
-
         CodeLine(code: "count = 14", comment: "Initialize count with decimal 14 (binary 1110)"),
         CodeLine(code: "count -= 3", comment: "Subtraction assignment: count = count - 3. Binary: 1110 - 0011 = 1011"),
         CodeLine(code: "print(count) # 11", comment: "Result is 11 (binary 1011)"),
-
         CodeLine(code: "product = 65", comment: "Initialize product with decimal 65 (binary 1000001)"),
         CodeLine(code: "product *= 7", comment: "Multiplication assignment: product = product * 7. Binary multiplication expands bits"),
         CodeLine(code: "print(product) # 455", comment: "Result is 455 (binary 111000111)"),
-
         CodeLine(code: "price = 100", comment: "Initialize price with decimal 100 (binary 1100100)"),
         CodeLine(code: "price /= 4", comment: "Division assignment: price = price / 4. Binary division shifts right by 2"),
         CodeLine(code: "print(price) # 25.0", comment: "Result is 25 (binary 11001)"),
-
         CodeLine(code: "bits = 35", comment: "Initialize bits with decimal 35 (binary 100011)"),
         CodeLine(code: "bits %= 2", comment: "Modulo assignment: bits = bits % 2. Binary remainder after division by 10"),
         CodeLine(code: "print(bits) # 1", comment: "Result is 1 (binary 1)"),
-
         CodeLine(code: "power = 2", comment: "Initialize power with decimal 2 (binary 10)"),
         CodeLine(code: "power **= 3", comment: "Exponentiation assignment: power = power ** 3. Binary exponentiation repeats multiplication"),
         CodeLine(code: "print(power) # 8", comment: "Result is 8 (binary 1000)"),
-
         CodeLine(code: "greet = 'Hello'", comment: "Initialize string greet"),
         CodeLine(code: "greet += ' World'", comment: "Concatenation assignment: greet = greet + ' World'. Binary signals here are string memory operations"),
         CodeLine(code: "print(greet) # Hello World", comment: "Result is 'Hello World'"),
-
         CodeLine(code: "greet = 'Hi'", comment: "Initialize string greet"),
         CodeLine(code: "greet *= 3", comment: "Repetition assignment: greet = greet * 3. Binary signals duplicate string memory three times"),
         CodeLine(code: "print(greet) # HiHiHi", comment: "Result is 'HiHiHi'"),
-
         CodeLine(code: "x = 5", comment: "Initialize x with decimal 5 (binary 00000101)"),
         CodeLine(code: "print(+x)", comment: "Unary plus: returns value unchanged → 5"),
         CodeLine(code: "print(++x)", comment: "Two unary plus operators: +(+(5)) → still 5, no increment"),
         CodeLine(code: "x += 1", comment: "Explicit increment using augmented assignment"),
         CodeLine(code: "print(x) # 6", comment: "Result is 6"),
-
         CodeLine(code: "n = 5", comment: "Initialize n with decimal 5 (binary 00000101)"),
         CodeLine(code: "print(~n)", comment: "Bitwise NOT: flips all bits. 00000101 → 11111010"),
         CodeLine(code: "# Two’s complement interpretation: 11111010 = -6", comment: "Rule: ~n = -(n + 1)")
@@ -649,51 +602,51 @@ General rule: ~n = -(n + 1).
     { "comment": "# >= Greater than or equal → Left value ≥ right", "code": "" },
     { "comment": "# <= Less than or equal → Left value ≤ right", "code": "" },
     { "comment": "# Example evaluations:", "code": "" },
-    { "comment": "# print(3 > 4)   # False", "code": "print(3 > 4)" },
-    { "comment": "# print(3 < 4)   # True", "code": "print(3 < 4)" },
-    { "comment": "# print(3 == 4)  # False", "code": "print(3 == 4)" },
-    { "comment": "# print(4 == 4)  # True", "code": "print(4 == 4)" },
-    { "comment": "# print(3 != 4)  # True", "code": "print(3 != 4)" },
-    { "comment": "# print(3 >= 4)  # False", "code": "print(3 >= 4)" },
-    { "comment": "# print(3 <= 4)  # True", "code": "print(3 <= 4)" },
+    { "comment": "# print(3 > 4) # False", "code": "print(3 > 4)" },
+    { "comment": "# print(3 < 4) # True", "code": "print(3 < 4)" },
+    { "comment": "# print(3 == 4) # False", "code": "print(3 == 4)" },
+    { "comment": "# print(4 == 4) # True", "code": "print(4 == 4)" },
+    { "comment": "# print(3 != 4) # True", "code": "print(3 != 4)" },
+    { "comment": "# print(3 >= 4) # False", "code": "print(3 >= 4)" },
+    { "comment": "# print(3 <= 4) # True", "code": "print(3 <= 4)" },
     { "comment": "# Basic if statement syntax:", "code": "" },
     { "comment": "# if condition:", "code": "if True:" },
-    { "comment": "#     pass   # Code runs if condition is True", "code": "    pass" },
+    { "comment": "# pass # Code runs if condition is True", "code": " pass" },
     { "comment": "# Indentation is mandatory in Python. Code blocks are defined by spaces, not braces.", "code": "" },
     { "comment": "# PEP 8 recommends 4 spaces per indentation level.", "code": "" },
     { "comment": "# Example with correct indentation:", "code": "" },
     { "comment": "# age = 18", "code": "age = 18" },
     { "comment": "# if age >= 18:", "code": "if age >= 18:" },
-    { "comment": "#     print('You are an adult')", "code": "    print('You are an adult')" },
+    { "comment": "# print('You are an adult')", "code": " print('You are an adult')" },
     { "comment": "# Incorrect indentation raises IndentationError:", "code": "" },
     { "comment": "# if age >= 18:", "code": "if age >= 18:" },
-    { "comment": "# print('You are an adult')   # ❌ Error", "code": "print('You are an adult')" },
+    { "comment": "# print('You are an adult') # ❌ Error", "code": "print('You are an adult')" },
     { "comment": "# Adding else clause for False conditions:", "code": "" },
     { "comment": "# if condition:", "code": "if age >= 18:" },
-    { "comment": "#     pass   # Runs if True", "code": "    print('You are an adult')" },
+    { "comment": "# pass # Runs if True", "code": " print('You are an adult')" },
     { "comment": "# else:", "code": "else:" },
-    { "comment": "#     pass   # Runs if False", "code": "    print('You are not an adult yet')" },
+    { "comment": "# pass # Runs if False", "code": " print('You are not an adult yet')" },
     { "comment": "# Using elif for multiple conditions:", "code": "" },
     { "comment": "# if condition1:", "code": "if age >= 18:" },
-    { "comment": "#     pass", "code": "    print('You are an adult')" },
+    { "comment": "# pass", "code": " print('You are an adult')" },
     { "comment": "# elif condition2:", "code": "elif age >= 13:" },
-    { "comment": "#     pass", "code": "    print('You are a teenager')" },
+    { "comment": "# pass", "code": " print('You are a teenager')" },
     { "comment": "# else:", "code": "else:" },
-    { "comment": "#     pass", "code": "    print('You are a child')" },
+    { "comment": "# pass", "code": " print('You are a child')" },
     { "comment": "# Example with multiple elif clauses:", "code": "" },
     { "comment": "# age = 2", "code": "age = 2" },
     { "comment": "# if age >= 65:", "code": "if age >= 65:" },
-    { "comment": "#     print('You are a senior citizen')", "code": "    print('You are a senior citizen')" },
+    { "comment": "# print('You are a senior citizen')", "code": " print('You are a senior citizen')" },
     { "comment": "# elif age >= 30:", "code": "elif age >= 30:" },
-    { "comment": "#     print('You are an adult in your prime')", "code": "    print('You are an adult in your prime')" },
+    { "comment": "# print('You are an adult in your prime')", "code": " print('You are an adult in your prime')" },
     { "comment": "# elif age >= 18:", "code": "elif age >= 18:" },
-    { "comment": "#     print('You are a young adult')", "code": "    print('You are a young adult')" },
+    { "comment": "# print('You are a young adult')", "code": " print('You are a young adult')" },
     { "comment": "# elif age >= 13:", "code": "elif age >= 13:" },
-    { "comment": "#     print('You are a teenager')", "code": "    print('You are a teenager')" },
+    { "comment": "# print('You are a teenager')", "code": " print('You are a teenager')" },
     { "comment": "# elif age >= 3:", "code": "elif age >= 3:" },
-    { "comment": "#     print('You are a young child')", "code": "    print('You are a young child')" },
+    { "comment": "# print('You are a young child')", "code": " print('You are a young child')" },
     { "comment": "# else:", "code": "else:" },
-    { "comment": "#     print('You are a toddler or an infant')", "code": "    print('You are a toddler or an infant')" }
+    { "comment": "# print('You are a toddler or an infant')", "code": " print('You are a toddler or an infant')" }
   ]
 },
   {
@@ -705,11 +658,10 @@ General rule: ~n = -(n + 1).
     { "comment": "# is_citizen = True", "code": "is_citizen = True" },
     { "comment": "# age = 25", "code": "age = 25" },
     { "comment": "# if is_citizen:", "code": "if is_citizen:" },
-    { "comment": "#     if age >= 18:", "code": "    if age >= 18:" },
-    { "comment": "#         print('You are eligible to vote')", "code": "        print('You are eligible to vote')" },
+    { "comment": "# if age >= 18:", "code": " if age >= 18:" },
+    { "comment": "# print('You are eligible to vote')", "code": " print('You are eligible to vote')" },
     { "comment": "# else:", "code": "else:" },
-    { "comment": "#     print('You are not eligible to vote')", "code": "    print('You are not eligible to vote')" },
-
+    { "comment": "# print('You are not eligible to vote')", "code": " print('You are not eligible to vote')" },
     { "comment": "# Every value in Python has an inherent boolean value — either truthy or falsy.", "code": "" },
     { "comment": "# Falsy values include: None, False, 0, 0.0, empty strings \"\", empty lists [], empty dicts {}, empty sets set().", "code": "" },
     { "comment": "# Truthy values include: non-zero numbers, non-empty strings, non-empty collections, and most other objects.", "code": "" },
@@ -717,33 +669,27 @@ General rule: ~n = -(n + 1).
     { "comment": "# print(bool(0)) → False", "code": "print(bool(0))" },
     { "comment": "# print(bool('')) → False", "code": "print(bool(''))" },
     { "comment": "# print(bool('Hello')) → True", "code": "print(bool('Hello'))" },
-
     { "comment": "# Boolean operators (logical operators) let you combine expressions: and, or, not.", "code": "" },
-
     { "comment": "# AND operator: returns first falsy operand, otherwise returns the last operand.", "code": "" },
     { "comment": "# Example:", "code": "" },
     { "comment": "# print(True and 25) → 25", "code": "print(True and 25)" },
     { "comment": "# print(False and 25) → False", "code": "print(False and 25)" },
-
     { "comment": "# OR operator: returns the first truthy operand, otherwise the last operand.", "code": "" },
     { "comment": "# Example:", "code": "" },
     { "comment": "# print(0 or 5) → 5 (0 is falsy, so returns 5)", "code": "print(0 or 5)" },
     { "comment": "# print(3 or 5) → 3 (3 is truthy, so returns 3)", "code": "print(3 or 5)" },
     { "comment": "# print('' or 'Hi') → 'Hi' (empty string is falsy, so returns 'Hi')", "code": "print('' or 'Hi')" },
-
     { "comment": "# NOT operator: inverts the boolean value. Always returns True or False.", "code": "" },
     { "comment": "# Example:", "code": "" },
     { "comment": "# print(not '') → True (empty string is falsy)", "code": "print(not '')" },
     { "comment": "# print(not 'Hello') → False (non-empty string is truthy)", "code": "print(not 'Hello')" },
-
     { "comment": "# Question: Which of the following is NOT falsy in Python?", "code": "" },
     { "comment": "# Options: None, False, 0, '', 'Hello'", "code": "" },
     { "comment": "# Answer: 'Hello' is NOT falsy. Non-empty strings are truthy.", "code": "" },
-
     { "comment": "# Summary: Truthy/falsy values and logical operators (and, or, not) with short-circuiting let you write flexible, readable conditional logic.", "code": "" }
   ]
 },
-  {
+ {
   "title": "CHAPTER 10: Simulated Driving with PyTorch — Full Code Explained Word by Word",
   "steps": [
     { "comment": "# import — Python keyword that loads external modules into the current namespace.", "code": "" },
