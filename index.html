@@ -743,8 +743,159 @@ General rule: ~n = -(n + 1).
     { "comment": "# Summary: Truthy/falsy values and logical operators (and, or, not) with short-circuiting let you write flexible, readable conditional logic.", "code": "" }
   ]
 },
-{
-  "title": "CHAPTER 1.8: Difference Between Integer and Float",
+  {
+  "title": "CHAPTER 10: Simulated Driving with PyTorch — Full Code Explained Word by Word",
+  "steps": [
+    { "comment": "# import — Python keyword that loads external modules into the current namespace.", "code": "" },
+    { "comment": "# torch — The main PyTorch library, providing tensors, autograd, and deep learning functionality.", "code": "import torch" },
+    { "comment": "# torch.nn — Submodule containing neural network building blocks (layers, activations, containers).", "code": "import torch.nn as nn" },
+    { "comment": "# nn — Alias for torch.nn, used to shorten code when referencing layers.", "code": "" },
+    { "comment": "# torch.optim — Submodule containing optimization algorithms (Adam, SGD, RMSProp).", "code": "import torch.optim as optim" },
+    { "comment": "# optim — Alias for torch.optim, used to shorten code when referencing optimizers.", "code": "" },
+    { "comment": "# numpy — Numerical library for arrays and mathematical operations.", "code": "import numpy as np" },
+    { "comment": "# np — Alias for numpy, used to shorten code when creating arrays.", "code": "" },
+    { "comment": "# torch.utils.data — Submodule with Dataset and DataLoader classes.", "code": "from torch.utils.data import Dataset, DataLoader" },
+    { "comment": "# Dataset — Abstract class for custom datasets; requires __len__ and __getitem__.", "code": "" },
+    { "comment": "# DataLoader — Utility that wraps a Dataset to provide batching, shuffling, and iteration.", "code": "" },
+
+    { "comment": "# class — Python keyword to define a new class.", "code": "" },
+    { "comment": "# DrivingDataset — Custom dataset class name, chosen to describe driving data.", "code": "class DrivingDataset(Dataset):" },
+    { "comment": "# (Dataset) — Inheritance; DrivingDataset extends PyTorch's Dataset class.", "code": "" },
+
+    { "comment": "# def — Python keyword to define a function or method.", "code": "" },
+    { "comment": "# __init__ — Special method called when a new object is created.", "code": "    def __init__(self, num_samples=1000):" },
+    { "comment": "# num_samples — Parameter controlling how many synthetic samples to generate.", "code": "" },
+    { "comment": "# =1000 — Default value if caller does not specify num_samples.", "code": "" },
+
+    { "comment": "# self — Reference to the current object instance.", "code": "" },
+    { "comment": "# images — Instance variable storing synthetic image arrays.", "code": "        self.images = []" },
+    { "comment": "# steering_angles — Instance variable storing numeric steering labels.", "code": "        self.steering_angles = []" },
+
+    { "comment": "# for — Python keyword for looping.", "code": "" },
+    { "comment": "# i — Loop variable, iterates from 0 to num_samples-1.", "code": "" },
+    { "comment": "# range(num_samples) — Generates sequence of integers from 0 to num_samples-1.", "code": "        for i in range(num_samples):" },
+
+    { "comment": "# np.zeros — NumPy function creating an array filled with zeros.", "code": "" },
+    { "comment": "# (64,64) — Shape argument: 64 rows, 64 columns.", "code": "" },
+    { "comment": "# dtype=np.float32 — Data type: 32-bit floating point.", "code": "            img = np.zeros((64, 64), dtype=np.float32)" },
+
+    { "comment": "# np.random.uniform — NumPy function generating random float in range.", "code": "" },
+    { "comment": "# (-1,1) — Range: -1.0 to +1.0.", "code": "            angle = np.random.uniform(-1, 1)" },
+
+    { "comment": "# start_x — Variable for x-coordinate of line start (center bottom).", "code": "            start_x = 32" },
+    { "comment": "# start_y — Variable for y-coordinate of line start (bottom row).", "code": "            start_y = 63" },
+    { "comment": "# end_x — Variable for x-coordinate of line end, shifted by angle.", "code": "            end_x = int(start_x + 32 * angle)" },
+    { "comment": "# end_y — Variable for y-coordinate of line end (top row).", "code": "            end_y = 0" },
+
+    { "comment": "# for y in range(start_y, end_y, -1) — Loop from bottom to top, decrementing y.", "code": "            for y in range(start_y, end_y, -1):" },
+    { "comment": "# x — Local variable for current x-coordinate, interpolated between start_x and end_x.", "code": "                x = start_x + int((start_x - end_x) * (y - start_y) / (end_y - start_y))" },
+    { "comment": "# if — Conditional keyword.", "code": "" },
+    { "comment": "# 0 <= x < 64 — Bounds check to ensure x is inside image width.", "code": "                if 0 <= x < 64:" },
+    { "comment": "# img[y,x] — Indexing into 2D array at row y, column x.", "code": "" },
+    { "comment": "# =1.0 — Assigns pixel value to white.", "code": "                    img[y, x] = 1.0" },
+
+    { "comment": "# self.images.append(img) — Adds image to dataset list.", "code": "            self.images.append(img)" },
+    { "comment": "# self.steering_angles.append(angle) — Adds steering angle to dataset list.", "code": "            self.steering_angles.append(angle)" },
+
+    { "comment": "# __len__ — Special method returning dataset size.", "code": "    def __len__(self):\n        return len(self.images)" },
+
+    { "comment": "# __getitem__ — Special method returning one sample by index.", "code": "    def __getitem__(self, idx):" },
+    { "comment": "# idx — Index parameter.", "code": "" },
+    { "comment": "# self.images[idx] — Selects image at position idx.", "code": "" },
+    { "comment": "# [None,:,:] — Adds channel dimension (1x64x64).", "code": "        img = self.images[idx][None, :, :]" },
+    { "comment": "# self.steering_angles[idx] — Selects angle at position idx.", "code": "        angle = self.steering_angles[idx]" },
+    { "comment": "# torch.tensor — Converts NumPy array to PyTorch tensor.", "code": "" },
+    { "comment": "# dtype=torch.float32 — Ensures tensor uses 32-bit float type.", "code": "        return torch.tensor(img, dtype=torch.float32), torch.tensor(angle, dtype=torch.float32)" },
+
+    { "comment": "# class SteeringModel(nn.Module) — Defines CNN model class inheriting from nn.Module.", "code": "class SteeringModel(nn.Module):" },
+    { "comment": "# super — Calls parent constructor.", "code": "    def __init__(self):\n        super(SteeringModel, self).__init__()" },
+    { "comment": "# self.conv1 — First convolutional layer: input=1 channel, output=24 filters.", "code": "        self.conv1 = nn.Conv2d(1, 24, kernel_size=5, stride=2)" },
+    { "comment": "# self.conv2 — Second convolutional layer: input=24, output=36 filters.", "code": "        self.conv2 = nn.Conv2d(24, 36, kernel_size=5, stride=2)" },
+    { "comment": "# self.conv3 — Third convolutional layer: input=36, output=48 filters.", "code": "        self.conv3 = nn.Conv2d(36, 48, kernel_size=3, stride=2)" },
+    { "comment": "# self.fc1 — Fully connected layer: input=48*5*5=1200, output=100.", "code": "        self.fc1 = nn.Linear(48 * 5 * 5, 100)" },
+    { "comment": "# self.fc2 — Fully connected layer: input=100, output=50.", "code": "        self.fc2 = nn.Linear(100, 50)" },
+    { "comment": "# self.fc3 — Fully connected layer: input=50, output=1 (steering angle).", "code": "        self.fc3 = nn.Linear(50, 1)" },
+        { "comment": "# forward — Special method in nn.Module that defines how input data flows through the network.", "code": "    def forward(self, x):" },
+    { "comment": "# torch.relu(self.conv1(x)) — Passes input tensor x through conv1 (first convolutional layer), then applies ReLU activation (Rectified Linear Unit). ReLU outputs 0 for negative values and the input itself for positive values.", "code": "        x = torch.relu(self.conv1(x))" },
+    { "comment": "# torch.relu(self.conv2(x)) — Takes output of conv1, passes through conv2 (second convolutional layer), applies ReLU activation. This extracts more complex features.", "code": "        x = torch.relu(self.conv2(x))" },
+    { "comment": "# torch.relu(self.conv3(x)) — Takes output of conv2, passes through conv3 (third convolutional layer), applies ReLU activation. This condenses spatial information further.", "code": "        x = torch.relu(self.conv3(x))" },
+    { "comment": "# x.view(x.size(0), -1) — Reshapes tensor. x.size(0) is batch size. '-1' flattens all remaining dimensions automatically. Converts 3D feature maps into 2D vector for fully connected layers.", "code": "        x = x.view(x.size(0), -1)" },
+    { "comment": "# torch.relu(self.fc1(x)) — Passes flattened vector into first fully connected layer (fc1), applies ReLU activation. Maps features into 100 neurons.", "code": "        x = torch.relu(self.fc1(x))" },
+    { "comment": "# torch.relu(self.fc2(x)) — Passes output of fc1 into second fully connected layer (fc2), applies ReLU activation. Reduces dimensionality to 50 neurons.", "code": "        x = torch.relu(self.fc2(x))" },
+    { "comment": "# self.fc3(x) — Passes output of fc2 into final fully connected layer (fc3). Produces single numeric output (predicted steering angle). No activation because regression outputs continuous values.", "code": "        return self.fc3(x)" },
+
+    { "comment": "# def train_model(model, dataloader, epochs=5, lr=0.001): — Defines training function. Parameters: model (network), dataloader (batches of data), epochs (training passes), lr (learning rate).", "code": "def train_model(model, dataloader, epochs=5, lr=0.001):" },
+    { "comment": "# criterion = nn.MSELoss() — Creates Mean Squared Error loss function. Measures average squared difference between predicted and true steering angles.", "code": "    criterion = nn.MSELoss()" },
+    { "comment": "# optimizer = optim.Adam(model.parameters(), lr=lr) — Creates Adam optimizer. model.parameters() gives all trainable weights. lr sets learning rate.", "code": "    optimizer = optim.Adam(model.parameters(), lr=lr)" },
+    { "comment": "# model.train() — Sets model into training mode. Ensures training-specific behaviors (like dropout) are active.", "code": "    model.train()" },
+    { "comment": "# for epoch in range(epochs): — Loops over number of epochs. Each epoch = one full pass through dataset.", "code": "    for epoch in range(epochs):" },
+    { "comment": "# total_loss = 0 — Initializes variable to accumulate loss across batches.", "code": "        total_loss = 0" },
+    { "comment": "# for images, angles in dataloader: — Iterates over batches. Each batch contains images and steering angles.", "code": "        for images, angles in dataloader:" },
+    { "comment": "# optimizer.zero_grad() — Clears old gradients before new batch.", "code": "            optimizer.zero_grad()" },
+    { "comment": "# outputs = model(images) — Forward pass: feeds batch of images into model, gets predicted angles.", "code": "            outputs = model(images)" },
+    { "comment": "# loss = criterion(outputs.squeeze(), angles) — Computes loss between predictions and true angles. squeeze() removes extra dimensions.", "code": "            loss = criterion(outputs.squeeze(), angles)" },
+    { "comment": "# loss.backward() — Backpropagation: computes gradients of loss w.r.t. parameters.", "code": "            loss.backward()" },
+    { "comment": "# optimizer.step() — Updates model parameters using gradients and learning rate.", "code": "            optimizer.step()" },
+    { "comment": "# total_loss += loss.item() — Adds batch loss to total_loss. loss.item() converts tensor to Python float.", "code": "            total_loss += loss.item()" },
+    { "comment": "# print(f\"Epoch {epoch+1}/{epochs}, Loss: {total_loss / len(dataloader):.4f}\") — Prints average loss per epoch. f-string formats with 4 decimal places.", "code": "        print(f\"Epoch {epoch+1}/{epochs}, Loss: {total_loss / len(dataloader):.4f}\")" },
+
+    { "comment": "# def predict_steering(model, image): — Defines inference function. Parameters: model (trained network), image (single image tensor).", "code": "def predict_steering(model, image):" },
+    { "comment": "# model.eval() — Sets model into evaluation mode. Disables training-specific behaviors.", "code": "    model.eval()" },
+    { "comment": "# with torch.no_grad(): — Context manager disabling gradient tracking. Saves memory and speeds inference.", "code": "    with torch.no_grad():" },
+    { "comment": "# output = model(image.unsqueeze(0)) — Adds batch dimension with unsqueeze(0). Performs forward pass to get prediction.", "code": "        output = model(image.unsqueeze(0))" },
+    { "comment": "# return output.item() — Converts prediction tensor to Python float and returns it.", "code": "    return output.item()" },
+
+    { "comment": "# if __name__ == \"__main__\": — Python idiom: run block only if script executed directly.", "code": "if __name__ == \"__main__\":" },
+    { "comment": "# dataset = DrivingDataset(num_samples=1000) — Creates dataset object with 1000 synthetic samples.", "code": "    dataset = DrivingDataset(num_samples=1000)" },
+    { "comment": "# dataloader = DataLoader(dataset, batch_size=32, shuffle=True) — Wraps dataset in DataLoader. batch_size=32 means 32 samples per batch. shuffle=True randomizes order.", "code": "    dataloader = DataLoader(dataset, batch_size=32, shuffle=True)" },
+    { "comment": "# model = SteeringModel() — Instantiates CNN model.", "code": "    model = SteeringModel()" },
+    { "comment": "# print(\"Training the model...\") — Prints message to console.", "code": "    print(\"Training the model...\")" },
+    { "comment": "# train_model(model, dataloader, epochs=10) — Calls training function with 10 epochs.", "code": "    train_model(model, dataloader, epochs=10)" },
+    { "comment": "# test_img, true_angle = dataset[0] — Retrieves first sample from dataset. test_img is image tensor, true_angle is label.", "code": "    test_img, true_angle = dataset[0]" },
+    { "comment": "# predicted_angle = predict_steering(model, test_img) — Runs inference on test image to get predicted steering angle.", "code": "    predicted_angle = predict_steering(model, test_img)" },
+    { "comment": "# print(f\"\\nTest: True Steering Angle: {true_angle:.4f}, Predicted: {predicted_angle:.4f}\") — Prints true and predicted angles. f-string formats floats with 4 decimal places.", "code": "    print(f\"\\nTest: True Steering Angle: {true_angle:.4f}, Predicted: {predicted_angle:.4f}\")" },
+
+    { "comment": "# Context: In Tesla's Dojo system, training happens on massive real-world video data. Models predict steering, acceleration, braking, and path planning simultaneously. Optimizations like FP8 formats and adaptive scaling make training faster. Trained weights are deployed OTA to cars for real-time inference.", "code": "" }
+  ]
+},
+  {
+  "title": "CHAPTER 12: Lists and Dictionaries — Building and Printing Medical Records",
+  "steps": [
+    { "comment": "# medical_records = [] — Creates a new variable named medical_records.", "code": "medical_records = []" },
+    { "comment": "# medical_records — Identifier (variable name) chosen to describe what the data represents: a collection of medical records.", "code": "" },
+    { "comment": "# = — Assignment operator in Python. It stores the value on the right-hand side into the variable on the left-hand side.", "code": "" },
+    { "comment": "# [] — Empty list literal. Lists are ordered collections that can hold multiple items. At this point, medical_records is an empty list with length 0.", "code": "" },
+
+    { "comment": "# medical_records.append(...) — Calls the append() method on the list.", "code": "" },
+    { "comment": "# append — Built-in list method that adds a single item to the end of the list.", "code": "" },
+    { "comment": "# (...) — Parentheses indicate a function call. Inside we place the item to add.", "code": "" },
+
+    { "comment": "# { ... } — Dictionary literal. Dictionaries store key-value pairs. Keys are unique identifiers, values are the data associated with them.", "code": "medical_records.append({" },
+    { "comment": "# \"patient_id\": \"P1001\" — Key-value pair. Key is the string 'patient_id'. Value is the string 'P1001'.", "code": "    \"patient_id\": \"P1001\"," },
+    { "comment": "# \"age\": 34 — Key-value pair. Key is 'age'. Value is integer 34. Integers are whole numbers.", "code": "    \"age\": 34," },
+    { "comment": "# \"gender\": \"Female\" — Key-value pair. Key is 'gender'. Value is string 'Female'.", "code": "    \"gender\": \"Female\"" },
+    { "comment": "# }) — Closes the dictionary and the append() call. This dictionary is now added as the first element of the list.", "code": "})" },
+
+    { "comment": "# At this point, medical_records contains one element.", "code": "" },
+    { "comment": "# That element is a dictionary with three keys: 'patient_id', 'age', and 'gender'.", "code": "" },
+    { "comment": "# The internal structure looks like this:", "code": "" },
+    { "comment": "# [ { 'patient_id': 'P1001', 'age': 34, 'gender': 'Female' } ]", "code": "" },
+
+    { "comment": "# print(medical_records) — Outputs the contents of the list to the console.", "code": "print(medical_records)" },
+    { "comment": "# The output will be:", "code": "" },
+    { "comment": "# [{'patient_id': 'P1001', 'age': 34, 'gender': 'Female'}]", "code": "" },
+
+    { "comment": "# Explanation of output:", "code": "" },
+    { "comment": "# - Outer square brackets [ ] show that medical_records is a list.", "code": "" },
+    { "comment": "# - Inside the list is one dictionary { }.", "code": "" },
+    { "comment": "# - The dictionary contains three key-value pairs: patient_id:'P1001', age:34, gender:'Female'.", "code": "" },
+
+    { "comment": "# This structure allows us to store multiple patient records.", "code": "" },
+    { "comment": "# Each record is a dictionary, and the list can grow as we append more dictionaries.", "code": "" },
+    { "comment": "# Example: adding another patient would append a second dictionary to the list, making medical_records contain two elements.", "code": "" }
+  ]
+},
+{ "title": "CHAPTER 1.8: Difference Between Integer and Float",
   "steps": [
     { "comment": "# Function definition — Creates a reusable block to demonstrate integer vs float difference.", "code": "def demonstrate_difference_integer_float():" },
     { "comment": "# Declare an integer variable — whole number without decimals.", "code": " my_integer = 10" },
