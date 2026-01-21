@@ -859,6 +859,56 @@ General rule: ~n = -(n + 1).
   ]
 },
   {
+  "title": "CHAPTER 13: How Do Functions Work in Python?",
+  "steps": [
+    { "comment": "# Functions are reusable pieces of code that run when you call them. They help organize logic and avoid repetition.", "code": "" },
+    { "comment": "# Python comes with built-in functions like print() and input().", "code": "" },
+
+    { "comment": "# Example: input() prompts the user for input.", "code": "name = input('What is your name?')" },
+    { "comment": "# User types Kolade and presses Enter. The string 'Kolade' is stored in variable name.", "code": "" },
+    { "comment": "# print('Hello', name) — Calls print() with two arguments: 'Hello' and the value of name.", "code": "print('Hello', name)" },
+    { "comment": "# Output: Hello Kolade", "code": "" },
+
+    { "comment": "# Another built-in function: int() converts values into integers.", "code": "" },
+    { "comment": "# print(int(3.14)) — Converts float 3.14 into integer 3.", "code": "print(int(3.14))" },
+    { "comment": "# Output: 3", "code": "" },
+    { "comment": "# print(int('42')) — Converts string '42' into integer 42.", "code": "print(int('42'))" },
+    { "comment": "# Output: 42", "code": "" },
+    { "comment": "# print(int(True)) — Converts boolean True into integer 1.", "code": "print(int(True))" },
+    { "comment": "# Output: 1", "code": "" },
+    { "comment": "# print(int(False)) — Converts boolean False into integer 0.", "code": "print(int(False))" },
+    { "comment": "# Output: 0", "code": "" },
+
+    { "comment": "# You can also write your own custom functions using def keyword.", "code": "" },
+    { "comment": "# def hello(): — Defines a function named hello. Parentheses () mean it takes no parameters. Colon : starts the function body.", "code": "def hello():" },
+    { "comment": "# print('Hello World') — Function body. Indented to show it belongs to hello().", "code": "    print('Hello World')" },
+    { "comment": "# hello() — Calls the function. Executes its body.", "code": "hello()" },
+    { "comment": "# Output: Hello World", "code": "" },
+
+    { "comment": "# Another function with parameters: def calculate_sum(a, b):", "code": "def calculate_sum(a, b):" },
+    { "comment": "# a and b are parameters — placeholders for values passed when calling the function.", "code": "" },
+    { "comment": "# print(a + b) — Function body. Adds a and b, prints result.", "code": "    print(a + b)" },
+    { "comment": "# Calling calculate_sum(3, 1) passes arguments 3 and 1 into parameters a and b.", "code": "calculate_sum(3, 1)" },
+    { "comment": "# Output: 4", "code": "" },
+
+    { "comment": "# If you call calculate_sum() with no arguments, Python raises an error.", "code": "calculate_sum()" },
+    { "comment": "# Output: TypeError: calculate_sum() missing 2 required positional arguments: 'a' and 'b'", "code": "" },
+
+    { "comment": "# Functions can return values using return keyword.", "code": "" },
+    { "comment": "# Example without return:", "code": "def calculate_sum(a, b):\n    print(a + b)" },
+    { "comment": "# my_sum = calculate_sum(3, 1) — Calls function, prints 4, but does not return anything.", "code": "my_sum = calculate_sum(3, 1)" },
+    { "comment": "# print(my_sum) — Shows None because function did not explicitly return a value.", "code": "print(my_sum)" },
+    { "comment": "# Output:\n# 4\n# None", "code": "" },
+
+    { "comment": "# Example with return:", "code": "def calculate_sum(a, b):\n    return a + b" },
+    { "comment": "# my_sum = calculate_sum(3, 1) — Calls function, returns 4, stores in my_sum.", "code": "my_sum = calculate_sum(3, 1)" },
+    { "comment": "# print(my_sum) — Prints the returned value.", "code": "print(my_sum)" },
+    { "comment": "# Output: 4", "code": "" },
+
+    { "comment": "# Summary: Functions in Python are defined with def, can take parameters, can be called with arguments, and can return values. If no return is specified, they return None by default.", "code": "" }
+  ]
+},
+{
   "title": "CHAPTER 12: Lists and Dictionaries — Building and Printing Medical Records",
   "steps": [
     { "comment": "# medical_records = [] — Creates a new variable named medical_records.", "code": "medical_records = []" },
