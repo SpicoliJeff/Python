@@ -1069,6 +1069,7 @@ let chapters = [
     ]
   }
 ];
+<script>
 let currentChapter = 0;
 let currentStep = 0;
 const codeArea = document.getElementById('code-area');
@@ -1082,6 +1083,7 @@ const nextBtn = document.getElementById('next');
 const resetBtn = document.getElementById('reset');
 const chapterBtn = document.getElementById('chapter-btn');
 const chapterList = document.getElementById('chapter-list');
+
 function populateChapters() {
   chapterList.innerHTML = '';
   chapters.forEach((ch, idx) => {
@@ -1092,20 +1094,29 @@ function populateChapters() {
     chapterList.appendChild(item);
   });
 }
+
 function selectChapter(idx) {
   currentChapter = idx;
   currentStep = 0;
   chapterList.classList.remove('show');
   resetChapter();
 }
+
 function resetChapter() {
   codeArea.innerHTML = '';
   commentBox.textContent = '';
   codeInput.value = '';
   hintArea.textContent = 'Type exactly:';
   nextBtn.disabled = true;
+
+  // ✅ Re‑enable input and buttons when starting a new chapter
+  codeInput.disabled = false;
+  submitBtn.disabled = false;
+  skipBtn.disabled = false;
+
   loadStep();
 }
+
 function loadStep() {
   const step = chapters[currentChapter].steps[currentStep];
   if (step) {
@@ -1121,6 +1132,7 @@ function loadStep() {
     nextBtn.disabled = false;
   }
 }
+
 function addLine(code) {
   const line = document.createElement('div');
   line.classList.add('line', 'new');
@@ -1128,6 +1140,7 @@ function addLine(code) {
   codeArea.appendChild(line);
   codeArea.scrollTop = codeArea.scrollHeight;
 }
+
 function shineLine() {
   const lines = codeArea.querySelectorAll('.line');
   if (lines.length > 0) {
@@ -1136,6 +1149,7 @@ function shineLine() {
     setTimeout(() => lastLine.classList.remove('line-shine'), 1800);
   }
 }
+
 submitBtn.onclick = () => {
   const input = codeInput.value.trim();
   const expected = chapters[currentChapter].steps[currentStep].code.trim();
@@ -1150,28 +1164,33 @@ submitBtn.onclick = () => {
     setTimeout(() => codeInput.classList.remove('action-shine'), 1000);
   }
 };
+
 skipBtn.onclick = () => {
   const step = chapters[currentChapter].steps[currentStep];
   addLine(step.code);
   currentStep++;
   loadStep();
 };
+
 prevBtn.onclick = () => {
   if (currentChapter > 0) {
     currentChapter--;
     resetChapter();
   }
 };
+
 nextBtn.onclick = () => {
   if (currentChapter < chapters.length - 1) {
     currentChapter++;
     resetChapter();
   }
 };
+
 resetBtn.onclick = resetChapter;
 chapterBtn.onclick = () => {
   chapterList.classList.toggle('show');
 };
+
 populateChapters();
 resetChapter();
 </script>
