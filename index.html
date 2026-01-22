@@ -175,1024 +175,1011 @@
   </style>
 </head>
 <body>
-<header>
-  <h1>Python Head On</h1>
-  <div id="chapter-selector">
-    <button id="chapter-btn">Select Chapter</button>
-    <div id="chapter-list"></div>
+  <header>
+    <h1>Python Head On</h1>
+    <div id="chapter-selector">
+      <button id="chapter-btn">Select Chapter</button>
+      <div id="chapter-list"></div>
+    </div>
+  </header>
+  <div id="main">
+    <div id="code-area"></div>
+    <div id="comment-box"></div>
+    <div id="hint-area">Type exactly:</div>
+    <div id="input-area">
+      <input type="text" id="code-input" autocomplete="off" />
+      <button id="submit-btn">Submit</button>
+      <button id="skip-btn">Skip</button>
+    </div>
+    <div id="controls">
+      <button id="prev">Previous</button>
+      <button id="next">Next</button>
+      <button id="reset">Reset</button>
+    </div>
   </div>
-</header>
-<div id="main">
-  <div id="code-area"></div>
-  <div id="comment-box"></div>
-  <div id="hint-area">Type exactly:</div>
-  <div id="input-area">
-    <input type="text" id="code-input" autocomplete="off" />
-    <button id="submit-btn">Submit</button>
-    <button id="skip-btn">Skip</button>
-  </div>
-  <div id="controls">
-    <button id="prev">Previous</button>
-    <button id="next">Next</button>
-    <button id="reset">Reset</button>
-  </div>
-</div>
-<script>
-let chapters = [
-  {
-    "title": "CHAPTER 1: Python Basics — Hello World",
-    "steps": [
-      { "comment": "# No includes needed — Python has built-in support for input/output via the print function, no need for external libraries for basic console operations.", "code": "" },
-      { "comment": "# print('Hello, World!') — The print function outputs text to the console. Strings can use single or double quotes. No semicolon required at the end.", "code": "print('Hello, World!')" },
-      { "comment": "# Blank line — Adds readability, separating code sections. Python relies on indentation for structure, not braces.", "code": "" },
-      { "comment": "# No main function — Python scripts run from top to bottom. No explicit entry point like in C++; execution starts immediately.", "code": "" },
-      { "comment": "# Final Output — When run, the console displays:", "code": "# Hello, World!" }
-    ]
-  },
-  {
-    "title": "CHAPTER 1.1: Variables and Naming in Python",
-    "steps": [
-      { "comment": "# Function definition — Declares a reusable block of code.", "code": "def demonstrate_variables():" },
-      { "comment": "# String variable — Stores text data inside quotes.", "code": " name = \"John Doe\"" },
-      { "comment": "# Integer variable — Stores a whole number.", "code": " age = 25" },
-      { "comment": "# Snake case naming convention — lowercase words separated by underscores.", "code": " user_age = 30" },
-      { "comment": "# Single-letter variable — technically valid but not descriptive.", "code": " x = 56" },
-      { "comment": "# Single-line comment — starts with # and is ignored by Python.", "code": " # This is a single-line comment" },
-      { "comment": "# Multi-line comment — consecutive # lines form a block of explanation.", "code": " # This is a" },
-      { "comment": "# Multi-line comment continued.", "code": " # multi-line" },
-      { "comment": "# Multi-line comment continued.", "code": " # comment" },
-      { "comment": "# Print statement — Displays the value of 'name'.", "code": " print(\"Name:\", name)" },
-      { "comment": "# Print statement — Displays the value of 'age'.", "code": " print(\"Age:\", age)" },
-      { "comment": "# Print statement — Displays the value of 'user_age'.", "code": " print(\"User Age:\", user_age)" },
-      { "comment": "# Print statement — Displays the value of 'x'.", "code": " print(\"Undescriptive variable x:\", x)" },
-      { "comment": "# Final Output — When run, prints all variable values to the console.", "code": "# Example output: Name: John Doe, Age: 25, User Age: 30, Undescriptive variable x: 56" }
-    ]
-  },
-  {
-    "title": "CHAPTER 1.2: Understanding print() Arguments and Commas",
-    "steps": [
-      { "comment": "# Function definition — Creates a reusable block to demonstrate print behavior.", "code": "def demonstrate_print_arguments():" },
-      { "comment": "# Basic print — The parentheses () are part of the function call syntax.", "code": " print('Hello world!')" },
-      { "comment": "# Inside the parentheses, 'Hello world!' is an argument — data passed into the function.", "code": " # Output: Hello world!" },
-      { "comment": "# Multiple arguments — You can separate values with commas inside the parentheses.", "code": " print('My favorite colors are', 'blue', 'green', 'red')" },
-      { "comment": "# How commas work — In Python's print(), each comma means 'separate these arguments'.", "code": " # Output: My favorite colors are blue green red" },
-      { "comment": "# Why spaces appear — print() automatically inserts a single space between arguments.", "code": " # This is built-in behavior: commas don't literally mean space, but print() adds them." },
-      { "comment": "# Parentheses role — They define the boundary of the function call and hold arguments.", "code": " # Arguments are the values inside (), telling print() what to display." },
-      { "comment": "# Example with numbers — Multiple arguments can be of different types.", "code": " print('The answer is', 42)" },
-      { "comment": "# Output shows automatic spacing between string and integer.", "code": " # Output: The answer is 42" },
-      { "comment": "# Comparison with C++ — Instead of commas, C++ uses the << operator with cout.", "code": " # Example: cout << \"My favorite colors are \" << \"blue\" << \"green\" << \"red\";" },
-      { "comment": "# Difference — In C++, << directly chains values together without automatic spaces, so you must add them manually.", "code": " # Python's print() is simpler for beginners because commas automatically insert spaces." },
-      { "comment": "# Final note — Commas separate arguments, parentheses group them, and print() handles spacing.", "code": " # This makes print flexible for combining text and data." }
-    ]
-  },
-  {
-    "title": "CHAPTER 1.3: Python Data Types and Dynamic Typing",
-    "steps": [
-      { "comment": "# Function definition — Creates a reusable block to demonstrate Python data types.", "code": "def demonstrate_data_types():" },
-      { "comment": "# String variable — Python infers type dynamically, no explicit keyword needed.", "code": " name = 'John Doe'" },
-      { "comment": "# Integer variable — Whole number, Python knows it's an int.", "code": " age = 25" },
-      { "comment": "# Print values — Shows Python automatically recognizes types.", "code": " print('Name:', name)" },
-      { "comment": "# Print values — Demonstrates integer output.", "code": " print('Age:', age)" },
-      { "comment": "# Integer type — Whole numbers without decimals.", "code": " my_integer_var = 10" },
-      { "comment": "# Print integer value.", "code": " print('Integer:', my_integer_var)" },
-      { "comment": "# Float type — Numbers with decimals.", "code": " my_float_var = 4.50" },
-      { "comment": "# Print float value.", "code": " print('Float:', my_float_var)" },
-      { "comment": "# String type — Sequence of characters in quotes.", "code": " my_string_var = 'hello'" },
-      { "comment": "# Print string value.", "code": " print('String:', my_string_var)" },
-      { "comment": "# Boolean type — True or False values.", "code": " my_boolean_var = True" },
-      { "comment": "# Print boolean value.", "code": " print('Boolean:', my_boolean_var)" },
-      { "comment": "# Set type — Unordered collection of unique elements.", "code": " my_set_var = {7, 5, 8}" },
-      { "comment": "# Print set value.", "code": " print('Set:', my_set_var)" },
-      { "comment": "# Dictionary type — Key-value pairs inside curly braces.", "code": " my_dictionary_var = {'name': 'Alice', 'age': 25}" },
-      { "comment": "# Print dictionary value.", "code": " print('Dictionary:', my_dictionary_var)" },
-      { "comment": "# Tuple type — Immutable ordered collection inside parentheses.", "code": " my_tuple_var = (7, 5, 8)" },
-      { "comment": "# Print tuple value.", "code": " print('Tuple:', my_tuple_var)" },
-      { "comment": "# Range type — Sequence of numbers, often used in loops.", "code": " my_range_var = range(5)" },
-      { "comment": "# Print range value.", "code": " print('Range:', my_range_var)" },
-      { "comment": "# List type — Ordered collection, supports mixed data types.", "code": " my_list = [22, 'Hello world', 3.14, True]" },
-      { "comment": "# Print list value.", "code": " print('List:', my_list)" },
-      { "comment": "# None type — Represents absence of a value.", "code": " my_none_var = None" },
-      { "comment": "# Print None value.", "code": " print('None:', my_none_var)" },
-      { "comment": "# type() function — Reveals the data type of a variable.", "code": " print(type(my_integer_var))" },
-      { "comment": "# Example: <class 'int'> is shown in terminal.", "code": " print(type(my_float_var))" },
-      { "comment": "# Example: <class 'str'> for strings.", "code": " print(type(my_string_var))" },
-      { "comment": "# Example: <class 'bool'> for booleans.", "code": " print(type(my_boolean_var))" },
-      { "comment": "# Example: <class 'set'> for sets.", "code": " print(type(my_set_var))" },
-      { "comment": "# Example: <class 'dict'> for dictionaries.", "code": " print(type(my_dictionary_var))" },
-      { "comment": "# Example: <class 'tuple'> for tuples.", "code": " print(type(my_tuple_var))" },
-      { "comment": "# Example: <class 'range'> for ranges.", "code": " print(type(my_range_var))" },
-      { "comment": "# Example: <class 'list'> for lists.", "code": " print(type(my_list))" },
-      { "comment": "# Example: <class 'NoneType'> for None.", "code": " print(type(my_none_var))" },
-      { "comment": "# isinstance() function — Checks if a variable matches a specific type.", "code": " print(isinstance('Hello world', str)) # True" },
-      { "comment": "# isinstance() example with boolean.", "code": " print(isinstance(True, bool)) # True" },
-      { "comment": "# isinstance() example with integer.", "code": " print(isinstance(42, int)) # True" },
-      { "comment": "# isinstance() example with mismatched type.", "code": " print(isinstance('John Doe', int)) # False" },
-      { "comment": "# Comparison note — Python is dynamically typed, unlike C++, Java, or C# which require explicit type declarations.", "code": " # Example in C++: string name = 'John Doe'; int age = 25;" },
-      { "comment": "# Final note — Python determines types at runtime, so type errors appear only when the program executes.", "code": " # Compiled languages catch type errors earlier, during the compile step." }
-    ]
-  },
-  {
-    "title": "CHAPTER 1.4: Python Data Types Demonstrations",
-    "steps": [
-      { "comment": "# Function for whole number (integer).", "code": "def demonstrate_integer():" },
-      { "comment": "# Integer — whole numbers without decimals.", "code": " my_integer = 100" },
-      { "comment": "# Print integer value.", "code": " print('Integer value:', my_integer)" },
-      { "comment": "# Show type of variable.", "code": " print('Type:', type(my_integer)) # <class 'int'>" },
-      { "comment": "# Function for decimal (float).", "code": "def demonstrate_float():" },
-      { "comment": "# Float — numbers with decimals.", "code": " my_float = 3.14159" },
-      { "comment": "# Print float value.", "code": " print('Float value:', my_float)" },
-      { "comment": "# Show type of variable.", "code": " print('Type:', type(my_float)) # <class 'float'>" },
-      { "comment": "# Function for string.", "code": "def demonstrate_string():" },
-      { "comment": "# String — sequence of characters.", "code": " my_string = 'Hello Python'" },
-      { "comment": "# Print string value.", "code": " print('String value:', my_string)" },
-      { "comment": "# Show type of variable.", "code": " print('Type:', type(my_string)) # <class 'str'>" },
-      { "comment": "# Function for text data enclosed in quotes.", "code": "def demonstrate_text_quotes():" },
-      { "comment": "# Text data — can use single or double quotes.", "code": " text_single = 'Single quoted text'" },
-      { "comment": "# Another string using double quotes.", "code": " text_double = \"Double quoted text\"" },
-      { "comment": "# Print both values.", "code": " print('Single quoted:', text_single)" },
-      { "comment": "# Print double quoted string.", "code": " print('Double quoted:', text_double)" },
-      { "comment": "# Show types.", "code": " print('Type:', type(text_single), type(text_double)) # <class 'str'>" },
-      { "comment": "# Function for boolean True.", "code": "def demonstrate_boolean_true():" },
-      { "comment": "# Boolean — True condition.", "code": " my_bool = True" },
-      { "comment": "# Print boolean value.", "code": " print('Boolean True:', my_bool)" },
-      { "comment": "# Show type.", "code": " print('Type:', type(my_bool)) # <class 'bool'>" },
-      { "comment": "# Function for boolean False.", "code": "def demonstrate_boolean_false():" },
-      { "comment": "# Boolean — False condition.", "code": " my_bool = False" },
-      { "comment": "# Print boolean value.", "code": " print('Boolean False:', my_bool)" },
-      { "comment": "# Show type.", "code": " print('Type:', type(my_bool)) # <class 'bool'>" },
-      { "comment": "# Function for set.", "code": "def demonstrate_set():" },
-      { "comment": "# Set — unordered collection of unique elements.", "code": " my_set = {1, 2, 2, 3, 4}" },
-      { "comment": "# Print set value (duplicates removed automatically).", "code": " print('Set value:', my_set)" },
-      { "comment": "# Show type.", "code": " print('Type:', type(my_set)) # <class 'set'>" },
-      { "comment": "# Function for dictionary.", "code": "def demonstrate_dictionary():" },
-      { "comment": "# Dictionary — key-value pairs.", "code": " my_dict = {'name': 'Cody', 'role': 'Developer'}" },
-      { "comment": "# Print dictionary value.", "code": " print('Dictionary value:', my_dict)" },
-      { "comment": "# Show type.", "code": " print('Type:', type(my_dict)) # <class 'dict'>" },
-      { "comment": "# Function for tuple.", "code": "def demonstrate_tuple():" },
-      { "comment": "# Tuple — immutable ordered collection.", "code": " my_tuple = (10, 20, 30)" },
-      { "comment": "# Print tuple value.", "code": " print('Tuple value:', my_tuple)" },
-      { "comment": "# Show type.", "code": " print('Type:', type(my_tuple)) # <class 'tuple'>" },
-      { "comment": "# Function for range.", "code": "def demonstrate_range():" },
-      { "comment": "# Range — sequence of numbers.", "code": " my_range = range(5)" },
-      { "comment": "# Print range object.", "code": " print('Range value:', my_range)" },
-      { "comment": "# Convert to list to show sequence.", "code": " print('Range as list:', list(my_range))" },
-      { "comment": "# Show type.", "code": " print('Type:', type(my_range)) # <class 'range'>" },
-      { "comment": "# Function for loop with range.", "code": "def demonstrate_loop_with_range():" },
-      { "comment": "# Loop — iterate through a range of numbers.", "code": " for i in range(3):" },
-      { "comment": "# Print each iteration value.", "code": " print('Loop iteration:', i)" },
-      { "comment": "# Function for list.", "code": "def demonstrate_list():" },
-      { "comment": "# List — ordered collection, can mix types.", "code": " my_list = [42, 'Python', 3.14, True]" },
-      { "comment": "# Print list value.", "code": " print('List value:', my_list)" },
-      { "comment": "# Show type.", "code": " print('Type:', type(my_list)) # <class 'list'>" },
-      { "comment": "# Function for None.", "code": "def demonstrate_none():" },
-      { "comment": "# None — special value representing no value or empty.", "code": " my_none = None" },
-      { "comment": "# Print None value.", "code": " print('None value:', my_none)" },
-      { "comment": "# Show type.", "code": " print('Type:', type(my_none)) # <class 'NoneType'>" }
-    ]
-  },
-  {
-    "title": "CHAPTER 1.5: Checking Data Types in Python",
-    "steps": [
-      { "comment": "# Function definition — Creates a reusable block to demonstrate type checking.", "code": "def demonstrate_type_checking():" },
-      { "comment": "# Declare a string variable — Python infers type dynamically.", "code": " my_var_1 = 'Hello world'" },
-      { "comment": "# Declare an integer variable — Python knows this is an int.", "code": " my_var_2 = 21" },
-      { "comment": "# Use type() — Built-in function that returns the data type of a variable.", "code": " print(type(my_var_1)) # <class 'str'>" },
-      { "comment": "# Example output shows that my_var_1 is a string.", "code": " print(type(my_var_2)) # <class 'int'>" },
-      { "comment": "# Use isinstance() — Checks if a variable matches a specific type.", "code": " print(isinstance(my_var_1, str)) # True" },
-      { "comment": "# isinstance() returns True if variable is of given type, False otherwise.", "code": " print(isinstance(my_var_2, float)) # False" },
-      { "comment": "# Demonstrate with boolean variable.", "code": " my_bool = True" },
-      { "comment": "# type() reveals it is a bool.", "code": " print(type(my_bool)) # <class 'bool'>" },
-      { "comment": "# isinstance() confirms the type.", "code": " print(isinstance(my_bool, bool)) # True" },
-      { "comment": "# Final note — type() shows the exact class, isinstance() checks membership.", "code": " # Together they give you full control over type checking in Python." }
-    ]
-  },
-  {
-    "title": "CHAPTER: Python Basics — String Slicing",
-    "steps": [
-      { "comment": "# Strings in Python are sequences of characters. Each character has an index starting at 0, and negative indices count backward from the end.", "code": "my_str = 'Hello world'" },
-      { "comment": "# Accessing by index — my_str[0] returns the first character. my_str[6] returns the seventh character. Negative indices like -1 return the last character.", "code": "print(my_str[0]) # H\nprint(my_str[6]) # w\nprint(my_str[-1]) # d" },
-      { "comment": "# Basic slicing syntax: string[start:stop]. The slice starts at 'start' and goes up to, but does not include, 'stop'.", "code": "print(my_str[1:4]) # ell" },
-      { "comment": "# Omitting the start index defaults to 0. This extracts from the beginning up to (but not including) the stop index.", "code": "print(my_str[:7]) # Hello w" },
-      { "comment": "# Omitting the stop index defaults to the end of the string. This extracts from the start index through the end.", "code": "print(my_str[8:]) # rld" },
-      { "comment": "# Slicing does not modify the original string. It creates a new substring while leaving the original intact.", "code": "print(my_str[8:]) # rld\nprint(my_str) # Hello world" },
-      { "comment": "# Omitting both start and stop returns the entire string. This is equivalent to copying the string.", "code": "print(my_str[:]) # Hello world" },
-      { "comment": "# Extended slicing syntax: string[start:stop:step]. The 'step' defines the increment between indices.", "code": "print(my_str[0:11:2]) # Hlowrd" },
-      { "comment": "# A common trick: reverse a string by setting step = -1. Leaving start and stop blank means the whole string is considered.", "code": "print(my_str[::-1]) # dlrow olleH" },
-      { "comment": "# Negative step with explicit start/stop — my_str[10:5:-1] starts at index 10 ('d'), moves backward one step at a time, and stops before index 5. Result: 'dlrow'.", "code": "print(my_str[10:5:-1]) # dlrow" },
-      { "comment": "# Another example: my_str[7:2:-2] starts at index 7 ('o'), moves backward two steps at a time, and stops before index 2. Result: 'o l'.", "code": "print(my_str[7:2:-2]) # o l" },
-      { "comment": "# Final Output — String slicing allows flexible extraction of substrings, skipping characters, and reversing, all without loops or manual iteration. Negative steps add the ability to reverse direction and stride backwards.", "code": "# Example outputs: ell, Hello w, rld, Hlowrd, dlrow olleH, dlrow, o l" }
-    ]
-  },
-  {
-    "title": "CHAPTER: Python Basics — Common String Methods",
-    "steps": [
-      { "comment": "# upper() — Converts all characters to uppercase. Useful for normalization or emphasis.", "code": "my_str = 'hello world'\nprint(my_str.upper()) # HELLO WORLD" },
-      { "comment": "# lower() — Converts all characters to lowercase. Helpful for case-insensitive comparisons.", "code": "my_str = 'Hello World'\nprint(my_str.lower()) # hello world" },
-      { "comment": "# strip() — Removes leading and trailing whitespace (or specified characters). Prevents accidental spacing issues.", "code": "my_str = ' hello world '\nprint(my_str.strip()) # hello world" },
-      { "comment": "# replace(old, new) — Replaces all occurrences of a substring with another. Great for quick text edits.", "code": "my_str = 'hello world'\nprint(my_str.replace('hello', 'hi')) # hi world" },
-      { "comment": "# split(separator) — Splits a string into a list of substrings. Defaults to whitespace if no separator is given.", "code": "my_str = 'hello world'\nprint(my_str.split()) # ['hello', 'world']" },
-      { "comment": "# join(iterable) — Joins elements of an iterable into a single string, separated by the string used to call join().", "code": "my_list = ['hello', 'world']\nprint(' '.join(my_list)) # hello world" },
-      { "comment": "# startswith(prefix) — Returns True if the string begins with the given prefix.", "code": "my_str = 'hello world'\nprint(my_str.startswith('hello')) # True" },
-      { "comment": "# endswith(suffix) — Returns True if the string ends with the given suffix.", "code": "my_str = 'hello world'\nprint(my_str.endswith('world')) # True" },
-      { "comment": "# find(substring) — Returns the index of the first occurrence of substring, or -1 if not found.", "code": "my_str = 'hello world'\nprint(my_str.find('world')) # 6" },
-      { "comment": "# count(substring) — Counts how many times a substring appears in the string.", "code": "my_str = 'hello world'\nprint(my_str.count('o')) # 2" },
-      { "comment": "# capitalize() — Capitalizes the first character and lowercases the rest. Good for sentence formatting.", "code": "my_str = 'hello world'\nprint(my_str.capitalize()) # Hello world" },
-      { "comment": "# isupper() — Returns True if all letters are uppercase, False otherwise.", "code": "my_str = 'hello world'\nprint(my_str.isupper()) # False" },
-      { "comment": "# islower() — Returns True if all letters are lowercase, False otherwise.", "code": "my_str = 'hello world'\nprint(my_str.islower()) # True" },
-      { "comment": "# title() — Capitalizes the first letter of each word. Useful for formatting names or titles.", "code": "my_str = 'hello world'\nprint(my_str.title()) # Hello World" },
-      { "comment": "# Final Output — These built-in methods make string manipulation concise, expressive, and safer than manual loops.", "code": "# Example outputs: HELLO WORLD, hello world, hello world, hi world, ['hello','world'], hello world, True, True, 6, 2, Hello world, False, True, Hello World" }
-    ]
-  },
-  {
-    "title": "CHAPTER: Python Basics — Integers and Floating Point Numbers",
-    "steps": [
-      { "comment": "# Integers are whole numbers without decimals. They can be positive or negative.", "code": "my_int_1 = 56\nmy_int_2 = -4\nprint(type(my_int_1)) # <class 'int'>\nprint(type(my_int_2)) # <class 'int'>" },
-      { "comment": "# Integer addition — using the + operator.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Addition:', my_int_1 + my_int_2) # 68" },
-      { "comment": "# Integer subtraction — using the - operator.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Subtraction:', my_int_1 - my_int_2) # 44" },
-      { "comment": "# Integer multiplication — using the * operator.", "code": "my_int_1 = 12\nmy_int_2 = 4\nprint('Integer Multiplication:', my_int_1 * my_int_2) # 48" },
-      { "comment": "# Integer division — using the / operator. Result is a float even if both operands are integers.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Division:', my_int_1 / my_int_2) # 4.666..." },
-      { "comment": "# Floats are numbers with decimal points. They can also be positive or negative.", "code": "my_float_1 = -12.0\nmy_float_2 = 4.9\nprint(type(my_float_1)) # <class 'float'>\nprint(type(my_float_2)) # <class 'float'>" },
-      { "comment": "# Float addition — works the same way as integers.", "code": "print('Float Addition:', 5.4 + 12.0) # 17.4" },
-      { "comment": "# Float subtraction — order matters.", "code": "print('Float Subtraction:', 12.0 - 5.4) # 6.6" },
-      { "comment": "# Float multiplication — result may include floating point precision artifacts.", "code": "print('Float Multiplication:', 12.0 * 5.4) # 64.80000000000001" },
-      { "comment": "# Float division — returns a float result.", "code": "print('Float Division:', 12.0 / 5.4) # 2.222..." },
-      { "comment": "# Mixing integers and floats — result is promoted to float automatically.", "code": "my_int = 56\nmy_float = 5.4\nresult = my_int + my_float\nprint(result) # 61.4\nprint(type(result)) # <class 'float'>" },
-      { "comment": "# Modulo operator % — returns the remainder of division.", "code": "print('Integer Modulus:', 56 % 12) # 8\nprint('Float Modulus:', 12.0 % 5.4) # 1.199..." },
-      { "comment": "# Floor division // — divides and rounds down to the nearest integer.", "code": "print('Integer Floor Division:', 56 // 12) # 4\nprint('Float Floor Division:', 12.0 // 5.4) # 2.0" },
-      { "comment": "# Exponentiation ** — raises a number to the power of another.", "code": "print('Integer Exponentiation:', 2 ** 3) # 8\nprint('Float Exponentiation:', 5.4 ** 2.0) # 29.16" },
-      { "comment": "# abs() — returns the absolute value (distance from zero). It strips away the sign and leaves magnitude only.", "code": "print(abs(-15)) # 15\nprint(abs(15)) # 15" },
-      { "comment": "# pow() — raises a number to a power. pow(x, y) is the same as x ** y. pow(x, y, z) adds a modulus step.", "code": "print(pow(2, 3)) # 8\nprint(pow(2, 3, 5)) # 3 because (2 ** 3) % 5 = 3" },
-      { "comment": "# Converting between types — float() turns integers into floats.", "code": "my_int = 56\nprint(float(my_int)) # 56.0" },
-      { "comment": "# int() — converts a float to an integer by truncating the decimal part (no rounding).", "code": "print(int(12.9)) # 12\nprint(int(-12.9)) # -12" },
-      { "comment": "# round() — rounds to the nearest integer or specified decimal places. Unlike int(), it does proper rounding.", "code": "print(round(12.9)) # 13\nprint(round(-12.9)) # -13\nprint(round(4.253, 1)) # 4.3" },
-      { "comment": "# int() and float() can also convert numeric strings.", "code": "print(int('45')) # 45\nprint(float('7.8')) # 7.8" },
-      { "comment": "# Final Output — Integers and floats support arithmetic, type conversion, and built-in functions for precision and control.", "code": "# Key takeaways: abs() strips sign, pow() raises to powers (with optional modulus), int() truncates decimals, round() performs true rounding." }
-    ]
-  },
-  {
-    "title": "CHAPTER XX: Augmented Assignment with Binary Detail",
-    "steps": [
-      { "comment": "# Initialize variable x with decimal 10 (binary 1010)", "code": "x = 10" },
-      { "comment": "# Addition assignment → x = x + 5. Binary: 1010 + 0101 = 1111", "code": "x += 5" },
-      { "comment": "# Result is 15 (binary 1111)", "code": "print(x) # 15" },
-      { "comment": "# Initialize count with decimal 14 (binary 1110)", "code": "count = 14" },
-      { "comment": "# Subtraction assignment → count = count - 3. Binary: 1110 - 0011 = 1011", "code": "count -= 3" },
-      { "comment": "# Result is 11 (binary 1011)", "code": "print(count) # 11" },
-      { "comment": "# Initialize product with decimal 65 (binary 1000001)", "code": "product = 65" },
-      { "comment": "# Multiplication assignment → product = product * 7. Binary multiplication expands bits", "code": "product *= 7" },
-      { "comment": "# Result is 455 (binary 111000111)", "code": "print(product) # 455" },
-      { "comment": "# Initialize price with decimal 100 (binary 1100100)", "code": "price = 100" },
-      { "comment": "# Division assignment → price = price / 4. Binary division shifts right by 2", "code": "price /= 4" },
-      { "comment": "# Result is 25 (binary 11001)", "code": "print(price) # 25.0" },
-      { "comment": "# Initialize pages with decimal 23 (binary 10111)", "code": "pages = 23" },
-      { "comment": "# Floor division assignment → pages = pages // 5. Binary division discards remainder", "code": "pages //= 5" },
-      { "comment": "# Result is 4 (binary 100)", "code": "print(pages) # 4" },
-      { "comment": "# Initialize bits with decimal 35 (binary 100011)", "code": "bits = 35" },
-      { "comment": "# Modulo assignment → bits = bits % 2. Binary remainder after division by 10", "code": "bits %= 2" },
-      { "comment": "# Result is 1 (binary 1)", "code": "print(bits) # 1" },
-      { "comment": "# Initialize power with decimal 2 (binary 10)", "code": "power = 2" },
-      { "comment": "# Exponentiation assignment → power = power ** 3. Binary exponentiation repeats multiplication", "code": "power **= 3" },
-      { "comment": "# Result is 8 (binary 1000)", "code": "print(power) # 8" },
-      { "comment": "# Initialize string greet", "code": "greet = 'Hello'" },
-      { "comment": "# Concatenation assignment → greet = greet + ' World'. Binary signals here are string memory operations", "code": "greet += ' World'" },
-      { "comment": "# Result is 'Hello World'", "code": "print(greet) # Hello World" },
-      { "comment": "# Initialize string greet", "code": "greet = 'Hi'" },
-      { "comment": "# Repetition assignment → greet = greet * 3. Binary signals duplicate string memory three times", "code": "greet *= 3" },
-      { "comment": "# Result is 'HiHiHi'", "code": "print(greet) # HiHiHi" },
-      { "comment": "# Initialize x with decimal 6 (binary 110)", "code": "x = 6 # binary 110" },
-      { "comment": "# Bitwise AND assignment → x = x & 3. Compare each bit: 110 & 011 = 010", "code": "x &= 3 # binary 011" },
-      { "comment": "# Result is 2", "code": "print(x) # 2 (binary 010)" },
-      { "comment": "# Initialize y with decimal 4 (binary 100)", "code": "y = 4 # binary 100" },
-      { "comment": "# Bitwise OR assignment → y = y | 1. Compare each bit: 100 | 001 = 101", "code": "y |= 1 # binary 001" },
-      { "comment": "# Result is 5", "code": "print(y) # 5 (binary 101)" },
-      { "comment": "# Initialize z with decimal 5 (binary 101)", "code": "z = 5 # binary 101" },
-      { "comment": "# Bitwise XOR assignment → z = z ^ 3. Compare each bit: 101 ^ 011 = 110", "code": "z ^= 3 # binary 011" },
-      { "comment": "# Result is 6", "code": "print(z) # 6 (binary 110)" },
-      { "comment": "# Initialize shift with decimal 1 (binary 0001)", "code": "shift = 1 # binary 0001" },
-      { "comment": "# Left shift assignment → shift = shift << 3. Move bits left 3 places: 0001 → 1000", "code": "shift <<= 3" },
-      { "comment": "# Result is 8", "code": "print(shift) # 8 (binary 1000)" },
-      { "comment": "# Right shift assignment → shift = shift >> 2. Move bits right 2 places: 1000 → 0010", "code": "shift >>= 2" },
-      { "comment": "# Result is 2", "code": "print(shift) # 2 (binary 0010)" }
-    ]
-  },
-  {
-    "title": "CHAPTER XX: Augmented Assignment with Binary Detail",
-    "steps": [
-      { "comment": "# Initialize variable x with decimal 10 (binary 1010)", "code": "x = 10" },
-      { "comment": "# Addition assignment → x = x + 5. Binary: 1010 + 0101 = 1111", "code": "x += 5" },
-      { "comment": "# Result is 15 (binary 1111)", "code": "print(x) # 15" },
-      { "comment": "# Initialize count with decimal 14 (binary 1110)", "code": "count = 14" },
-      { "comment": "# Subtraction assignment → count = count - 3. Binary: 1110 - 0011 = 1011", "code": "count -= 3" },
-      { "comment": "# Result is 11 (binary 1011)", "code": "print(count) # 11" },
-      { "comment": "# Initialize product with decimal 65 (binary 1000001)", "code": "product = 65" },
-      { "comment": "# Multiplication assignment → product = product * 7. Binary multiplication expands bits", "code": "product *= 7" },
-      { "comment": "# Result is 455 (binary 111000111)", "code": "print(product) # 455" },
-      { "comment": "# Initialize price with decimal 100 (binary 1100100)", "code": "price = 100" },
-      { "comment": "# Division assignment → price = price / 4. Binary division shifts right by 2", "code": "price /= 4" },
-      { "comment": "# Result is 25 (binary 11001)", "code": "print(price) # 25.0" },
-      { "comment": "# Initialize bits with decimal 35 (binary 100011)", "code": "bits = 35" },
-      { "comment": "# Modulo assignment → bits = bits % 2. Binary remainder after division by 10", "code": "bits %= 2" },
-      { "comment": "# Result is 1 (binary 1)", "code": "print(bits) # 1" },
-      { "comment": "# Initialize x with decimal 6 (binary 110)", "code": "x = 6 # binary 110" },
-      { "comment": "# Bitwise AND assignment → x = x & 3. Compare each bit: 110 & 011 = 010", "code": "x &= 3 # binary 011" },
-      { "comment": "# Result is 2", "code": "print(x) # 2 (binary 010)" },
-      { "comment": "# Initialize y with decimal 4 (binary 100)", "code": "y = 4 # binary 100" },
-      { "comment": "# Bitwise OR assignment → y = y | 1. Compare each bit: 100 | 001 = 101", "code": "y |= 1 # binary 001" },
-      { "comment": "# Result is 5", "code": "print(y) # 5 (binary 101)" },
-      { "comment": "# Initialize z with decimal 5 (binary 101)", "code": "z = 5 # binary 101" },
-      { "comment": "# Bitwise XOR assignment → z = z ^ 3. Compare each bit: 101 ^ 011 = 110", "code": "z ^= 3 # binary 011" },
-      { "comment": "# Result is 6", "code": "print(z) # 6 (binary 110)" },
-      { "comment": "# Initialize shift with decimal 1 (binary 0001)", "code": "shift = 1 # binary 0001" },
-      { "comment": "# Left shift assignment → shift = shift << 3. Move bits left 3 places: 0001 → 1000", "code": "shift <<= 3" },
-      { "comment": "# Result is 8", "code": "print(shift) # 8 (binary 1000)" },
-      { "comment": "# Right shift assignment → shift = shift >> 2. Move bits right 2 places: 1000 → 0010", "code": "shift >>= 2" },
-      { "comment": "# Result is 2", "code": "print(shift) # 2 (binary 0010)" }
-    ]
-  },
-  {
-    "title": "CHAPTER XX: Augmented Assignment, Unary Operators, and Bitwise NOT",
-    "steps": [
-      { "comment": "# Initialize x with decimal 10 (binary 1010)", "code": "x = 10" },
-      { "comment": "# Addition assignment: x = x + 5. Binary: 1010 + 0101 = 1111", "code": "x += 5" },
-      { "comment": "# Result is 15 (binary 1111)", "code": "print(x) # 15" },
-      { "comment": "# Initialize count with decimal 14 (binary 1110)", "code": "count = 14" },
-      { "comment": "# Subtraction assignment: count = count - 3. Binary: 1110 - 0011 = 1011", "code": "count -= 3" },
-      { "comment": "# Result is 11 (binary 1011)", "code": "print(count) # 11" },
-      { "comment": "# Initialize product with decimal 65 (binary 1000001)", "code": "product = 65" },
-      { "comment": "# Multiplication assignment: product = product * 7. Binary multiplication expands bits", "code": "product *= 7" },
-      { "comment": "# Result is 455 (binary 111000111)", "code": "print(product) # 455" },
-      { "comment": "# Initialize price with decimal 100 (binary 1100100)", "code": "price = 100" },
-      { "comment": "# Division assignment: price = price / 4. Binary division shifts right by 2", "code": "price /= 4" },
-      { "comment": "# Result is 25 (binary 11001)", "code": "print(price) # 25.0" },
-      { "comment": "# Initialize bits with decimal 35 (binary 100011)", "code": "bits = 35" },
-      { "comment": "# Modulo assignment: bits = bits % 2. Binary remainder after division by 10", "code": "bits %= 2" },
-      { "comment": "# Result is 1 (binary 1)", "code": "print(bits) # 1" },
-      { "comment": "# Initialize power with decimal 2 (binary 10)", "code": "power = 2" },
-      { "comment": "# Exponentiation assignment: power = power ** 3. Binary exponentiation repeats multiplication", "code": "power **= 3" },
-      { "comment": "# Result is 8 (binary 1000)", "code": "print(power) # 8" },
-      { "comment": "# Initialize string greet", "code": "greet = 'Hello'" },
-      { "comment": "# Concatenation assignment: greet = greet + ' World'. Binary signals here are string memory operations", "code": "greet += ' World'" },
-      { "comment": "# Result is 'Hello World'", "code": "print(greet) # Hello World" },
-      { "comment": "# Initialize string greet", "code": "greet = 'Hi'" },
-      { "comment": "# Repetition assignment: greet = greet * 3. Binary signals duplicate string memory three times", "code": "greet *= 3" },
-      { "comment": "# Result is 'HiHiHi'", "code": "print(greet) # HiHiHi" },
-      { "comment": "# Initialize x with decimal 5 (binary 00000101)", "code": "x = 5" },
-      { "comment": "# Unary plus: returns value unchanged → 5", "code": "print(+x)" },
-      { "comment": "# Two unary plus operators: +(+(5)) → still 5, no increment", "code": "print(++x)" },
-      { "comment": "# Explicit increment using augmented assignment", "code": "x += 1" },
-      { "comment": "# Result is 6", "code": "print(x) # 6" },
-      { "comment": "# Initialize n with decimal 5 (binary 00000101)", "code": "n = 5" },
-      { "comment": "# Bitwise NOT: flips all bits. 00000101 → 11111010", "code": "print(~n)" },
-      { "comment": "# Two’s complement interpretation: 11111010 = -6", "code": "# Rule: ~n = -(n + 1)" }
-    ]
-  },
-  {
-    "title": "CHAPTER 2: Python Conditionals and Indentation",
-    "steps": [
-      { "comment": "# Conditional statements control program flow based on whether conditions evaluate to True or False.", "code": "" },
-      { "comment": "# Comparison operators return booleans (True/False). Examples:", "code": "" },
-      { "comment": "# == Equal → Checks if two values are equal", "code": "" },
-      { "comment": "# != Not equal → Checks if two values are not equal", "code": "" },
-      { "comment": "# > Greater than → Left value greater than right", "code": "" },
-      { "comment": "# < Less than → Left value less than right", "code": "" },
-      { "comment": "# >= Greater than or equal → Left value ≥ right", "code": "" },
-      { "comment": "# <= Less than or equal → Left value ≤ right", "code": "" },
-      { "comment": "# Example evaluations:", "code": "" },
-      { "comment": "# print(3 > 4) # False", "code": "print(3 > 4)" },
-      { "comment": "# print(3 < 4) # True", "code": "print(3 < 4)" },
-      { "comment": "# print(3 == 4) # False", "code": "print(3 == 4)" },
-      { "comment": "# print(4 == 4) # True", "code": "print(4 == 4)" },
-      { "comment": "# print(3 != 4) # True", "code": "print(3 != 4)" },
-      { "comment": "# print(3 >= 4) # False", "code": "print(3 >= 4)" },
-      { "comment": "# print(3 <= 4) # True", "code": "print(3 <= 4)" },
-      { "comment": "# Basic if statement syntax:", "code": "" },
-      { "comment": "# if condition:", "code": "if True:" },
-      { "comment": "# pass # Code runs if condition is True", "code": " pass" },
-      { "comment": "# Indentation is mandatory in Python. Code blocks are defined by spaces, not braces.", "code": "" },
-      { "comment": "# PEP 8 recommends 4 spaces per indentation level.", "code": "" },
-      { "comment": "# Example with correct indentation:", "code": "" },
-      { "comment": "# age = 18", "code": "age = 18" },
-      { "comment": "# if age >= 18:", "code": "if age >= 18:" },
-      { "comment": "# print('You are an adult')", "code": " print('You are an adult')" },
-      { "comment": "# Incorrect indentation raises IndentationError:", "code": "" },
-      { "comment": "# if age >= 18:", "code": "if age >= 18:" },
-      { "comment": "# print('You are an adult') # ❌ Error", "code": "print('You are an adult')" },
-      { "comment": "# Adding else clause for False conditions:", "code": "" },
-      { "comment": "# if condition:", "code": "if age >= 18:" },
-      { "comment": "# pass # Runs if True", "code": " print('You are an adult')" },
-      { "comment": "# else:", "code": "else:" },
-      { "comment": "# pass # Runs if False", "code": " print('You are not an adult yet')" },
-      { "comment": "# Using elif for multiple conditions:", "code": "" },
-      { "comment": "# if condition1:", "code": "if age >= 18:" },
-      { "comment": "# pass", "code": " print('You are an adult')" },
-      { "comment": "# elif condition2:", "code": "elif age >= 13:" },
-      { "comment": "# pass", "code": " print('You are a teenager')" },
-      { "comment": "# else:", "code": "else:" },
-      { "comment": "# pass", "code": " print('You are a child')" },
-      { "comment": "# Example with multiple elif clauses:", "code": "" },
-      { "comment": "# age = 2", "code": "age = 2" },
-      { "comment": "# if age >= 65:", "code": "if age >= 65:" },
-      { "comment": "# print('You are a senior citizen')", "code": " print('You are a senior citizen')" },
-      { "comment": "# elif age >= 30:", "code": "elif age >= 30:" },
-      { "comment": "# print('You are an adult in your prime')", "code": " print('You are an adult in your prime')" },
-      { "comment": "# elif age >= 18:", "code": "elif age >= 18:" },
-      { "comment": "# print('You are a young adult')", "code": " print('You are a young adult')" },
-      { "comment": "# elif age >= 13:", "code": "elif age >= 13:" },
-      { "comment": "# print('You are a teenager')", "code": " print('You are a teenager')" },
-      { "comment": "# elif age >= 3:", "code": "elif age >= 3:" },
-      { "comment": "# print('You are a young child')", "code": " print('You are a young child')" },
-      { "comment": "# else:", "code": "else:" },
-      { "comment": "# print('You are a toddler or an infant')", "code": " print('You are a toddler or an infant')" }
-    ]
-  },
-  {
-    "title": "CHAPTER 3: What Are Truthy and Falsy Values, and How Do Boolean Operators and Short-Circuiting Work?",
-    "steps": [
-      { "comment": "# In the previous lesson, you learned how to use comparison operators and conditional statements to control program flow.", "code": "" },
-      { "comment": "# Sometimes you need to compare multiple values at once, which can lead to nested conditionals.", "code": "" },
-      { "comment": "# Example of nested conditionals:", "code": "" },
-      { "comment": "# is_citizen = True", "code": "is_citizen = True" },
-      { "comment": "# age = 25", "code": "age = 25" },
-      { "comment": "# if is_citizen:", "code": "if is_citizen:" },
-      { "comment": "# if age >= 18:", "code": " if age >= 18:" },
-      { "comment": "# print('You are eligible to vote')", "code": " print('You are eligible to vote')" },
-      { "comment": "# else:", "code": "else:" },
-      { "comment": "# print('You are not eligible to vote')", "code": " print('You are not eligible to vote')" },
-      { "comment": "# Every value in Python has an inherent boolean value — either truthy or falsy.", "code": "" },
-      { "comment": "# Falsy values include: None, False, 0, 0.0, empty strings \"\", empty lists [], empty dicts {}, empty sets set().", "code": "" },
-      { "comment": "# Truthy values include: non-zero numbers, non-empty strings, non-empty collections, and most other objects.", "code": "" },
-      { "comment": "# Example check with bool():", "code": "" },
-      { "comment": "# print(bool(0)) → False", "code": "print(bool(0))" },
-      { "comment": "# print(bool('')) → False", "code": "print(bool(''))" },
-      { "comment": "# print(bool('Hello')) → True", "code": "print(bool('Hello'))" },
-      { "comment": "# Boolean operators (logical operators) let you combine expressions: and, or, not.", "code": "" },
-      { "comment": "# AND operator: returns first falsy operand, otherwise returns the last operand.", "code": "" },
-      { "comment": "# Example:", "code": "" },
-      { "comment": "# print(True and 25) → 25", "code": "print(True and 25)" },
-      { "comment": "# print(False and 25) → False", "code": "print(False and 25)" },
-      { "comment": "# OR operator: returns the first truthy operand, otherwise the last operand.", "code": "" },
-      { "comment": "# Example:", "code": "" },
-      { "comment": "# print(0 or 5) → 5 (0 is falsy, so returns 5)", "code": "print(0 or 5)" },
-      { "comment": "# print(3 or 5) → 3 (3 is truthy, so returns 3)", "code": "print(3 or 5)" },
-      { "comment": "# print('' or 'Hi') → 'Hi' (empty string is falsy, so returns 'Hi')", "code": "print('' or 'Hi')" },
-      { "comment": "# NOT operator: inverts the boolean value. Always returns True or False.", "code": "" },
-      { "comment": "# Example:", "code": "" },
-      { "comment": "# print(not '') → True (empty string is falsy)", "code": "print(not '')" },
-      { "comment": "# print(not 'Hello') → False (non-empty string is truthy)", "code": "print(not 'Hello')" },
-      { "comment": "# Question: Which of the following is NOT falsy in Python?", "code": "" },
-      { "comment": "# Options: None, False, 0, '', 'Hello'", "code": "" },
-      { "comment": "# Answer: 'Hello' is NOT falsy. Non-empty strings are truthy.", "code": "" },
-      { "comment": "# Summary: Truthy/falsy values and logical operators (and, or, not) with short-circuiting let you write flexible, readable conditional logic.", "code": "" }
-    ]
-  },
-  {
-    "title": "CHAPTER 10: Simulated Driving with PyTorch — Full Code Explained Word by Word",
-    "steps": [
-      { "comment": "# import — Python keyword that loads external modules into the current namespace.", "code": "" },
-      { "comment": "# torch — The main PyTorch library, providing tensors, autograd, and deep learning functionality.", "code": "import torch" },
-      { "comment": "# torch.nn — Submodule containing neural network building blocks (layers, activations, containers).", "code": "import torch.nn as nn" },
-      { "comment": "# nn — Alias for torch.nn, used to shorten code when referencing layers.", "code": "" },
-      { "comment": "# torch.optim — Submodule containing optimization algorithms (Adam, SGD, RMSProp).", "code": "import torch.optim as optim" },
-      { "comment": "# optim — Alias for torch.optim, used to shorten code when referencing optimizers.", "code": "" },
-      { "comment": "# numpy — Numerical library for arrays and mathematical operations.", "code": "import numpy as np" },
-      { "comment": "# np — Alias for numpy, used to shorten code when creating arrays.", "code": "" },
-      { "comment": "# torch.utils.data — Submodule with Dataset and DataLoader classes.", "code": "from torch.utils.data import Dataset, DataLoader" },
-      { "comment": "# Dataset — Abstract class for custom datasets; requires __len__ and __getitem__.", "code": "" },
-      { "comment": "# DataLoader — Utility that wraps a Dataset to provide batching, shuffling, and iteration.", "code": "" },
-      { "comment": "# class — Python keyword to define a new class.", "code": "" },
-      { "comment": "# DrivingDataset — Custom dataset class name, chosen to describe driving data.", "code": "class DrivingDataset(Dataset):" },
-      { "comment": "# (Dataset) — Inheritance; DrivingDataset extends PyTorch's Dataset class.", "code": "" },
-      { "comment": "# def — Python keyword to define a function or method.", "code": "" },
-      { "comment": "# __init__ — Special method called when a new object is created.", "code": " def __init__(self, num_samples=1000):" },
-      { "comment": "# num_samples — Parameter controlling how many synthetic samples to generate.", "code": "" },
-      { "comment": "# =1000 — Default value if caller does not specify num_samples.", "code": "" },
-      { "comment": "# self — Reference to the current object instance.", "code": "" },
-      { "comment": "# images — Instance variable storing synthetic image arrays.", "code": " self.images = []" },
-      { "comment": "# steering_angles — Instance variable storing numeric steering labels.", "code": " self.steering_angles = []" },
-      { "comment": "# for — Python keyword for looping.", "code": "" },
-      { "comment": "# i — Loop variable, iterates from 0 to num_samples-1.", "code": "" },
-      { "comment": "# range(num_samples) — Generates sequence of integers from 0 to num_samples-1.", "code": " for i in range(num_samples):" },
-      { "comment": "# np.zeros — NumPy function creating an array filled with zeros.", "code": "" },
-      { "comment": "# (64,64) — Shape argument: 64 rows, 64 columns.", "code": "" },
-      { "comment": "# dtype=np.float32 — Data type: 32-bit floating point.", "code": " img = np.zeros((64, 64), dtype=np.float32)" },
-      { "comment": "# np.random.uniform — NumPy function generating random float in range.", "code": "" },
-      { "comment": "# (-1,1) — Range: -1.0 to +1.0.", "code": " angle = np.random.uniform(-1, 1)" },
-      { "comment": "# start_x — Variable for x-coordinate of line start (center bottom).", "code": " start_x = 32" },
-      { "comment": "# start_y — Variable for y-coordinate of line start (bottom row).", "code": " start_y = 63" },
-      { "comment": "# end_x — Variable for x-coordinate of line end, shifted by angle.", "code": " end_x = int(start_x + 32 * angle)" },
-      { "comment": "# end_y — Variable for y-coordinate of line end (top row).", "code": " end_y = 0" },
-      { "comment": "# for y in range(start_y, end_y, -1) — Loop from bottom to top, decrementing y.", "code": " for y in range(start_y, end_y, -1):" },
-      { "comment": "# x — Local variable for current x-coordinate, interpolated between start_x and end_x.", "code": " x = start_x + int((start_x - end_x) * (y - start_y) / (end_y - start_y))" },
-      { "comment": "# if — Conditional keyword.", "code": "" },
-      { "comment": "# 0 <= x < 64 — Bounds check to ensure x is inside image width.", "code": " if 0 <= x < 64:" },
-      { "comment": "# img[y,x] — Indexing into 2D array at row y, column x.", "code": "" },
-      { "comment": "# =1.0 — Assigns pixel value to white.", "code": " img[y, x] = 1.0" },
-      { "comment": "# self.images.append(img) — Adds image to dataset list.", "code": " self.images.append(img)" },
-      { "comment": "# self.steering_angles.append(angle) — Adds steering angle to dataset list.", "code": " self.steering_angles.append(angle)" },
-      { "comment": "# __len__ — Special method returning dataset size.", "code": " def __len__(self):\n return len(self.images)" },
-      { "comment": "# __getitem__ — Special method returning one sample by index.", "code": " def __getitem__(self, idx):" },
-      { "comment": "# idx — Index parameter.", "code": "" },
-      { "comment": "# self.images[idx] — Selects image at position idx.", "code": "" },
-      { "comment": "# [None,:,:] — Adds channel dimension (1x64x64).", "code": " img = self.images[idx][None, :, :]" },
-      { "comment": "# self.steering_angles[idx] — Selects angle at position idx.", "code": " angle = self.steering_angles[idx]" },
-      { "comment": "# torch.tensor — Converts NumPy array to PyTorch tensor.", "code": "" },
-      { "comment": "# dtype=torch.float32 — Ensures tensor uses 32-bit float type.", "code": " return torch.tensor(img, dtype=torch.float32), torch.tensor(angle, dtype=torch.float32)" },
-      { "comment": "# class SteeringModel(nn.Module) — Defines CNN model class inheriting from nn.Module.", "code": "class SteeringModel(nn.Module):" },
-      { "comment": "# super — Calls parent constructor.", "code": " def __init__(self):\n super(SteeringModel, self).__init__()" },
-      { "comment": "# self.conv1 — First convolutional layer: input=1 channel, output=24 filters.", "code": " self.conv1 = nn.Conv2d(1, 24, kernel_size=5, stride=2)" },
-      { "comment": "# self.conv2 — Second convolutional layer: input=24, output=36 filters.", "code": " self.conv2 = nn.Conv2d(24, 36, kernel_size=5, stride=2)" },
-      { "comment": "# self.conv3 — Third convolutional layer: input=36, output=48 filters.", "code": " self.conv3 = nn.Conv2d(36, 48, kernel_size=3, stride=2)" },
-      { "comment": "# self.fc1 — Fully connected layer: input=48*5*5=1200, output=100.", "code": " self.fc1 = nn.Linear(48 * 5 * 5, 100)" },
-      { "comment": "# self.fc2 — Fully connected layer: input=100, output=50.", "code": " self.fc2 = nn.Linear(100, 50)" },
-      { "comment": "# self.fc3 — Fully connected layer: input=50, output=1 (steering angle).", "code": " self.fc3 = nn.Linear(50, 1)" },
-      { "comment": "# forward — Special method in nn.Module that defines how input data flows through the network.", "code": " def forward(self, x):" },
-      { "comment": "# torch.relu(self.conv1(x)) — Passes input tensor x through conv1 (first convolutional layer), then applies ReLU activation (Rectified Linear Unit). ReLU outputs 0 for negative values and the input itself for positive values.", "code": " x = torch.relu(self.conv1(x))" },
-      { "comment": "# torch.relu(self.conv2(x)) — Takes output of conv1, passes through conv2 (second convolutional layer), applies ReLU activation. This extracts more complex features.", "code": " x = torch.relu(self.conv2(x))" },
-      { "comment": "# torch.relu(self.conv3(x)) — Takes output of conv2, passes through conv3 (third convolutional layer), applies ReLU activation. This condenses spatial information further.", "code": " x = torch.relu(self.conv3(x))" },
-      { "comment": "# x.view(x.size(0), -1) — Reshapes tensor. x.size(0) is batch size. '-1' flattens all remaining dimensions automatically. Converts 3D feature maps into 2D vector for fully connected layers.", "code": " x = x.view(x.size(0), -1)" },
-      { "comment": "# torch.relu(self.fc1(x)) — Passes flattened vector into first fully connected layer (fc1), applies ReLU activation. Maps features into 100 neurons.", "code": " x = torch.relu(self.fc1(x))" },
-      { "comment": "# torch.relu(self.fc2(x)) — Passes output of fc1 into second fully connected layer (fc2), applies ReLU activation. Reduces dimensionality to 50 neurons.", "code": " x = torch.relu(self.fc2(x))" },
-      { "comment": "# self.fc3(x) — Passes output of fc2 into final fully connected layer (fc3). Produces single numeric output (predicted steering angle). No activation because regression outputs continuous values.", "code": " return self.fc3(x)" },
-      { "comment": "# def train_model(model, dataloader, epochs=5, lr=0.001): — Defines training function. Parameters: model (network), dataloader (batches of data), epochs (training passes), lr (learning rate).", "code": "def train_model(model, dataloader, epochs=5, lr=0.001):" },
-      { "comment": "# criterion = nn.MSELoss() — Creates Mean Squared Error loss function. Measures average squared difference between predicted and true steering angles.", "code": " criterion = nn.MSELoss()" },
-      { "comment": "# optimizer = optim.Adam(model.parameters(), lr=lr) — Creates Adam optimizer. model.parameters() gives all trainable weights. lr sets learning rate.", "code": " optimizer = optim.Adam(model.parameters(), lr=lr)" },
-      { "comment": "# model.train() — Sets model into training mode. Ensures training-specific behaviors (like dropout) are active.", "code": " model.train()" },
-      { "comment": "# for epoch in range(epochs): — Loops over number of epochs. Each epoch = one full pass through dataset.", "code": " for epoch in range(epochs):" },
-      { "comment": "# total_loss = 0 — Initializes variable to accumulate loss across batches.", "code": " total_loss = 0" },
-      { "comment": "# for images, angles in dataloader: — Iterates over batches. Each batch contains images and steering angles.", "code": " for images, angles in dataloader:" },
-      { "comment": "# optimizer.zero_grad() — Clears old gradients before new batch.", "code": " optimizer.zero_grad()" },
-      { "comment": "# outputs = model(images) — Forward pass: feeds batch of images into model, gets predicted angles.", "code": " outputs = model(images)" },
-      { "comment": "# loss = criterion(outputs.squeeze(), angles) — Computes loss between predictions and true angles. squeeze() removes extra dimensions.", "code": " loss = criterion(outputs.squeeze(), angles)" },
-      { "comment": "# loss.backward() — Backpropagation: computes gradients of loss w.r.t. parameters.", "code": " loss.backward()" },
-      { "comment": "# optimizer.step() — Updates model parameters using gradients and learning rate.", "code": " optimizer.step()" },
-      { "comment": "# total_loss += loss.item() — Adds batch loss to total_loss. loss.item() converts tensor to Python float.", "code": " total_loss += loss.item()" },
-      { "comment": "# print(f\"Epoch {epoch+1}/{epochs}, Loss: {total_loss / len(dataloader):.4f}\") — Prints average loss per epoch. f-string formats with 4 decimal places.", "code": " print(f\"Epoch {epoch+1}/{epochs}, Loss: {total_loss / len(dataloader):.4f}\")" },
-      { "comment": "# def predict_steering(model, image): — Defines inference function. Parameters: model (trained network), image (single image tensor).", "code": "def predict_steering(model, image):" },
-      { "comment": "# model.eval() — Sets model into evaluation mode. Disables training-specific behaviors.", "code": " model.eval()" },
-      { "comment": "# with torch.no_grad(): — Context manager disabling gradient tracking. Saves memory and speeds inference.", "code": " with torch.no_grad():" },
-      { "comment": "# output = model(image.unsqueeze(0)) — Adds batch dimension with unsqueeze(0). Performs forward pass to get prediction.", "code": " output = model(image.unsqueeze(0))" },
-      { "comment": "# return output.item() — Converts prediction tensor to Python float and returns it.", "code": " return output.item()" },
-      { "comment": "# if __name__ == \"__main__\": — Python idiom: run block only if script executed directly.", "code": "if __name__ == \"__main__\":" },
-      { "comment": "# dataset = DrivingDataset(num_samples=1000) — Creates dataset object with 1000 synthetic samples.", "code": " dataset = DrivingDataset(num_samples=1000)" },
-      { "comment": "# dataloader = DataLoader(dataset, batch_size=32, shuffle=True) — Wraps dataset in DataLoader. batch_size=32 means 32 samples per batch. shuffle=True randomizes order.", "code": " dataloader = DataLoader(dataset, batch_size=32, shuffle=True)" },
-      { "comment": "# model = SteeringModel() — Instantiates CNN model.", "code": " model = SteeringModel()" },
-      { "comment": "# print(\"Training the model...\") — Prints message to console.", "code": " print(\"Training the model...\")" },
-      { "comment": "# train_model(model, dataloader, epochs=10) — Calls training function with 10 epochs.", "code": " train_model(model, dataloader, epochs=10)" },
-      { "comment": "# test_img, true_angle = dataset[0] — Retrieves first sample from dataset. test_img is image tensor, true_angle is label.", "code": " test_img, true_angle = dataset[0]" },
-      { "comment": "# predicted_angle = predict_steering(model, test_img) — Runs inference on test image to get predicted steering angle.", "code": " predicted_angle = predict_steering(model, test_img)" },
-      { "comment": "# print(f\"\\nTest: True Steering Angle: {true_angle:.4f}, Predicted: {predicted_angle:.4f}\") — Prints true and predicted angles. f-string formats floats with 4 decimal places.", "code": " print(f\"\\nTest: True Steering Angle: {true_angle:.4f}, Predicted: {predicted_angle:.4f}\")" },
-      { "comment": "# Context: In Tesla's Dojo system, training happens on massive real-world video data. Models predict steering, acceleration, braking, and path planning simultaneously. Optimizations like FP8 formats and adaptive scaling make training faster. Trained weights are deployed OTA to cars for real-time inference.", "code": "" }
-    ]
-  },
-  {
-    "title": "CHAPTER 13: How Do Functions Work in Python?",
-    "steps": [
-      { "comment": "# Functions are reusable pieces of code that run when you call them. They help organize logic and avoid repetition.", "code": "" },
-      { "comment": "# Python comes with built-in functions like print() and input().", "code": "" },
-      { "comment": "# Example: input() prompts the user for input.", "code": "name = input('What is your name?')" },
-      { "comment": "# User types Kolade and presses Enter. The string 'Kolade' is stored in variable name.", "code": "" },
-      { "comment": "# print('Hello', name) — Calls print() with two arguments: 'Hello' and the value of name.", "code": "print('Hello', name)" },
-      { "comment": "# Output: Hello Kolade", "code": "" },
-      { "comment": "# Another built-in function: int() converts values into integers.", "code": "" },
-      { "comment": "# print(int(3.14)) — Converts float 3.14 into integer 3.", "code": "print(int(3.14))" },
-      { "comment": "# Output: 3", "code": "" },
-      { "comment": "# print(int('42')) — Converts string '42' into integer 42.", "code": "print(int('42'))" },
-      { "comment": "# Output: 42", "code": "" },
-      { "comment": "# print(int(True)) — Converts boolean True into integer 1.", "code": "print(int(True))" },
-      { "comment": "# Output: 1", "code": "" },
-      { "comment": "# print(int(False)) — Converts boolean False into integer 0.", "code": "print(int(False))" },
-      { "comment": "# Output: 0", "code": "" },
-      { "comment": "# You can also write your own custom functions using def keyword.", "code": "" },
-      { "comment": "# def hello(): — Defines a function named hello. Parentheses () mean it takes no parameters. Colon : starts the function body.", "code": "def hello():" },
-      { "comment": "# print('Hello World') — Function body. Indented to show it belongs to hello().", "code": " print('Hello World')" },
-      { "comment": "# hello() — Calls the function. Executes its body.", "code": "hello()" },
-      { "comment": "# Output: Hello World", "code": "" },
-      { "comment": "# Another function with parameters: def calculate_sum(a, b):", "code": "def calculate_sum(a, b):" },
-      { "comment": "# a and b are parameters — placeholders for values passed when calling the function.", "code": "" },
-      { "comment": "# print(a + b) — Function body. Adds a and b, prints result.", "code": " print(a + b)" },
-      { "comment": "# Calling calculate_sum(3, 1) passes arguments 3 and 1 into parameters a and b.", "code": "calculate_sum(3, 1)" },
-      { "comment": "# Output: 4", "code": "" },
-      { "comment": "# If you call calculate_sum() with no arguments, Python raises an error.", "code": "calculate_sum()" },
-      { "comment": "# Output: TypeError: calculate_sum() missing 2 required positional arguments: 'a' and 'b'", "code": "" },
-      { "comment": "# Functions can return values using return keyword.", "code": "" },
-      { "comment": "# Example without return:", "code": "def calculate_sum(a, b):\n print(a + b)" },
-      { "comment": "# my_sum = calculate_sum(3, 1) — Calls function, prints 4, but does not return anything.", "code": "my_sum = calculate_sum(3, 1)" },
-      { "comment": "# print(my_sum) — Shows None because function did not explicitly return a value.", "code": "print(my_sum)" },
-      { "comment": "# Output:\n# 4\n# None", "code": "" },
-      { "comment": "# Example with return:", "code": "def calculate_sum(a, b):\n return a + b" },
-      { "comment": "# my_sum = calculate_sum(3, 1) — Calls function, returns 4, stores in my_sum.", "code": "my_sum = calculate_sum(3, 1)" },
-      { "comment": "# print(my_sum) — Prints the returned value.", "code": "print(my_sum)" },
-      { "comment": "# Output: 4", "code": "" },
-      { "comment": "# Summary: Functions in Python are defined with def, can take parameters, can be called with arguments, and can return values. If no return is specified, they return None by default.", "code": "" }
-    ]
-  },
-  {
-    "title": "CHAPTER 12: Lists and Dictionaries — Building and Printing Medical Records",
-    "steps": [
-      { "comment": "# medical_records = [] — Creates a new variable named medical_records.", "code": "medical_records = []" },
-      { "comment": "# medical_records — Identifier (variable name) chosen to describe what the data represents: a collection of medical records.", "code": "" },
-      { "comment": "# = — Assignment operator in Python. It stores the value on the right-hand side into the variable on the left-hand side.", "code": "" },
-      { "comment": "# [] — Empty list literal. Lists are ordered collections that can hold multiple items. At this point, medical_records is an empty list with length 0.", "code": "" },
-      { "comment": "# medical_records.append(...) — Calls the append() method on the list.", "code": "" },
-      { "comment": "# append — Built-in list method that adds a single item to the end of the list.", "code": "" },
-      { "comment": "# (...) — Parentheses indicate a function call. Inside we place the item to add.", "code": "" },
-      { "comment": "# { ... } — Dictionary literal. Dictionaries store key-value pairs. Keys are unique identifiers, values are the data associated with them.", "code": "medical_records.append({" },
-      { "comment": "# \"patient_id\": \"P1001\" — Key-value pair. Key is the string 'patient_id'. Value is the string 'P1001'.", "code": " \"patient_id\": \"P1001\"," },
-      { "comment": "# \"age\": 34 — Key-value pair. Key is 'age'. Value is integer 34. Integers are whole numbers.", "code": " \"age\": 34," },
-      { "comment": "# \"gender\": \"Female\" — Key-value pair. Key is 'gender'. Value is string 'Female'.", "code": " \"gender\": \"Female\"" },
-      { "comment": "# }) — Closes the dictionary and the append() call. This dictionary is now added as the first element of the list.", "code": "})" },
-      { "comment": "# At this point, medical_records contains one element.", "code": "" },
-      { "comment": "# That element is a dictionary with three keys: 'patient_id', 'age', and 'gender'.", "code": "" },
-      { "comment": "# The internal structure looks like this:", "code": "" },
-      { "comment": "# [ { 'patient_id': 'P1001', 'age': 34, 'gender': 'Female' } ]", "code": "" },
-      { "comment": "# print(medical_records) — Outputs the contents of the list to the console.", "code": "print(medical_records)" },
-      { "comment": "# The output will be:", "code": "" },
-      { "comment": "# [{'patient_id': 'P1001', 'age': 34, 'gender': 'Female'}]", "code": "" },
-      { "comment": "# Explanation of output:", "code": "" },
-      { "comment": "# - Outer square brackets [ ] show that medical_records is a list.", "code": "" },
-      { "comment": "# - Inside the list is one dictionary { }.", "code": "" },
-      { "comment": "# - The dictionary contains three key-value pairs: patient_id:'P1001', age:34, gender:'Female'.", "code": "" },
-      { "comment": "# This structure allows us to store multiple patient records.", "code": "" },
-      { "comment": "# Each record is a dictionary, and the list can grow as we append more dictionaries.", "code": "" },
-      { "comment": "# Example: adding another patient would append a second dictionary to the list, making medical_records contain two elements.", "code": "" }
-    ]
-  },
-  {
-    "title": "CHAPTER 1.8: Difference Between Integer and Float",
-    "steps": [
-      { "comment": "# Function definition — Creates a reusable block to demonstrate integer vs float difference.", "code": "def demonstrate_difference_integer_float():" },
-      { "comment": "# Declare an integer variable — whole number without decimals.", "code": " my_integer = 10" },
-      { "comment": "# Declare a float variable — number with decimals.", "code": " my_float = 3.5" },
-      { "comment": "# Perform subtraction — Python automatically handles mixed types.", "code": " difference = my_integer - my_float" },
-      { "comment": "# Print integer value.", "code": " print('Integer:', my_integer)" },
-      { "comment": "# Print float value.", "code": " print('Float:', my_float)" },
-      { "comment": "# Print the difference — result is a float because one operand is a float.", "code": " print('Difference (int - float):', difference)" },
-      { "comment": "# Show types — type() reveals the data type of each variable.", "code": " print('Type of integer:', type(my_integer)) # <class 'int'>" },
-      { "comment": "# Show type of float.", "code": " print('Type of float:', type(my_float)) # <class 'float'>" },
-      { "comment": "# Show type of result — subtraction with float produces a float.", "code": " print('Type of difference:', type(difference)) # <class 'float'>" },
-      { "comment": "# Final note — Mixing int and float in arithmetic promotes the result to float for precision.", "code": " # This ensures decimal accuracy in calculations." }
-    ]
-  },
-  {
-    "title": "CHAPTER 1.9: Strings and String Immutability in Python vs C++",
-    "steps": [
-      { "comment": "# Function definition — Demonstrates strings and immutability in Python.", "code": "def demonstrate_strings():" },
-      { "comment": "# Strings in Python — sequence of characters inside single or double quotes.", "code": " my_str_1 = 'Hello'" },
-      { "comment": "# Strings can also use double quotes — treated equally in Python.", "code": " my_str_2 = \"World\"" },
-      { "comment": "# Print both strings.", "code": " print(my_str_1, my_str_2)" },
-      { "comment": "# Multi-line strings — use triple quotes.", "code": " my_str_3 = '''This is a" },
-      { "comment": "# Multi-line string continued.", "code": " multiline string'''" },
-      { "comment": "# Print multi-line string.", "code": " print(my_str_3)" },
-      { "comment": "# Strings containing quotes — use opposite quotes or escape with backslash.", "code": " msg = \"It's a sunny day\"" },
-      { "comment": "# Escaping quotes with backslash.", "code": " quote = 'She said, \\\"Hello!\\\"'" },
-      { "comment": "# Print both strings with quotes inside.", "code": " print(msg)" },
-      { "comment": "# Print escaped string.", "code": " print(quote)" },
-      { "comment": "# Membership test — 'in' operator checks if substring exists.", "code": " my_str = 'Hello world'" },
-      { "comment": "# True because 'Hello' exists.", "code": " print('Hello' in my_str)" },
-      { "comment": "# False because 'hey' does not exist.", "code": " print('hey' in my_str)" },
-      { "comment": "# Length of string — len() returns number of characters.", "code": " print(len(my_str)) # 11" },
-      { "comment": "# Indexing — access characters by position (zero-based).", "code": " print(my_str[0]) # H" },
-      { "comment": "# Index 6 gives 'w'.", "code": " print(my_str[6]) # w" },
-      { "comment": "# Negative indexing — access from the end.", "code": " print(my_str[-1]) # d" },
-      { "comment": "# Second-to-last character.", "code": " print(my_str[-2]) # l" },
-      { "comment": "# Strings are immutable — cannot change characters directly.", "code": " greeting = 'hi'" },
-      { "comment": "# Reassignment is allowed — variable points to new string.", "code": " greeting = 'hello'" },
-      { "comment": "# Print reassigned string.", "code": " print(greeting)" },
-      { "comment": "# Attempting direct modification causes error.", "code": " # greeting[0] = 'H' # TypeError" },
-      { "comment": "# Immutable types in Python include int, float, bool, tuple, range, and str.", "code": " # These cannot be modified in place." },
-      { "comment": "# Comparison with C++ — Strings in C++ are mutable.", "code": " # Example in C++: std::string greeting = \"hi\";" },
-      { "comment": "# In C++ you can modify characters directly.", "code": " # greeting[0] = 'H'; // Works in C++" },
-      { "comment": "# Difference — Python strings are immutable, while C++ std::string allows direct modification.", "code": " # This shows Python prioritizes safety and consistency, while C++ gives more control." }
-    ]
-  },
-  {
-    "title": "CHAPTER 5: Exploring Python Data Types with New Examples",
-    "steps": [
-      { "comment": "# Function definition — Creates a reusable block to demonstrate data types with fresh values.", "code": "def demonstrate_data_types_v2():" },
-      { "comment": "# Integer — Whole number, often used for counts or IDs.", "code": " my_integer_var = 42" },
-      { "comment": "# Print integer value.", "code": " print('Integer:', my_integer_var)" },
-      { "comment": "# Float — Number with decimals, useful for precise measurements.", "code": " my_float_var = -3.14159" },
-      { "comment": "# Print float value.", "code": " print('Float:', my_float_var)" },
-      { "comment": "# String — Text data, enclosed in quotes.", "code": " my_string_var = \"Python is powerful\"" },
-      { "comment": "# Print string value.", "code": " print('String:', my_string_var)" },
-      { "comment": "# Boolean — True or False values, often used in conditions.", "code": " my_boolean_var = False" },
-      { "comment": "# Print boolean value.", "code": " print('Boolean:', my_boolean_var)" },
-      { "comment": "# Set — Unordered collection of unique elements.", "code": " my_set_var = {1, 2, 2, 3, 4}" },
-      { "comment": "# Print set value — duplicates are removed automatically.", "code": " print('Set:', my_set_var)" },
-      { "comment": "# Dictionary — Key-value pairs, useful for structured data.", "code": " my_dictionary_var = {'language': 'Python', 'version': 3.11}" },
-      { "comment": "# Print dictionary value.", "code": " print('Dictionary:', my_dictionary_var)" },
-      { "comment": "# Tuple — Immutable ordered collection.", "code": " my_tuple_var = ('apple', 'banana', 'cherry')" },
-      { "comment": "# Print tuple value.", "code": " print('Tuple:', my_tuple_var)" },
-      { "comment": "# Range — Sequence of numbers, commonly used in loops.", "code": " my_range_var = range(1, 6)" },
-      { "comment": "# Print range value.", "code": " print('Range:', my_range_var)" },
-      { "comment": "# List — Ordered collection, can mix types.", "code": " my_list = ['Cody', 99, 3.14, False]" },
-      { "comment": "# Print list value.", "code": " print('List:', my_list)" },
-      { "comment": "# None — Special value representing 'no value' or 'empty'.", "code": " my_none_var = None" },
-      { "comment": "# Print None value.", "code": " print('None:', my_none_var)" },
-      { "comment": "# type() function — Reveals the data type of each variable.", "code": " print(type(my_integer_var)) # <class 'int'>" },
-      { "comment": "# Example with float.", "code": " print(type(my_float_var)) # <class 'float'>" },
-      { "comment": "# Example with string.", "code": " print(type(my_string_var)) # <class 'str'>" },
-      { "comment": "# Example with boolean.", "code": " print(type(my_boolean_var)) # <class 'bool'>" },
-      { "comment": "# Example with set.", "code": " print(type(my_set_var)) # <class 'set'>" },
-      { "comment": "# Example with dictionary.", "code": " print(type(my_dictionary_var)) # <class 'dict'>" },
-      { "comment": "# Example with tuple.", "code": " print(type(my_tuple_var)) # <class 'tuple'>" },
-      { "comment": "# Example with range.", "code": " print(type(my_range_var)) # <class 'range'>" },
-      { "comment": "# Example with list.", "code": " print(type(my_list)) # <class 'list'>" },
-      { "comment": "# Example with None.", "code": " print(type(my_none_var)) # <class 'NoneType'>" },
-      { "comment": "# isinstance() — Checks if a variable matches a specific type.", "code": " print(isinstance(my_string_var, str)) # True" },
-      { "comment": "# isinstance() example with integer.", "code": " print(isinstance(my_integer_var, int)) # True" },
-      { "comment": "# isinstance() example with float.", "code": " print(isinstance(my_float_var, float)) # True" },
-      { "comment": "# isinstance() example with mismatched type.", "code": " print(isinstance(my_boolean_var, str)) # False" },
-      { "comment": "# Comparison note — Python infers types dynamically, unlike C++ or Java which require explicit type declarations.", "code": " # Example in C++: int number = 42; string text = \"Python is powerful\";" },
-      { "comment": "# Final note — Python catches type errors only at runtime, while compiled languages catch them at compile time.", "code": " # This makes Python flexible but requires careful testing." }
-    ]
-  },
-  {
-    "title": "CHAPTER. Calculating Plant Density",
-    "steps": [
-      { "comment": "# Function definition — Declares a reusable block of code with parameters.", "code": "def get_number_of_plants(field_size, unit, crop):" },
-      { "comment": "# Conversion dictionary — Maps units to their square meter equivalents.", "code": " conversion = {" },
-      { "comment": "# Key-value pair — 'acres' corresponds to 4046.86 m².", "code": " \"acres\": 4046.86," },
-      { "comment": "# Key-value pair — 'hectares' corresponds to 10,000 m².", "code": " \"hectares\": 10000" },
-      { "comment": "# Closing brace — Ends the conversion dictionary.", "code": " }" },
-      { "comment": "# Crop spacing dictionary — Maps crop names to required area per plant in m².", "code": " crop_space = {" },
-      { "comment": "# Corn requires 1 m² per plant.", "code": " \"corn\": 1," },
-      { "comment": "# Wheat requires 0.1 m² per plant.", "code": " \"wheat\": 0.1," },
-      { "comment": "# Soybeans require 0.5 m² per plant.", "code": " \"soybeans\": 0.5," },
-      { "comment": "# Tomatoes require 0.25 m² per plant.", "code": " \"tomatoes\": 0.25," },
-      { "comment": "# Lettuce requires 0.2 m² per plant.", "code": " \"lettuce\": 0.2" },
-      { "comment": "# Closing brace — Ends the crop_space dictionary.", "code": " }" },
-      { "comment": "# Step 1 — Convert field size into square meters using the appropriate unit multiplier.", "code": " field_size_in_sqm = field_size * conversion[unit]" },
-      { "comment": "# Step 2 — Divide total area by crop spacing to calculate raw plant count.", "code": " plants = field_size_in_sqm / crop_space[crop]" },
-      { "comment": "# Step 3 — Round down to nearest whole number since fractional plants are not possible.", "code": " return int(plants)" },
-      { "comment": "# Final Output — When run with inputs, returns the integer number of plants fitting in the field.", "code": "# Example: get_number_of_plants(1, \"acres\", \"corn\") → 4046" }
-    ]
-  },
-  {
-    "title": "CHAPTER 2: Variables and Data Types",
-    "steps": [
-      { "comment": "# Variables — In Python, variables are created when assigned. No type declaration needed.", "code": "name = 'Python Learner'" },
-      { "comment": "# Integers — Whole numbers, dynamically typed.", "code": "age = 25" },
-      { "comment": "# Floats — Decimal numbers.", "code": "height = 5.9" },
-      { "comment": "# Strings — Text data, enclosed in quotes.", "code": "greeting = \"Hello, \" + name" },
-      { "comment": "# Booleans — True or False values.", "code": "is_learning = True" },
-      { "comment": "# Printing variables — Use print to display values.", "code": "print(greeting)" },
-      { "comment": "# Type checking — Use type() to see variable types.", "code": "print(type(age))" },
-      { "comment": "# Final Output — Example output:", "code": "# Hello, Python Learner\n# <class 'int'>" }
-    ]
-  },
-  {
-    "title": "CHAPTER 2.1: Escape Characters and String Syntax in Python vs C++",
-    "steps": [
-      { "comment": "# Function definition — Demonstrates escape characters in Python strings.", "code": "def demonstrate_escape_characters():" },
-      { "comment": "# String with single quotes inside — escaped with backslash.", "code": " msg = 'It\\'s a sunny day'" },
-      { "comment": "# Print string — backslash tells Python to treat the quote literally.", "code": " print(msg) # Output: It's a sunny day" },
-      { "comment": "# String with double quotes inside — escaped with backslash.", "code": " quote = \"She said, \\\"Hello!\\\"\"" },
-      { "comment": "# Print string — backslash makes inner quotes part of the text.", "code": " print(quote) # Output: She said, \"Hello!\"" },
-      { "comment": "# Explanation — The backslash (\\) is an escape character in Python.", "code": " # It prevents Python from misinterpreting quotes as the end of the string." },
-      { "comment": "# Alternative — Use opposite quotes to avoid escaping.", "code": " msg_alt = \"It's a sunny day\"" },
-      { "comment": "# Print alternative string — no backslash needed here.", "code": " print(msg_alt)" },
-      { "comment": "# Comparison with C++ — Strings in C++ also use escape characters.", "code": " # Example in C++: std::string msg = \"It\\'s a sunny day\";" },
-      { "comment": "# In C++ you can also use opposite quotes, but std::string is mutable unlike Python str.", "code": " # Example in C++: std::string quote = \"She said, \\\"Hello!\\\"\";" },
-      { "comment": "# Difference — Python strings are immutable objects, while C++ std::string allows direct modification.", "code": " # Both languages use backslash for escaping, but Python enforces immutability for safety." }
-    ]
-  },
-  {
-    "title": "CHAPTER 3: Control Structures — If Statements",
-    "steps": [
-      { "comment": "# If statement — Checks a condition and executes code if true.", "code": "if age >= 18:" },
-      { "comment": "# Indentation — Python uses spaces or tabs for blocks (4 spaces recommended).", "code": " print('You are an adult.')" },
-      { "comment": "# Else clause — Runs if the if condition is false.", "code": "else:" },
-      { "comment": "# Alternative block.", "code": " print('You are a minor.')" },
-      { "comment": "# Elif for multiple conditions.", "code": "elif age < 0:" },
-      { "comment": "# Handles edge cases.", "code": " print('Invalid age.')" },
-      { "comment": "# Final Output — Depending on age:", "code": "# You are an adult." }
-    ]
-  },
-  {
-    "title": "CHAPTER 4: Loops — For and While",
-    "steps": [
-      { "comment": "# For loop — Iterates over a sequence like range or list.", "code": "for i in range(5):" },
-      { "comment": "# Prints numbers 0 to 4.", "code": " print(i)" },
-      { "comment": "# While loop — Repeats while condition is true.", "code": "count = 0" },
-      { "comment": "# Loop body.", "code": "while count < 3:" },
-      { "comment": "# Increment to avoid infinite loop.", "code": " print('Looping...')" },
-      { "comment": "# Update variable.", "code": " count += 1" },
-      { "comment": "# Break and continue — Control flow inside loops.", "code": "# Use break to exit, continue to skip." },
-      { "comment": "# Final Output — Example:", "code": "# 0\n# 1\n# 2\n# 3\n# 4\n# Looping...\n# Looping...\n# Looping..." }
-    ]
-  },
-  {
-    "title": "CHAPTER 5: Functions",
-    "steps": [
-      { "comment": "# Defining a function — Use def keyword.", "code": "def greet(name):" },
-      { "comment": "# Function body — Indented.", "code": " return f'Hello, {name}!'" },
-      { "comment": "# Calling the function.", "code": "message = greet('World')" },
-      { "comment": "# Print result.", "code": "print(message)" },
-      { "comment": "# Default parameters.", "code": "def add(a, b=0):" },
-      { "comment": "# Returns sum.", "code": " return a + b" },
-      { "comment": "# Lambda functions — Anonymous one-liners.", "code": "double = lambda x: x * 2" },
-      { "comment": "# Final Output:", "code": "# Hello, World!" }
-    ]
-  },
-  {
-    "title": "CHAPTER 6: Lists and Dictionaries",
-    "steps": [
-      { "comment": "# Lists — Ordered, mutable collections.", "code": "fruits = ['apple', 'banana', 'cherry']" },
-      { "comment": "# Access by index.", "code": "print(fruits[0])" },
-      { "comment": "# Append item.", "code": "fruits.append('date')" },
-      { "comment": "# Dictionaries — Key-value pairs.", "code": "person = {'name': 'Alice', 'age': 30}" },
-      { "comment": "# Access value.", "code": "print(person['name'])" },
-      { "comment": "# Add key.", "code": "person['city'] = 'Wonderland'" },
-      { "comment": "# Iteration.", "code": "for key, value in person.items():" },
-      { "comment": "# Print pairs.", "code": " print(f'{key}: {value}')" },
-      { "comment": "# Final Output — Example:", "code": "# apple\n# Alice\n# name: Alice\n# age: 30\n# city: Wonderland" }
-    ]
-  },
-  {
-    "title": "CHAPTER 7: Exception Handling",
-    "steps": [
-      { "comment": "# Try-except — Handles errors gracefully.", "code": "try:" },
-      { "comment": "# Code that might fail.", "code": " result = 10 / 0" },
-      { "comment": "# Catch specific exception.", "code": "except ZeroDivisionError:" },
-      { "comment": "# Handle error.", "code": " print('Cannot divide by zero.')" },
-      { "comment": "# Else — Runs if no exception.", "code": "else:" },
-      { "comment": "# Success code.", "code": " print('Division successful.')" },
-      { "comment": "# Finally — Always runs.", "code": "finally:" },
-      { "comment": "# Cleanup.", "code": " print('Execution complete.')" },
-      { "comment": "# Raise exceptions manually.", "code": "# raise ValueError('Invalid input')" },
-      { "comment": "# Final Output:", "code": "# Cannot divide by zero.\n# Execution complete." }
-    ]
-  },
-  {
-    "title": "CHAPTER 8: File Handling",
-    "steps": [
-      { "comment": "# Opening a file — Use open() with mode.", "code": "with open('example.txt', 'w') as file:" },
-      { "comment": "# Write to file.", "code": " file.write('Hello, Python!')" },
-      { "comment": "# Reading a file.", "code": "with open('example.txt', 'r') as file:" },
-      { "comment": "# Read content.", "code": " content = file.read()" },
-      { "comment": "# Print content.", "code": "print(content)" },
-      { "comment": "# Append mode.", "code": "with open('example.txt', 'a') as file:" },
-      { "comment": "# Add more text.", "code": " file.write('\\nMore text.')" },
-      { "comment": "# Handle file not found.", "code": "# Use try-except for errors." },
-      { "comment": "# Final Output:", "code": "# Hello, Python!" }
-    ]
-  },
-  {
-    "title": "CHAPTER 9: Modules and Packages",
-    "steps": [
-      { "comment": "# Import module — Access external code.", "code": "import math" },
-      { "comment": "# Use function from module.", "code": "print(math.sqrt(16))" },
-      { "comment": "# From import — Specific items.", "code": "from datetime import datetime" },
-      { "comment": "# Use imported item.", "code": "now = datetime.now()" },
-      { "comment": "# Print current time.", "code": "print(now)" },
-      { "comment": "# Alias import.", "code": "import random as rnd" },
-      { "comment": "# Random number.", "code": "print(rnd.randint(1, 10))" },
-      { "comment": "# Creating modules — Save functions in .py files.", "code": "# Then import them." },
-      { "comment": "# Final Output — Example:", "code": "# 4.0\n# 2026-01-15 07:48:00 (approx)\n# Random number like 7" }
-    ]
-  },
-  {
-    "title": "CHAPTER 10: Object-Oriented Programming",
-    "steps": [
-      { "comment": "# Class definition — Blueprint for objects.", "code": "class Animal:" },
-      { "comment": "# Constructor — Special method called when an instance is created. Indented under the class.", "code": " def __init__(self, name):" },
-      { "comment": "# Instance variable — Stores data unique to each instance. Further indented under the method.", "code": " self.name = name" },
-      { "comment": "# Method — Function defined inside a class. Indented under the class.", "code": " def speak(self):" },
-      { "comment": "# Default behavior — Code inside the method, further indented.", "code": " print('Animal sound')" },
-      { "comment": "# Inheritance — Creating a subclass that inherits from the base class. No indentation for new class definition.", "code": "class Dog(Animal):" },
-      { "comment": "# Override method — Redefine a method from the parent class. Indented under the subclass.", "code": " def speak(self):" },
-      { "comment": "# Specific sound — Customized behavior in the overridden method.", "code": " print('Woof!')" },
-      { "comment": "# Create instance — Instantiate the subclass with arguments for the constructor.", "code": "my_dog = Dog('Buddy')" },
-      { "comment": "# Call method — Invoke the overridden method on the instance.", "code": "my_dog.speak()" },
-      { "comment": "# Final Output — When run, the console displays:", "code": "# Woof!" }
-    ]
-  }
-];
-<script>
-let currentChapter = 0;
-let currentStep = 0;
-const codeArea = document.getElementById('code-area');
-const commentBox = document.getElementById('comment-box');
-const hintArea = document.getElementById('hint-area');
-const codeInput = document.getElementById('code-input');
-const submitBtn = document.getElementById('submit-btn');
-const skipBtn = document.getElementById('skip-btn');
-const prevBtn = document.getElementById('prev');
-const nextBtn = document.getElementById('next');
-const resetBtn = document.getElementById('reset');
-const chapterBtn = document.getElementById('chapter-btn');
-const chapterList = document.getElementById('chapter-list');
+  <script>
+    let chapters = [
+      {
+        "title": "CHAPTER 1: Python Basics — Hello World",
+        "steps": [
+          { "comment": "# No includes needed — Python has built-in support for input/output via the print function, no need for external libraries for basic console operations.", "code": "" },
+          { "comment": "# print('Hello, World!') — The print function outputs text to the console. Strings can use single or double quotes. No semicolon required at the end.", "code": "print('Hello, World!')" },
+          { "comment": "# Blank line — Adds readability, separating code sections. Python relies on indentation for structure, not braces.", "code": "" },
+          { "comment": "# No main function — Python scripts run from top to bottom. No explicit entry point like in C++; execution starts immediately.", "code": "" },
+          { "comment": "# Final Output — When run, the console displays:", "code": "# Hello, World!" }
+        ]
+      },
+      {
+        "title": "CHAPTER 1.1: Variables and Naming in Python",
+        "steps": [
+          { "comment": "# Function definition — Declares a reusable block of code.", "code": "def demonstrate_variables():" },
+          { "comment": "# String variable — Stores text data inside quotes.", "code": " name = \"John Doe\"" },
+          { "comment": "# Integer variable — Stores a whole number.", "code": " age = 25" },
+          { "comment": "# Snake case naming convention — lowercase words separated by underscores.", "code": " user_age = 30" },
+          { "comment": "# Single-letter variable — technically valid but not descriptive.", "code": " x = 56" },
+          { "comment": "# Single-line comment — starts with # and is ignored by Python.", "code": " # This is a single-line comment" },
+          { "comment": "# Multi-line comment — consecutive # lines form a block of explanation.", "code": " # This is a" },
+          { "comment": "# Multi-line comment continued.", "code": " # multi-line" },
+          { "comment": "# Multi-line comment continued.", "code": " # comment" },
+          { "comment": "# Print statement — Displays the value of 'name'.", "code": " print(\"Name:\", name)" },
+          { "comment": "# Print statement — Displays the value of 'age'.", "code": " print(\"Age:\", age)" },
+          { "comment": "# Print statement — Displays the value of 'user_age'.", "code": " print(\"User Age:\", user_age)" },
+          { "comment": "# Print statement — Displays the value of 'x'.", "code": " print(\"Undescriptive variable x:\", x)" },
+          { "comment": "# Final Output — When run, prints all variable values to the console.", "code": "# Example output: Name: John Doe, Age: 25, User Age: 30, Undescriptive variable x: 56" }
+        ]
+      },
+      {
+        "title": "CHAPTER 1.2: Understanding print() Arguments and Commas",
+        "steps": [
+          { "comment": "# Function definition — Creates a reusable block to demonstrate print behavior.", "code": "def demonstrate_print_arguments():" },
+          { "comment": "# Basic print — The parentheses () are part of the function call syntax.", "code": " print('Hello world!')" },
+          { "comment": "# Inside the parentheses, 'Hello world!' is an argument — data passed into the function.", "code": " # Output: Hello world!" },
+          { "comment": "# Multiple arguments — You can separate values with commas inside the parentheses.", "code": " print('My favorite colors are', 'blue', 'green', 'red')" },
+          { "comment": "# How commas work — In Python's print(), each comma means 'separate these arguments'.", "code": " # Output: My favorite colors are blue green red" },
+          { "comment": "# Why spaces appear — print() automatically inserts a single space between arguments.", "code": " # This is built-in behavior: commas don't literally mean space, but print() adds them." },
+          { "comment": "# Parentheses role — They define the boundary of the function call and hold arguments.", "code": " # Arguments are the values inside (), telling print() what to display." },
+          { "comment": "# Example with numbers — Multiple arguments can be of different types.", "code": " print('The answer is', 42)" },
+          { "comment": "# Output shows automatic spacing between string and integer.", "code": " # Output: The answer is 42" },
+          { "comment": "# Comparison with C++ — Instead of commas, C++ uses the << operator with cout.", "code": " # Example: cout << \"My favorite colors are \" << \"blue\" << \"green\" << \"red\";" },
+          { "comment": "# Difference — In C++, << directly chains values together without automatic spaces, so you must add them manually.", "code": " # Python's print() is simpler for beginners because commas automatically insert spaces." },
+          { "comment": "# Final note — Commas separate arguments, parentheses group them, and print() handles spacing.", "code": " # This makes print flexible for combining text and data." }
+        ]
+      },
+      {
+        "title": "CHAPTER 1.3: Python Data Types and Dynamic Typing",
+        "steps": [
+          { "comment": "# Function definition — Creates a reusable block to demonstrate Python data types.", "code": "def demonstrate_data_types():" },
+          { "comment": "# String variable — Python infers type dynamically, no explicit keyword needed.", "code": " name = 'John Doe'" },
+          { "comment": "# Integer variable — Whole number, Python knows it's an int.", "code": " age = 25" },
+          { "comment": "# Print values — Shows Python automatically recognizes types.", "code": " print('Name:', name)" },
+          { "comment": "# Print values — Demonstrates integer output.", "code": " print('Age:', age)" },
+          { "comment": "# Integer type — Whole numbers without decimals.", "code": " my_integer_var = 10" },
+          { "comment": "# Print integer value.", "code": " print('Integer:', my_integer_var)" },
+          { "comment": "# Float type — Numbers with decimals.", "code": " my_float_var = 4.50" },
+          { "comment": "# Print float value.", "code": " print('Float:', my_float_var)" },
+          { "comment": "# String type — Sequence of characters in quotes.", "code": " my_string_var = 'hello'" },
+          { "comment": "# Print string value.", "code": " print('String:', my_string_var)" },
+          { "comment": "# Boolean type — True or False values.", "code": " my_boolean_var = True" },
+          { "comment": "# Print boolean value.", "code": " print('Boolean:', my_boolean_var)" },
+          { "comment": "# Set type — Unordered collection of unique elements.", "code": " my_set_var = {7, 5, 8}" },
+          { "comment": "# Print set value.", "code": " print('Set:', my_set_var)" },
+          { "comment": "# Dictionary type — Key-value pairs inside curly braces.", "code": " my_dictionary_var = {'name': 'Alice', 'age': 25}" },
+          { "comment": "# Print dictionary value.", "code": " print('Dictionary:', my_dictionary_var)" },
+          { "comment": "# Tuple type — Immutable ordered collection inside parentheses.", "code": " my_tuple_var = (7, 5, 8)" },
+          { "comment": "# Print tuple value.", "code": " print('Tuple:', my_tuple_var)" },
+          { "comment": "# Range type — Sequence of numbers, often used in loops.", "code": " my_range_var = range(5)" },
+          { "comment": "# Print range value.", "code": " print('Range:', my_range_var)" },
+          { "comment": "# List type — Ordered collection, supports mixed data types.", "code": " my_list = [22, 'Hello world', 3.14, True]" },
+          { "comment": "# Print list value.", "code": " print('List:', my_list)" },
+          { "comment": "# None type — Represents absence of a value.", "code": " my_none_var = None" },
+          { "comment": "# Print None value.", "code": " print('None:', my_none_var)" },
+          { "comment": "# type() function — Reveals the data type of a variable.", "code": " print(type(my_integer_var))" },
+          { "comment": "# Example: <class 'int'> is shown in terminal.", "code": " print(type(my_float_var))" },
+          { "comment": "# Example: <class 'str'> for strings.", "code": " print(type(my_string_var))" },
+          { "comment": "# Example: <class 'bool'> for booleans.", "code": " print(type(my_boolean_var))" },
+          { "comment": "# Example: <class 'set'> for sets.", "code": " print(type(my_set_var))" },
+          { "comment": "# Example: <class 'dict'> for dictionaries.", "code": " print(type(my_dictionary_var))" },
+          { "comment": "# Example: <class 'tuple'> for tuples.", "code": " print(type(my_tuple_var))" },
+          { "comment": "# Example: <class 'range'> for ranges.", "code": " print(type(my_range_var))" },
+          { "comment": "# Example: <class 'list'> for lists.", "code": " print(type(my_list))" },
+          { "comment": "# Example: <class 'NoneType'> for None.", "code": " print(type(my_none_var))" },
+          { "comment": "# isinstance() function — Checks if a variable matches a specific type.", "code": " print(isinstance('Hello world', str)) # True" },
+          { "comment": "# isinstance() example with boolean.", "code": " print(isinstance(True, bool)) # True" },
+          { "comment": "# isinstance() example with integer.", "code": " print(isinstance(42, int)) # True" },
+          { "comment": "# isinstance() example with mismatched type.", "code": " print(isinstance('John Doe', int)) # False" },
+          { "comment": "# Comparison note — Python is dynamically typed, unlike C++, Java, or C# which require explicit type declarations.", "code": " # Example in C++: string name = 'John Doe'; int age = 25;" },
+          { "comment": "# Final note — Python determines types at runtime, so type errors appear only when the program executes.", "code": " # Compiled languages catch type errors earlier, during the compile step." }
+        ]
+      },
+      {
+        "title": "CHAPTER 1.4: Python Data Types Demonstrations",
+        "steps": [
+          { "comment": "# Function for whole number (integer).", "code": "def demonstrate_integer():" },
+          { "comment": "# Integer — whole numbers without decimals.", "code": " my_integer = 100" },
+          { "comment": "# Print integer value.", "code": " print('Integer value:', my_integer)" },
+          { "comment": "# Show type of variable.", "code": " print('Type:', type(my_integer)) # <class 'int'>" },
+          { "comment": "# Function for decimal (float).", "code": "def demonstrate_float():" },
+          { "comment": "# Float — numbers with decimals.", "code": " my_float = 3.14159" },
+          { "comment": "# Print float value.", "code": " print('Float value:', my_float)" },
+          { "comment": "# Show type of variable.", "code": " print('Type:', type(my_float)) # <class 'float'>" },
+          { "comment": "# Function for string.", "code": "def demonstrate_string():" },
+          { "comment": "# String — sequence of characters.", "code": " my_string = 'Hello Python'" },
+          { "comment": "# Print string value.", "code": " print('String value:', my_string)" },
+          { "comment": "# Show type of variable.", "code": " print('Type:', type(my_string)) # <class 'str'>" },
+          { "comment": "# Function for text data enclosed in quotes.", "code": "def demonstrate_text_quotes():" },
+          { "comment": "# Text data — can use single or double quotes.", "code": " text_single = 'Single quoted text'" },
+          { "comment": "# Another string using double quotes.", "code": " text_double = \"Double quoted text\"" },
+          { "comment": "# Print both values.", "code": " print('Single quoted:', text_single)" },
+          { "comment": "# Print double quoted string.", "code": " print('Double quoted:', text_double)" },
+          { "comment": "# Show types.", "code": " print('Type:', type(text_single), type(text_double)) # <class 'str'>" },
+          { "comment": "# Function for boolean True.", "code": "def demonstrate_boolean_true():" },
+          { "comment": "# Boolean — True condition.", "code": " my_bool = True" },
+          { "comment": "# Print boolean value.", "code": " print('Boolean True:', my_bool)" },
+          { "comment": "# Show type.", "code": " print('Type:', type(my_bool)) # <class 'bool'>" },
+          { "comment": "# Function for boolean False.", "code": "def demonstrate_boolean_false():" },
+          { "comment": "# Boolean — False condition.", "code": " my_bool = False" },
+          { "comment": "# Print boolean value.", "code": " print('Boolean False:', my_bool)" },
+          { "comment": "# Show type.", "code": " print('Type:', type(my_bool)) # <class 'bool'>" },
+          { "comment": "# Function for set.", "code": "def demonstrate_set():" },
+          { "comment": "# Set — unordered collection of unique elements.", "code": " my_set = {1, 2, 2, 3, 4}" },
+          { "comment": "# Print set value (duplicates removed automatically).", "code": " print('Set value:', my_set)" },
+          { "comment": "# Show type.", "code": " print('Type:', type(my_set)) # <class 'set'>" },
+          { "comment": "# Function for dictionary.", "code": "def demonstrate_dictionary():" },
+          { "comment": "# Dictionary — key-value pairs.", "code": " my_dict = {'name': 'Cody', 'role': 'Developer'}" },
+          { "comment": "# Print dictionary value.", "code": " print('Dictionary value:', my_dict)" },
+          { "comment": "# Show type.", "code": " print('Type:', type(my_dict)) # <class 'dict'>" },
+          { "comment": "# Function for tuple.", "code": "def demonstrate_tuple():" },
+          { "comment": "# Tuple — immutable ordered collection.", "code": " my_tuple = (10, 20, 30)" },
+          { "comment": "# Print tuple value.", "code": " print('Tuple value:', my_tuple)" },
+          { "comment": "# Show type.", "code": " print('Type:', type(my_tuple)) # <class 'tuple'>" },
+          { "comment": "# Function for range.", "code": "def demonstrate_range():" },
+          { "comment": "# Range — sequence of numbers.", "code": " my_range = range(5)" },
+          { "comment": "# Print range object.", "code": " print('Range value:', my_range)" },
+          { "comment": "# Convert to list to show sequence.", "code": " print('Range as list:', list(my_range))" },
+          { "comment": "# Show type.", "code": " print('Type:', type(my_range)) # <class 'range'>" },
+          { "comment": "# Function for loop with range.", "code": "def demonstrate_loop_with_range():" },
+          { "comment": "# Loop — iterate through a range of numbers.", "code": " for i in range(3):" },
+          { "comment": "# Print each iteration value.", "code": " print('Loop iteration:', i)" },
+          { "comment": "# Function for list.", "code": "def demonstrate_list():" },
+          { "comment": "# List — ordered collection, can mix types.", "code": " my_list = [42, 'Python', 3.14, True]" },
+          { "comment": "# Print list value.", "code": " print('List value:', my_list)" },
+          { "comment": "# Show type.", "code": " print('Type:', type(my_list)) # <class 'list'>" },
+          { "comment": "# Function for None.", "code": "def demonstrate_none():" },
+          { "comment": "# None — special value representing no value or empty.", "code": " my_none = None" },
+          { "comment": "# Print None value.", "code": " print('None value:', my_none)" },
+          { "comment": "# Show type.", "code": " print('Type:', type(my_none)) # <class 'NoneType'>" }
+        ]
+      },
+      {
+        "title": "CHAPTER 1.5: Checking Data Types in Python",
+        "steps": [
+          { "comment": "# Function definition — Creates a reusable block to demonstrate type checking.", "code": "def demonstrate_type_checking():" },
+          { "comment": "# Declare a string variable — Python infers type dynamically.", "code": " my_var_1 = 'Hello world'" },
+          { "comment": "# Declare an integer variable — Python knows this is an int.", "code": " my_var_2 = 21" },
+          { "comment": "# Use type() — Built-in function that returns the data type of a variable.", "code": " print(type(my_var_1)) # <class 'str'>" },
+          { "comment": "# Example output shows that my_var_1 is a string.", "code": " print(type(my_var_2)) # <class 'int'>" },
+          { "comment": "# Use isinstance() — Checks if a variable matches a specific type.", "code": " print(isinstance(my_var_1, str)) # True" },
+          { "comment": "# isinstance() returns True if variable is of given type, False otherwise.", "code": " print(isinstance(my_var_2, float)) # False" },
+          { "comment": "# Demonstrate with boolean variable.", "code": " my_bool = True" },
+          { "comment": "# type() reveals it is a bool.", "code": " print(type(my_bool)) # <class 'bool'>" },
+          { "comment": "# isinstance() confirms the type.", "code": " print(isinstance(my_bool, bool)) # True" },
+          { "comment": "# Final note — type() shows the exact class, isinstance() checks membership.", "code": " # Together they give you full control over type checking in Python." }
+        ]
+      },
+      {
+        "title": "CHAPTER: Python Basics — String Slicing",
+        "steps": [
+          { "comment": "# Strings in Python are sequences of characters. Each character has an index starting at 0, and negative indices count backward from the end.", "code": "my_str = 'Hello world'" },
+          { "comment": "# Accessing by index — my_str[0] returns the first character. my_str[6] returns the seventh character. Negative indices like -1 return the last character.", "code": "print(my_str[0]) # H\nprint(my_str[6]) # w\nprint(my_str[-1]) # d" },
+          { "comment": "# Basic slicing syntax: string[start:stop]. The slice starts at 'start' and goes up to, but does not include, 'stop'.", "code": "print(my_str[1:4]) # ell" },
+          { "comment": "# Omitting the start index defaults to 0. This extracts from the beginning up to (but not including) the stop index.", "code": "print(my_str[:7]) # Hello w" },
+          { "comment": "# Omitting the stop index defaults to the end of the string. This extracts from the start index through the end.", "code": "print(my_str[8:]) # rld" },
+          { "comment": "# Slicing does not modify the original string. It creates a new substring while leaving the original intact.", "code": "print(my_str[8:]) # rld\nprint(my_str) # Hello world" },
+          { "comment": "# Omitting both start and stop returns the entire string. This is equivalent to copying the string.", "code": "print(my_str[:]) # Hello world" },
+          { "comment": "# Extended slicing syntax: string[start:stop:step]. The 'step' defines the increment between indices.", "code": "print(my_str[0:11:2]) # Hlowrd" },
+          { "comment": "# A common trick: reverse a string by setting step = -1. Leaving start and stop blank means the whole string is considered.", "code": "print(my_str[::-1]) # dlrow olleH" },
+          { "comment": "# Negative step with explicit start/stop — my_str[10:5:-1] starts at index 10 ('d'), moves backward one step at a time, and stops before index 5. Result: 'dlrow'.", "code": "print(my_str[10:5:-1]) # dlrow" },
+          { "comment": "# Another example: my_str[7:2:-2] starts at index 7 ('o'), moves backward two steps at a time, and stops before index 2. Result: 'o l'.", "code": "print(my_str[7:2:-2]) # o l" },
+          { "comment": "# Final Output — String slicing allows flexible extraction of substrings, skipping characters, and reversing, all without loops or manual iteration. Negative steps add the ability to reverse direction and stride backwards.", "code": "# Example outputs: ell, Hello w, rld, Hlowrd, dlrow olleH, dlrow, o l" }
+        ]
+      },
+      {
+        "title": "CHAPTER: Python Basics — Common String Methods",
+        "steps": [
+          { "comment": "# upper() — Converts all characters to uppercase. Useful for normalization or emphasis.", "code": "my_str = 'hello world'\nprint(my_str.upper()) # HELLO WORLD" },
+          { "comment": "# lower() — Converts all characters to lowercase. Helpful for case-insensitive comparisons.", "code": "my_str = 'Hello World'\nprint(my_str.lower()) # hello world" },
+          { "comment": "# strip() — Removes leading and trailing whitespace (or specified characters). Prevents accidental spacing issues.", "code": "my_str = ' hello world '\nprint(my_str.strip()) # hello world" },
+          { "comment": "# replace(old, new) — Replaces all occurrences of a substring with another. Great for quick text edits.", "code": "my_str = 'hello world'\nprint(my_str.replace('hello', 'hi')) # hi world" },
+          { "comment": "# split(separator) — Splits a string into a list of substrings. Defaults to whitespace if no separator is given.", "code": "my_str = 'hello world'\nprint(my_str.split()) # ['hello', 'world']" },
+          { "comment": "# join(iterable) — Joins elements of an iterable into a single string, separated by the string used to call join().", "code": "my_list = ['hello', 'world']\nprint(' '.join(my_list)) # hello world" },
+          { "comment": "# startswith(prefix) — Returns True if the string begins with the given prefix.", "code": "my_str = 'hello world'\nprint(my_str.startswith('hello')) # True" },
+          { "comment": "# endswith(suffix) — Returns True if the string ends with the given suffix.", "code": "my_str = 'hello world'\nprint(my_str.endswith('world')) # True" },
+          { "comment": "# find(substring) — Returns the index of the first occurrence of substring, or -1 if not found.", "code": "my_str = 'hello world'\nprint(my_str.find('world')) # 6" },
+          { "comment": "# count(substring) — Counts how many times a substring appears in the string.", "code": "my_str = 'hello world'\nprint(my_str.count('o')) # 2" },
+          { "comment": "# capitalize() — Capitalizes the first character and lowercases the rest. Good for sentence formatting.", "code": "my_str = 'hello world'\nprint(my_str.capitalize()) # Hello world" },
+          { "comment": "# isupper() — Returns True if all letters are uppercase, False otherwise.", "code": "my_str = 'hello world'\nprint(my_str.isupper()) # False" },
+          { "comment": "# islower() — Returns True if all letters are lowercase, False otherwise.", "code": "my_str = 'hello world'\nprint(my_str.islower()) # True" },
+          { "comment": "# title() — Capitalizes the first letter of each word. Useful for formatting names or titles.", "code": "my_str = 'hello world'\nprint(my_str.title()) # Hello World" },
+          { "comment": "# Final Output — These built-in methods make string manipulation concise, expressive, and safer than manual loops.", "code": "# Example outputs: HELLO WORLD, hello world, hello world, hi world, ['hello','world'], hello world, True, True, 6, 2, Hello world, False, True, Hello World" }
+        ]
+      },
+      {
+        "title": "CHAPTER: Python Basics — Integers and Floating Point Numbers",
+        "steps": [
+          { "comment": "# Integers are whole numbers without decimals. They can be positive or negative.", "code": "my_int_1 = 56\nmy_int_2 = -4\nprint(type(my_int_1)) # <class 'int'>\nprint(type(my_int_2)) # <class 'int'>" },
+          { "comment": "# Integer addition — using the + operator.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Addition:', my_int_1 + my_int_2) # 68" },
+          { "comment": "# Integer subtraction — using the - operator.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Subtraction:', my_int_1 - my_int_2) # 44" },
+          { "comment": "# Integer multiplication — using the * operator.", "code": "my_int_1 = 12\nmy_int_2 = 4\nprint('Integer Multiplication:', my_int_1 * my_int_2) # 48" },
+          { "comment": "# Integer division — using the / operator. Result is a float even if both operands are integers.", "code": "my_int_1 = 56\nmy_int_2 = 12\nprint('Integer Division:', my_int_1 / my_int_2) # 4.666..." },
+          { "comment": "# Floats are numbers with decimal points. They can also be positive or negative.", "code": "my_float_1 = -12.0\nmy_float_2 = 4.9\nprint(type(my_float_1)) # <class 'float'>\nprint(type(my_float_2)) # <class 'float'>" },
+          { "comment": "# Float addition — works the same way as integers.", "code": "print('Float Addition:', 5.4 + 12.0) # 17.4" },
+          { "comment": "# Float subtraction — order matters.", "code": "print('Float Subtraction:', 12.0 - 5.4) # 6.6" },
+          { "comment": "# Float multiplication — result may include floating point precision artifacts.", "code": "print('Float Multiplication:', 12.0 * 5.4) # 64.80000000000001" },
+          { "comment": "# Float division — returns a float result.", "code": "print('Float Division:', 12.0 / 5.4) # 2.222..." },
+          { "comment": "# Mixing integers and floats — result is promoted to float automatically.", "code": "my_int = 56\nmy_float = 5.4\nresult = my_int + my_float\nprint(result) # 61.4\nprint(type(result)) # <class 'float'>" },
+          { "comment": "# Modulo operator % — returns the remainder of division.", "code": "print('Integer Modulus:', 56 % 12) # 8\nprint('Float Modulus:', 12.0 % 5.4) # 1.199..." },
+          { "comment": "# Floor division // — divides and rounds down to the nearest integer.", "code": "print('Integer Floor Division:', 56 // 12) # 4\nprint('Float Floor Division:', 12.0 // 5.4) # 2.0" },
+          { "comment": "# Exponentiation ** — raises a number to the power of another.", "code": "print('Integer Exponentiation:', 2 ** 3) # 8\nprint('Float Exponentiation:', 5.4 ** 2.0) # 29.16" },
+          { "comment": "# abs() — returns the absolute value (distance from zero). It strips away the sign and leaves magnitude only.", "code": "print(abs(-15)) # 15\nprint(abs(15)) # 15" },
+          { "comment": "# pow() — raises a number to a power. pow(x, y) is the same as x ** y. pow(x, y, z) adds a modulus step.", "code": "print(pow(2, 3)) # 8\nprint(pow(2, 3, 5)) # 3 because (2 ** 3) % 5 = 3" },
+          { "comment": "# Converting between types — float() turns integers into floats.", "code": "my_int = 56\nprint(float(my_int)) # 56.0" },
+          { "comment": "# int() — converts a float to an integer by truncating the decimal part (no rounding).", "code": "print(int(12.9)) # 12\nprint(int(-12.9)) # -12" },
+          { "comment": "# round() — rounds to the nearest integer or specified decimal places. Unlike int(), it does proper rounding.", "code": "print(round(12.9)) # 13\nprint(round(-12.9)) # -13\nprint(round(4.253, 1)) # 4.3" },
+          { "comment": "# int() and float() can also convert numeric strings.", "code": "print(int('45')) # 45\nprint(float('7.8')) # 7.8" },
+          { "comment": "# Final Output — Integers and floats support arithmetic, type conversion, and built-in functions for precision and control.", "code": "# Key takeaways: abs() strips sign, pow() raises to powers (with optional modulus), int() truncates decimals, round() performs true rounding." }
+        ]
+      },
+      {
+        "title": "CHAPTER XX: Augmented Assignment with Binary Detail",
+        "steps": [
+          { "comment": "# Initialize variable x with decimal 10 (binary 1010)", "code": "x = 10" },
+          { "comment": "# Addition assignment → x = x + 5. Binary: 1010 + 0101 = 1111", "code": "x += 5" },
+          { "comment": "# Result is 15 (binary 1111)", "code": "print(x) # 15" },
+          { "comment": "# Initialize count with decimal 14 (binary 1110)", "code": "count = 14" },
+          { "comment": "# Subtraction assignment → count = count - 3. Binary: 1110 - 0011 = 1011", "code": "count -= 3" },
+          { "comment": "# Result is 11 (binary 1011)", "code": "print(count) # 11" },
+          { "comment": "# Initialize product with decimal 65 (binary 1000001)", "code": "product = 65" },
+          { "comment": "# Multiplication assignment → product = product * 7. Binary multiplication expands bits", "code": "product *= 7" },
+          { "comment": "# Result is 455 (binary 111000111)", "code": "print(product) # 455" },
+          { "comment": "# Initialize price with decimal 100 (binary 1100100)", "code": "price = 100" },
+          { "comment": "# Division assignment → price = price / 4. Binary division shifts right by 2", "code": "price /= 4" },
+          { "comment": "# Result is 25 (binary 11001)", "code": "print(price) # 25.0" },
+          { "comment": "# Initialize bits with decimal 35 (binary 100011)", "code": "bits = 35" },
+          { "comment": "# Modulo assignment → bits = bits % 2. Binary remainder after division by 10", "code": "bits %= 2" },
+          { "comment": "# Result is 1 (binary 1)", "code": "print(bits) # 1" },
+          { "comment": "# Initialize x with decimal 6 (binary 110)", "code": "x = 6 # binary 110" },
+          { "comment": "# Bitwise AND assignment → x = x & 3. Compare each bit: 110 & 011 = 010", "code": "x &= 3 # binary 011" },
+          { "comment": "# Result is 2", "code": "print(x) # 2 (binary 010)" },
+          { "comment": "# Initialize y with decimal 4 (binary 100)", "code": "y = 4 # binary 100" },
+          { "comment": "# Bitwise OR assignment → y = y | 1. Compare each bit: 100 | 001 = 101", "code": "y |= 1 # binary 001" },
+          { "comment": "# Result is 5", "code": "print(y) # 5 (binary 101)" },
+          { "comment": "# Initialize z with decimal 5 (binary 101)", "code": "z = 5 # binary 101" },
+          { "comment": "# Bitwise XOR assignment → z = z ^ 3. Compare each bit: 101 ^ 011 = 110", "code": "z ^= 3 # binary 011" },
+          { "comment": "# Result is 6", "code": "print(z) # 6 (binary 110)" },
+          { "comment": "# Initialize shift with decimal 1 (binary 0001)", "code": "shift = 1 # binary 0001" },
+          { "comment": "# Left shift assignment → shift = shift << 3. Move bits left 3 places: 0001 → 1000", "code": "shift <<= 3" },
+          { "comment": "# Result is 8", "code": "print(shift) # 8 (binary 1000)" },
+          { "comment": "# Right shift assignment → shift = shift >> 2. Move bits right 2 places: 1000 → 0010", "code": "shift >>= 2" },
+          { "comment": "# Result is 2", "code": "print(shift) # 2 (binary 0010)" }
+        ]
+      },
+      {
+        "title": "CHAPTER XX: Augmented Assignment with Binary Detail",
+        "steps": [
+          { "comment": "# Initialize variable x with decimal 10 (binary 1010)", "code": "x = 10" },
+          { "comment": "# Addition assignment → x = x + 5. Binary: 1010 + 0101 = 1111", "code": "x += 5" },
+          { "comment": "# Result is 15 (binary 1111)", "code": "print(x) # 15" },
+          { "comment": "# Initialize count with decimal 14 (binary 1110)", "code": "count = 14" },
+          { "comment": "# Subtraction assignment → count = count - 3. Binary: 1110 - 0011 = 1011", "code": "count -= 3" },
+          { "comment": "# Result is 11 (binary 1011)", "code": "print(count) # 11" },
+          { "comment": "# Initialize product with decimal 65 (binary 1000001)", "code": "product = 65" },
+          { "comment": "# Multiplication assignment → product = product * 7. Binary multiplication expands bits", "code": "product *= 7" },
+          { "comment": "# Result is 455 (binary 111000111)", "code": "print(product) # 455" },
+          { "comment": "# Initialize price with decimal 100 (binary 1100100)", "code": "price = 100" },
+          { "comment": "# Division assignment → price = price / 4. Binary division shifts right by 2", "code": "price /= 4" },
+          { "comment": "# Result is 25 (binary 11001)", "code": "print(price) # 25.0" },
+          { "comment": "# Initialize bits with decimal 35 (binary 100011)", "code": "bits = 35" },
+          { "comment": "# Modulo assignment → bits = bits % 2. Binary remainder after division by 10", "code": "bits %= 2" },
+          { "comment": "# Result is 1 (binary 1)", "code": "print(bits) # 1" },
+          { "comment": "# Initialize x with decimal 6 (binary 110)", "code": "x = 6 # binary 110" },
+          { "comment": "# Bitwise AND assignment → x = x & 3. Compare each bit: 110 & 011 = 010", "code": "x &= 3 # binary 011" },
+          { "comment": "# Result is 2", "code": "print(x) # 2 (binary 010)" },
+          { "comment": "# Initialize y with decimal 4 (binary 100)", "code": "y = 4 # binary 100" },
+          { "comment": "# Bitwise OR assignment → y = y | 1. Compare each bit: 100 | 001 = 101", "code": "y |= 1 # binary 001" },
+          { "comment": "# Result is 5", "code": "print(y) # 5 (binary 101)" },
+          { "comment": "# Initialize z with decimal 5 (binary 101)", "code": "z = 5 # binary 101" },
+          { "comment": "# Bitwise XOR assignment → z = z ^ 3. Compare each bit: 101 ^ 011 = 110", "code": "z ^= 3 # binary 011" },
+          { "comment": "# Result is 6", "code": "print(z) # 6 (binary 110)" },
+          { "comment": "# Initialize shift with decimal 1 (binary 0001)", "code": "shift = 1 # binary 0001" },
+          { "comment": "# Left shift assignment → shift = shift << 3. Move bits left 3 places: 0001 → 1000", "code": "shift <<= 3" },
+          { "comment": "# Result is 8", "code": "print(shift) # 8 (binary 1000)" },
+          { "comment": "# Right shift assignment → shift = shift >> 2. Move bits right 2 places: 1000 → 0010", "code": "shift >>= 2" },
+          { "comment": "# Result is 2", "code": "print(shift) # 2 (binary 0010)" }
+        ]
+      },
+      {
+        "title": "CHAPTER XX: Augmented Assignment, Unary Operators, and Bitwise NOT",
+        "steps": [
+          { "comment": "# Initialize x with decimal 10 (binary 1010)", "code": "x = 10" },
+          { "comment": "# Addition assignment: x = x + 5. Binary: 1010 + 0101 = 1111", "code": "x += 5" },
+          { "comment": "# Result is 15 (binary 1111)", "code": "print(x) # 15" },
+          { "comment": "# Initialize count with decimal 14 (binary 1110)", "code": "count = 14" },
+          { "comment": "# Subtraction assignment: count = count - 3. Binary: 1110 - 0011 = 1011", "code": "count -= 3" },
+          { "comment": "# Result is 11 (binary 1011)", "code": "print(count) # 11" },
+          { "comment": "# Initialize product with decimal 65 (binary 1000001)", "code": "product = 65" },
+          { "comment": "# Multiplication assignment: product = product * 7. Binary multiplication expands bits", "code": "product *= 7" },
+          { "comment": "# Result is 455 (binary 111000111)", "code": "print(product) # 455" },
+          { "comment": "# Initialize price with decimal 100 (binary 1100100)", "code": "price = 100" },
+          { "comment": "# Division assignment: price = price / 4. Binary division shifts right by 2", "code": "price /= 4" },
+          { "comment": "# Result is 25 (binary 11001)", "code": "print(price) # 25.0" },
+          { "comment": "# Initialize bits with decimal 35 (binary 100011)", "code": "bits = 35" },
+          { "comment": "# Modulo assignment: bits = bits % 2. Binary remainder after division by 10", "code": "bits %= 2" },
+          { "comment": "# Result is 1 (binary 1)", "code": "print(bits) # 1" },
+          { "comment": "# Initialize power with decimal 2 (binary 10)", "code": "power = 2" },
+          { "comment": "# Exponentiation assignment: power = power ** 3. Binary exponentiation repeats multiplication", "code": "power **= 3" },
+          { "comment": "# Result is 8 (binary 1000)", "code": "print(power) # 8" },
+          { "comment": "# Initialize string greet", "code": "greet = 'Hello'" },
+          { "comment": "# Concatenation assignment: greet = greet + ' World'. Binary signals here are string memory operations", "code": "greet += ' World'" },
+          { "comment": "# Result is 'Hello World'", "code": "print(greet) # Hello World" },
+          { "comment": "# Initialize string greet", "code": "greet = 'Hi'" },
+          { "comment": "# Repetition assignment: greet = greet * 3. Binary signals duplicate string memory three times", "code": "greet *= 3" },
+          { "comment": "# Result is 'HiHiHi'", "code": "print(greet) # HiHiHi" },
+          { "comment": "# Initialize x with decimal 5 (binary 00000101)", "code": "x = 5" },
+          { "comment": "# Unary plus: returns value unchanged → 5", "code": "print(+x)" },
+          { "comment": "# Two unary plus operators: +(+(5)) → still 5, no increment", "code": "print(++x)" },
+          { "comment": "# Explicit increment using augmented assignment", "code": "x += 1" },
+          { "comment": "# Result is 6", "code": "print(x) # 6" },
+          { "comment": "# Initialize n with decimal 5 (binary 00000101)", "code": "n = 5" },
+          { "comment": "# Bitwise NOT: flips all bits. 00000101 → 11111010", "code": "print(~n)" },
+          { "comment": "# Two’s complement interpretation: 11111010 = -6", "code": "# Rule: ~n = -(n + 1)" }
+        ]
+      },
+      {
+        "title": "CHAPTER 2: Python Conditionals and Indentation",
+        "steps": [
+          { "comment": "# Conditional statements control program flow based on whether conditions evaluate to True or False.", "code": "" },
+          { "comment": "# Comparison operators return booleans (True/False). Examples:", "code": "" },
+          { "comment": "# == Equal → Checks if two values are equal", "code": "" },
+          { "comment": "# != Not equal → Checks if two values are not equal", "code": "" },
+          { "comment": "# > Greater than → Left value greater than right", "code": "" },
+          { "comment": "# < Less than → Left value less than right", "code": "" },
+          { "comment": "# >= Greater than or equal → Left value ≥ right", "code": "" },
+          { "comment": "# <= Less than or equal → Left value ≤ right", "code": "" },
+          { "comment": "# Example evaluations:", "code": "" },
+          { "comment": "# print(3 > 4) # False", "code": "print(3 > 4)" },
+          { "comment": "# print(3 < 4) # True", "code": "print(3 < 4)" },
+          { "comment": "# print(3 == 4) # False", "code": "print(3 == 4)" },
+          { "comment": "# print(4 == 4) # True", "code": "print(4 == 4)" },
+          { "comment": "# print(3 != 4) # True", "code": "print(3 != 4)" },
+          { "comment": "# print(3 >= 4) # False", "code": "print(3 >= 4)" },
+          { "comment": "# print(3 <= 4) # True", "code": "print(3 <= 4)" },
+          { "comment": "# Basic if statement syntax:", "code": "" },
+          { "comment": "# if condition:", "code": "if True:" },
+          { "comment": "# pass # Code runs if condition is True", "code": " pass" },
+          { "comment": "# Indentation is mandatory in Python. Code blocks are defined by spaces, not braces.", "code": "" },
+          { "comment": "# PEP 8 recommends 4 spaces per indentation level.", "code": "" },
+          { "comment": "# Example with correct indentation:", "code": "" },
+          { "comment": "# age = 18", "code": "age = 18" },
+          { "comment": "# if age >= 18:", "code": "if age >= 18:" },
+          { "comment": "# print('You are an adult')", "code": " print('You are an adult')" },
+          { "comment": "# Incorrect indentation raises IndentationError:", "code": "" },
+          { "comment": "# if age >= 18:", "code": "if age >= 18:" },
+          { "comment": "# print('You are an adult') # ❌ Error", "code": "print('You are an adult')" },
+          { "comment": "# Adding else clause for False conditions:", "code": "" },
+          { "comment": "# if condition:", "code": "if age >= 18:" },
+          { "comment": "# pass # Runs if True", "code": " print('You are an adult')" },
+          { "comment": "# else:", "code": "else:" },
+          { "comment": "# pass # Runs if False", "code": " print('You are not an adult yet')" },
+          { "comment": "# Using elif for multiple conditions:", "code": "" },
+          { "comment": "# if condition1:", "code": "if age >= 18:" },
+          { "comment": "# pass", "code": " print('You are an adult')" },
+          { "comment": "# elif condition2:", "code": "elif age >= 13:" },
+          { "comment": "# pass", "code": " print('You are a teenager')" },
+          { "comment": "# else:", "code": "else:" },
+          { "comment": "# pass", "code": " print('You are a child')" },
+          { "comment": "# Example with multiple elif clauses:", "code": "" },
+          { "comment": "# age = 2", "code": "age = 2" },
+          { "comment": "# if age >= 65:", "code": "if age >= 65:" },
+          { "comment": "# print('You are a senior citizen')", "code": " print('You are a senior citizen')" },
+          { "comment": "# elif age >= 30:", "code": "elif age >= 30:" },
+          { "comment": "# print('You are an adult in your prime')", "code": " print('You are an adult in your prime')" },
+          { "comment": "# elif age >= 18:", "code": "elif age >= 18:" },
+          { "comment": "# print('You are a young adult')", "code": " print('You are a young adult')" },
+          { "comment": "# elif age >= 13:", "code": "elif age >= 13:" },
+          { "comment": "# print('You are a teenager')", "code": " print('You are a teenager')" },
+          { "comment": "# elif age >= 3:", "code": "elif age >= 3:" },
+          { "comment": "# print('You are a young child')", "code": " print('You are a young child')" },
+          { "comment": "# else:", "code": "else:" },
+          { "comment": "# print('You are a toddler or an infant')", "code": " print('You are a toddler or an infant')" }
+        ]
+      },
+      {
+        "title": "CHAPTER 3: What Are Truthy and Falsy Values, and How Do Boolean Operators and Short-Circuiting Work?",
+        "steps": [
+          { "comment": "# In the previous lesson, you learned how to use comparison operators and conditional statements to control program flow.", "code": "" },
+          { "comment": "# Sometimes you need to compare multiple values at once, which can lead to nested conditionals.", "code": "" },
+          { "comment": "# Example of nested conditionals:", "code": "" },
+          { "comment": "# is_citizen = True", "code": "is_citizen = True" },
+          { "comment": "# age = 25", "code": "age = 25" },
+          { "comment": "# if is_citizen:", "code": "if is_citizen:" },
+          { "comment": "# if age >= 18:", "code": " if age >= 18:" },
+          { "comment": "# print('You are eligible to vote')", "code": " print('You are eligible to vote')" },
+          { "comment": "# else:", "code": "else:" },
+          { "comment": "# print('You are not eligible to vote')", "code": " print('You are not eligible to vote')" },
+          { "comment": "# Every value in Python has an inherent boolean value — either truthy or falsy.", "code": "" },
+          { "comment": "# Falsy values include: None, False, 0, 0.0, empty strings \"\", empty lists [], empty dicts {}, empty sets set().", "code": "" },
+          { "comment": "# Truthy values include: non-zero numbers, non-empty strings, non-empty collections, and most other objects.", "code": "" },
+          { "comment": "# Example check with bool():", "code": "" },
+          { "comment": "# print(bool(0)) → False", "code": "print(bool(0))" },
+          { "comment": "# print(bool('')) → False", "code": "print(bool(''))" },
+          { "comment": "# print(bool('Hello')) → True", "code": "print(bool('Hello'))" },
+          { "comment": "# Boolean operators (logical operators) let you combine expressions: and, or, not.", "code": "" },
+          { "comment": "# AND operator: returns first falsy operand, otherwise returns the last operand.", "code": "" },
+          { "comment": "# Example:", "code": "" },
+          { "comment": "# print(True and 25) → 25", "code": "print(True and 25)" },
+          { "comment": "# print(False and 25) → False", "code": "print(False and 25)" },
+          { "comment": "# OR operator: returns the first truthy operand, otherwise the last operand.", "code": "" },
+          { "comment": "# Example:", "code": "" },
+          { "comment": "# print(0 or 5) → 5 (0 is falsy, so returns 5)", "code": "print(0 or 5)" },
+          { "comment": "# print(3 or 5) → 3 (3 is truthy, so returns 3)", "code": "print(3 or 5)" },
+          { "comment": "# print('' or 'Hi') → 'Hi' (empty string is falsy, so returns 'Hi')", "code": "print('' or 'Hi')" },
+          { "comment": "# NOT operator: inverts the boolean value. Always returns True or False.", "code": "" },
+          { "comment": "# Example:", "code": "" },
+          { "comment": "# print(not '') → True (empty string is falsy)", "code": "print(not '')" },
+          { "comment": "# print(not 'Hello') → False (non-empty string is truthy)", "code": "print(not 'Hello')" },
+          { "comment": "# Question: Which of the following is NOT falsy in Python?", "code": "" },
+          { "comment": "# Options: None, False, 0, '', 'Hello'", "code": "" },
+          { "comment": "# Answer: 'Hello' is NOT falsy. Non-empty strings are truthy.", "code": "" },
+          { "comment": "# Summary: Truthy/falsy values and logical operators (and, or, not) with short-circuiting let you write flexible, readable conditional logic.", "code": "" }
+        ]
+      },
+      {
+        "title": "CHAPTER 10: Simulated Driving with PyTorch — Full Code Explained Word by Word",
+        "steps": [
+          { "comment": "# import — Python keyword that loads external modules into the current namespace.", "code": "" },
+          { "comment": "# torch — The main PyTorch library, providing tensors, autograd, and deep learning functionality.", "code": "import torch" },
+          { "comment": "# torch.nn — Submodule containing neural network building blocks (layers, activations, containers).", "code": "import torch.nn as nn" },
+          { "comment": "# nn — Alias for torch.nn, used to shorten code when referencing layers.", "code": "" },
+          { "comment": "# torch.optim — Submodule containing optimization algorithms (Adam, SGD, RMSProp).", "code": "import torch.optim as optim" },
+          { "comment": "# optim — Alias for torch.optim, used to shorten code when referencing optimizers.", "code": "" },
+          { "comment": "# numpy — Numerical library for arrays and mathematical operations.", "code": "import numpy as np" },
+          { "comment": "# np — Alias for numpy, used to shorten code when creating arrays.", "code": "" },
+          { "comment": "# torch.utils.data — Submodule with Dataset and DataLoader classes.", "code": "from torch.utils.data import Dataset, DataLoader" },
+          { "comment": "# Dataset — Abstract class for custom datasets; requires __len__ and __getitem__.", "code": "" },
+          { "comment": "# DataLoader — Utility that wraps a Dataset to provide batching, shuffling, and iteration.", "code": "" },
+          { "comment": "# class — Python keyword to define a new class.", "code": "" },
+          { "comment": "# DrivingDataset — Custom dataset class name, chosen to describe driving data.", "code": "class DrivingDataset(Dataset):" },
+          { "comment": "# (Dataset) — Inheritance; DrivingDataset extends PyTorch's Dataset class.", "code": "" },
+          { "comment": "# def — Python keyword to define a function or method.", "code": "" },
+          { "comment": "# __init__ — Special method called when a new object is created.", "code": " def __init__(self, num_samples=1000):" },
+          { "comment": "# num_samples — Parameter controlling how many synthetic samples to generate.", "code": "" },
+          { "comment": "# =1000 — Default value if caller does not specify num_samples.", "code": "" },
+          { "comment": "# self — Reference to the current object instance.", "code": "" },
+          { "comment": "# images — Instance variable storing synthetic image arrays.", "code": " self.images = []" },
+          { "comment": "# steering_angles — Instance variable storing numeric steering labels.", "code": " self.steering_angles = []" },
+          { "comment": "# for — Python keyword for looping.", "code": "" },
+          { "comment": "# i — Loop variable, iterates from 0 to num_samples-1.", "code": "" },
+          { "comment": "# range(num_samples) — Generates sequence of integers from 0 to num_samples-1.", "code": " for i in range(num_samples):" },
+          { "comment": "# np.zeros — NumPy function creating an array filled with zeros.", "code": "" },
+          { "comment": "# (64,64) — Shape argument: 64 rows, 64 columns.", "code": "" },
+          { "comment": "# dtype=np.float32 — Data type: 32-bit floating point.", "code": " img = np.zeros((64, 64), dtype=np.float32)" },
+          { "comment": "# np.random.uniform — NumPy function generating random float in range.", "code": "" },
+          { "comment": "# (-1,1) — Range: -1.0 to +1.0.", "code": " angle = np.random.uniform(-1, 1)" },
+          { "comment": "# start_x — Variable for x-coordinate of line start (center bottom).", "code": " start_x = 32" },
+          { "comment": "# start_y — Variable for y-coordinate of line start (bottom row).", "code": " start_y = 63" },
+          { "comment": "# end_x — Variable for x-coordinate of line end, shifted by angle.", "code": " end_x = int(start_x + 32 * angle)" },
+          { "comment": "# end_y — Variable for y-coordinate of line end (top row).", "code": " end_y = 0" },
+          { "comment": "# for y in range(start_y, end_y, -1) — Loop from bottom to top, decrementing y.", "code": " for y in range(start_y, end_y, -1):" },
+          { "comment": "# x — Local variable for current x-coordinate, interpolated between start_x and end_x.", "code": " x = start_x + int((start_x - end_x) * (y - start_y) / (end_y - start_y))" },
+          { "comment": "# if — Conditional keyword.", "code": "" },
+          { "comment": "# 0 <= x < 64 — Bounds check to ensure x is inside image width.", "code": " if 0 <= x < 64:" },
+          { "comment": "# img[y,x] — Indexing into 2D array at row y, column x.", "code": "" },
+          { "comment": "# =1.0 — Assigns pixel value to white.", "code": " img[y, x] = 1.0" },
+          { "comment": "# self.images.append(img) — Adds image to dataset list.", "code": " self.images.append(img)" },
+          { "comment": "# self.steering_angles.append(angle) — Adds steering angle to dataset list.", "code": " self.steering_angles.append(angle)" },
+          { "comment": "# __len__ — Special method returning dataset size.", "code": " def __len__(self):\n return len(self.images)" },
+          { "comment": "# __getitem__ — Special method returning one sample by index.", "code": " def __getitem__(self, idx):" },
+          { "comment": "# idx — Index parameter.", "code": "" },
+          { "comment": "# self.images[idx] — Selects image at position idx.", "code": "" },
+          { "comment": "# [None,:,:] — Adds channel dimension (1x64x64).", "code": " img = self.images[idx][None, :, :]" },
+          { "comment": "# self.steering_angles[idx] — Selects angle at position idx.", "code": " angle = self.steering_angles[idx]" },
+          { "comment": "# torch.tensor — Converts NumPy array to PyTorch tensor.", "code": "" },
+          { "comment": "# dtype=torch.float32 — Ensures tensor uses 32-bit float type.", "code": " return torch.tensor(img, dtype=torch.float32), torch.tensor(angle, dtype=torch.float32)" },
+          { "comment": "# class SteeringModel(nn.Module) — Defines CNN model class inheriting from nn.Module.", "code": "class SteeringModel(nn.Module):" },
+          { "comment": "# super — Calls parent constructor.", "code": " def __init__(self):\n super(SteeringModel, self).__init__()" },
+          { "comment": "# self.conv1 — First convolutional layer: input=1 channel, output=24 filters.", "code": " self.conv1 = nn.Conv2d(1, 24, kernel_size=5, stride=2)" },
+          { "comment": "# self.conv2 — Second convolutional layer: input=24, output=36 filters.", "code": " self.conv2 = nn.Conv2d(24, 36, kernel_size=5, stride=2)" },
+          { "comment": "# self.conv3 — Third convolutional layer: input=36, output=48 filters.", "code": " self.conv3 = nn.Conv2d(36, 48, kernel_size=3, stride=2)" },
+          { "comment": "# self.fc1 — Fully connected layer: input=48*5*5=1200, output=100.", "code": " self.fc1 = nn.Linear(48 * 5 * 5, 100)" },
+          { "comment": "# self.fc2 — Fully connected layer: input=100, output=50.", "code": " self.fc2 = nn.Linear(100, 50)" },
+          { "comment": "# self.fc3 — Fully connected layer: input=50, output=1 (steering angle).", "code": " self.fc3 = nn.Linear(50, 1)" },
+          { "comment": "# forward — Special method in nn.Module that defines how input data flows through the network.", "code": " def forward(self, x):" },
+          { "comment": "# torch.relu(self.conv1(x)) — Passes input tensor x through conv1 (first convolutional layer), then applies ReLU activation (Rectified Linear Unit). ReLU outputs 0 for negative values and the input itself for positive values.", "code": " x = torch.relu(self.conv1(x))" },
+          { "comment": "# torch.relu(self.conv2(x)) — Takes output of conv1, passes through conv2 (second convolutional layer), applies ReLU activation. This extracts more complex features.", "code": " x = torch.relu(self.conv2(x))" },
+          { "comment": "# torch.relu(self.conv3(x)) — Takes output of conv2, passes through conv3 (third convolutional layer), applies ReLU activation. This condenses spatial information further.", "code": " x = torch.relu(self.conv3(x))" },
+          { "comment": "# x.view(x.size(0), -1) — Reshapes tensor. x.size(0) is batch size. '-1' flattens all remaining dimensions automatically. Converts 3D feature maps into 2D vector for fully connected layers.", "code": " x = x.view(x.size(0), -1)" },
+          { "comment": "# torch.relu(self.fc1(x)) — Passes flattened vector into first fully connected layer (fc1), applies ReLU activation. Maps features into 100 neurons.", "code": " x = torch.relu(self.fc1(x))" },
+          { "comment": "# torch.relu(self.fc2(x)) — Passes output of fc1 into second fully connected layer (fc2), applies ReLU activation. Reduces dimensionality to 50 neurons.", "code": " x = torch.relu(self.fc2(x))" },
+          { "comment": "# self.fc3(x) — Passes output of fc2 into final fully connected layer (fc3). Produces single numeric output (predicted steering angle). No activation because regression outputs continuous values.", "code": " return self.fc3(x)" },
+          { "comment": "# def train_model(model, dataloader, epochs=5, lr=0.001): — Defines training function. Parameters: model (network), dataloader (batches of data), epochs (training passes), lr (learning rate).", "code": "def train_model(model, dataloader, epochs=5, lr=0.001):" },
+          { "comment": "# criterion = nn.MSELoss() — Creates Mean Squared Error loss function. Measures average squared difference between predicted and true steering angles.", "code": " criterion = nn.MSELoss()" },
+          { "comment": "# optimizer = optim.Adam(model.parameters(), lr=lr) — Creates Adam optimizer. model.parameters() gives all trainable weights. lr sets learning rate.", "code": " optimizer = optim.Adam(model.parameters(), lr=lr)" },
+          { "comment": "# model.train() — Sets model into training mode. Ensures training-specific behaviors (like dropout) are active.", "code": " model.train()" },
+          { "comment": "# for epoch in range(epochs): — Loops over number of epochs. Each epoch = one full pass through dataset.", "code": " for epoch in range(epochs):" },
+          { "comment": "# total_loss = 0 — Initializes variable to accumulate loss across batches.", "code": " total_loss = 0" },
+          { "comment": "# for images, angles in dataloader: — Iterates over batches. Each batch contains images and steering angles.", "code": " for images, angles in dataloader:" },
+          { "comment": "# optimizer.zero_grad() — Clears old gradients before new batch.", "code": " optimizer.zero_grad()" },
+          { "comment": "# outputs = model(images) — Forward pass: feeds batch of images into model, gets predicted angles.", "code": " outputs = model(images)" },
+          { "comment": "# loss = criterion(outputs.squeeze(), angles) — Computes loss between predictions and true angles. squeeze() removes extra dimensions.", "code": " loss = criterion(outputs.squeeze(), angles)" },
+          { "comment": "# loss.backward() — Backpropagation: computes gradients of loss w.r.t. parameters.", "code": " loss.backward()" },
+          { "comment": "# optimizer.step() — Updates model parameters using gradients and learning rate.", "code": " optimizer.step()" },
+          { "comment": "# total_loss += loss.item() — Adds batch loss to total_loss. loss.item() converts tensor to Python float.", "code": " total_loss += loss.item()" },
+          { "comment": "# print(f\"Epoch {epoch+1}/{epochs}, Loss: {total_loss / len(dataloader):.4f}\") — Prints average loss per epoch. f-string formats with 4 decimal places.", "code": " print(f\"Epoch {epoch+1}/{epochs}, Loss: {total_loss / len(dataloader):.4f}\")" },
+          { "comment": "# def predict_steering(model, image): — Defines inference function. Parameters: model (trained network), image (single image tensor).", "code": "def predict_steering(model, image):" },
+          { "comment": "# model.eval() — Sets model into evaluation mode. Disables training-specific behaviors.", "code": " model.eval()" },
+          { "comment": "# with torch.no_grad(): — Context manager disabling gradient tracking. Saves memory and speeds inference.", "code": " with torch.no_grad():" },
+          { "comment": "# output = model(image.unsqueeze(0)) — Adds batch dimension with unsqueeze(0). Performs forward pass to get prediction.", "code": " output = model(image.unsqueeze(0))" },
+          { "comment": "# return output.item() — Converts prediction tensor to Python float and returns it.", "code": " return output.item()" },
+          { "comment": "# if __name__ == \"__main__\": — Python idiom: run block only if script executed directly.", "code": "if __name__ == \"__main__\":" },
+          { "comment": "# dataset = DrivingDataset(num_samples=1000) — Creates dataset object with 1000 synthetic samples.", "code": " dataset = DrivingDataset(num_samples=1000)" },
+          { "comment": "# dataloader = DataLoader(dataset, batch_size=32, shuffle=True) — Wraps dataset in DataLoader. batch_size=32 means 32 samples per batch. shuffle=True randomizes order.", "code": " dataloader = DataLoader(dataset, batch_size=32, shuffle=True)" },
+          { "comment": "# model = SteeringModel() — Instantiates CNN model.", "code": " model = SteeringModel()" },
+          { "comment": "# print(\"Training the model...\") — Prints message to console.", "code": " print(\"Training the model...\")" },
+          { "comment": "# train_model(model, dataloader, epochs=10) — Calls training function with 10 epochs.", "code": " train_model(model, dataloader, epochs=10)" },
+          { "comment": "# test_img, true_angle = dataset[0] — Retrieves first sample from dataset. test_img is image tensor, true_angle is label.", "code": " test_img, true_angle = dataset[0]" },
+          { "comment": "# predicted_angle = predict_steering(model, test_img) — Runs inference on test image to get predicted steering angle.", "code": " predicted_angle = predict_steering(model, test_img)" },
+          { "comment": "# print(f\"\\nTest: True Steering Angle: {true_angle:.4f}, Predicted: {predicted_angle:.4f}\") — Prints true and predicted angles. f-string formats floats with 4 decimal places.", "code": " print(f\"\\nTest: True Steering Angle: {true_angle:.4f}, Predicted: {predicted_angle:.4f}\")" },
+          { "comment": "# Context: In Tesla's Dojo system, training happens on massive real-world video data. Models predict steering, acceleration, braking, and path planning simultaneously. Optimizations like FP8 formats and adaptive scaling make training faster. Trained weights are deployed OTA to cars for real-time inference.", "code": "" }
+        ]
+      },
+      {
+        "title": "CHAPTER 13: How Do Functions Work in Python?",
+        "steps": [
+          { "comment": "# Functions are reusable pieces of code that run when you call them. They help organize logic and avoid repetition.", "code": "" },
+          { "comment": "# Python comes with built-in functions like print() and input().", "code": "" },
+          { "comment": "# Example: input() prompts the user for input.", "code": "name = input('What is your name?')" },
+          { "comment": "# User types Kolade and presses Enter. The string 'Kolade' is stored in variable name.", "code": "" },
+          { "comment": "# print('Hello', name) — Calls print() with two arguments: 'Hello' and the value of name.", "code": "print('Hello', name)" },
+          { "comment": "# Output: Hello Kolade", "code": "" },
+          { "comment": "# Another built-in function: int() converts values into integers.", "code": "" },
+          { "comment": "# print(int(3.14)) — Converts float 3.14 into integer 3.", "code": "print(int(3.14))" },
+          { "comment": "# Output: 3", "code": "" },
+          { "comment": "# print(int('42')) — Converts string '42' into integer 42.", "code": "print(int('42'))" },
+          { "comment": "# Output: 42", "code": "" },
+          { "comment": "# print(int(True)) — Converts boolean True into integer 1.", "code": "print(int(True))" },
+          { "comment": "# Output: 1", "code": "" },
+          { "comment": "# print(int(False)) — Converts boolean False into integer 0.", "code": "print(int(False))" },
+          { "comment": "# Output: 0", "code": "" },
+          { "comment": "# You can also write your own custom functions using def keyword.", "code": "" },
+          { "comment": "# def hello(): — Defines a function named hello. Parentheses () mean it takes no parameters. Colon : starts the function body.", "code": "def hello():" },
+          { "comment": "# print('Hello World') — Function body. Indented to show it belongs to hello().", "code": " print('Hello World')" },
+          { "comment": "# hello() — Calls the function. Executes its body.", "code": "hello()" },
+          { "comment": "# Output: Hello World", "code": "" },
+          { "comment": "# Another function with parameters: def calculate_sum(a, b):", "code": "def calculate_sum(a, b):" },
+          { "comment": "# a and b are parameters — placeholders for values passed when calling the function.", "code": "" },
+          { "comment": "# print(a + b) — Function body. Adds a and b, prints result.", "code": " print(a + b)" },
+          { "comment": "# Calling calculate_sum(3, 1) passes arguments 3 and 1 into parameters a and b.", "code": "calculate_sum(3, 1)" },
+          { "comment": "# Output: 4", "code": "" },
+          { "comment": "# If you call calculate_sum() with no arguments, Python raises an error.", "code": "calculate_sum()" },
+          { "comment": "# Output: TypeError: calculate_sum() missing 2 required positional arguments: 'a' and 'b'", "code": "" },
+          { "comment": "# Functions can return values using return keyword.", "code": "" },
+          { "comment": "# Example without return:", "code": "def calculate_sum(a, b):\n print(a + b)" },
+          { "comment": "# my_sum = calculate_sum(3, 1) — Calls function, prints 4, but does not return anything.", "code": "my_sum = calculate_sum(3, 1)" },
+          { "comment": "# print(my_sum) — Shows None because function did not explicitly return a value.", "code": "print(my_sum)" },
+          { "comment": "# Output:\n# 4\n# None", "code": "" },
+          { "comment": "# Example with return:", "code": "def calculate_sum(a, b):\n return a + b" },
+          { "comment": "# my_sum = calculate_sum(3, 1) — Calls function, returns 4, stores in my_sum.", "code": "my_sum = calculate_sum(3, 1)" },
+          { "comment": "# print(my_sum) — Prints the returned value.", "code": "print(my_sum)" },
+          { "comment": "# Output: 4", "code": "" },
+          { "comment": "# Summary: Functions in Python are defined with def, can take parameters, can be called with arguments, and can return values. If no return is specified, they return None by default.", "code": "" }
+        ]
+      },
+      {
+        "title": "CHAPTER 12: Lists and Dictionaries — Building and Printing Medical Records",
+        "steps": [
+          { "comment": "# medical_records = [] — Creates a new variable named medical_records.", "code": "medical_records = []" },
+          { "comment": "# medical_records — Identifier (variable name) chosen to describe what the data represents: a collection of medical records.", "code": "" },
+          { "comment": "# = — Assignment operator in Python. It stores the value on the right-hand side into the variable on the left-hand side.", "code": "" },
+          { "comment": "# [] — Empty list literal. Lists are ordered collections that can hold multiple items. At this point, medical_records is an empty list with length 0.", "code": "" },
+          { "comment": "# medical_records.append(...) — Calls the append() method on the list.", "code": "" },
+          { "comment": "# append — Built-in list method that adds a single item to the end of the list.", "code": "" },
+          { "comment": "# (...) — Parentheses indicate a function call. Inside we place the item to add.", "code": "" },
+          { "comment": "# { ... } — Dictionary literal. Dictionaries store key-value pairs. Keys are unique identifiers, values are the data associated with them.", "code": "medical_records.append({" },
+          { "comment": "# \"patient_id\": \"P1001\" — Key-value pair. Key is the string 'patient_id'. Value is the string 'P1001'.", "code": " \"patient_id\": \"P1001\"," },
+          { "comment": "# \"age\": 34 — Key-value pair. Key is 'age'. Value is integer 34. Integers are whole numbers.", "code": " \"age\": 34," },
+          { "comment": "# \"gender\": \"Female\" — Key-value pair. Key is 'gender'. Value is string 'Female'.", "code": " \"gender\": \"Female\"" },
+          { "comment": "# }) — Closes the dictionary and the append() call. This dictionary is now added as the first element of the list.", "code": "})" },
+          { "comment": "# At this point, medical_records contains one element.", "code": "" },
+          { "comment": "# That element is a dictionary with three keys: 'patient_id', 'age', and 'gender'.", "code": "" },
+          { "comment": "# The internal structure looks like this:", "code": "" },
+          { "comment": "# [ { 'patient_id': 'P1001', 'age': 34, 'gender': 'Female' } ]", "code": "" },
+          { "comment": "# print(medical_records) — Outputs the contents of the list to the console.", "code": "print(medical_records)" },
+          { "comment": "# The output will be:", "code": "" },
+          { "comment": "# [{'patient_id': 'P1001', 'age': 34, 'gender': 'Female'}]", "code": "" },
+          { "comment": "# Explanation of output:", "code": "" },
+          { "comment": "# - Outer square brackets [ ] show that medical_records is a list.", "code": "" },
+          { "comment": "# - Inside the list is one dictionary { }.", "code": "" },
+          { "comment": "# - The dictionary contains three key-value pairs: patient_id:'P1001', age:34, gender:'Female'.", "code": "" },
+          { "comment": "# This structure allows us to store multiple patient records.", "code": "" },
+          { "comment": "# Each record is a dictionary, and the list can grow as we append more dictionaries.", "code": "" },
+          { "comment": "# Example: adding another patient would append a second dictionary to the list, making medical_records contain two elements.", "code": "" }
+        ]
+      },
+      {
+        "title": "CHAPTER 1.8: Difference Between Integer and Float",
+        "steps": [
+          { "comment": "# Function definition — Creates a reusable block to demonstrate integer vs float difference.", "code": "def demonstrate_difference_integer_float():" },
+          { "comment": "# Declare an integer variable — whole number without decimals.", "code": " my_integer = 10" },
+          { "comment": "# Declare a float variable — number with decimals.", "code": " my_float = 3.5" },
+          { "comment": "# Perform subtraction — Python automatically handles mixed types.", "code": " difference = my_integer - my_float" },
+          { "comment": "# Print integer value.", "code": " print('Integer:', my_integer)" },
+          { "comment": "# Print float value.", "code": " print('Float:', my_float)" },
+          { "comment": "# Print the difference — result is a float because one operand is a float.", "code": " print('Difference (int - float):', difference)" },
+          { "comment": "# Show types — type() reveals the data type of each variable.", "code": " print('Type of integer:', type(my_integer)) # <class 'int'>" },
+          { "comment": "# Show type of float.", "code": " print('Type of float:', type(my_float)) # <class 'float'>" },
+          { "comment": "# Show type of result — subtraction with float produces a float.", "code": " print('Type of difference:', type(difference)) # <class 'float'>" },
+          { "comment": "# Final note — Mixing int and float in arithmetic promotes the result to float for precision.", "code": " # This ensures decimal accuracy in calculations." }
+        ]
+      },
+      {
+        "title": "CHAPTER 1.9: Strings and String Immutability in Python vs C++",
+        "steps": [
+          { "comment": "# Function definition — Demonstrates strings and immutability in Python.", "code": "def demonstrate_strings():" },
+          { "comment": "# Strings in Python — sequence of characters inside single or double quotes.", "code": " my_str_1 = 'Hello'" },
+          { "comment": "# Strings can also use double quotes — treated equally in Python.", "code": " my_str_2 = \"World\"" },
+          { "comment": "# Print both strings.", "code": " print(my_str_1, my_str_2)" },
+          { "comment": "# Multi-line strings — use triple quotes.", "code": " my_str_3 = '''This is a" },
+          { "comment": "# Multi-line string continued.", "code": " multiline string'''" },
+          { "comment": "# Print multi-line string.", "code": " print(my_str_3)" },
+          { "comment": "# Strings containing quotes — use opposite quotes or escape with backslash.", "code": " msg = \"It's a sunny day\"" },
+          { "comment": "# Escaping quotes with backslash.", "code": " quote = 'She said, \\\"Hello!\\\"'" },
+          { "comment": "# Print both strings with quotes inside.", "code": " print(msg)" },
+          { "comment": "# Print escaped string.", "code": " print(quote)" },
+          { "comment": "# Membership test — 'in' operator checks if substring exists.", "code": " my_str = 'Hello world'" },
+          { "comment": "# True because 'Hello' exists.", "code": " print('Hello' in my_str)" },
+          { "comment": "# False because 'hey' does not exist.", "code": " print('hey' in my_str)" },
+          { "comment": "# Length of string — len() returns number of characters.", "code": " print(len(my_str)) # 11" },
+          { "comment": "# Indexing — access characters by position (zero-based).", "code": " print(my_str[0]) # H" },
+          { "comment": "# Index 6 gives 'w'.", "code": " print(my_str[6]) # w" },
+          { "comment": "# Negative indexing — access from the end.", "code": " print(my_str[-1]) # d" },
+          { "comment": "# Second-to-last character.", "code": " print(my_str[-2]) # l" },
+          { "comment": "# Strings are immutable — cannot change characters directly.", "code": " greeting = 'hi'" },
+          { "comment": "# Reassignment is allowed — variable points to new string.", "code": " greeting = 'hello'" },
+          { "comment": "# Print reassigned string.", "code": " print(greeting)" },
+          { "comment": "# Attempting direct modification causes error.", "code": " # greeting[0] = 'H' # TypeError" },
+          { "comment": "# Immutable types in Python include int, float, bool, tuple, range, and str.", "code": " # These cannot be modified in place." },
+          { "comment": "# Comparison with C++ — Strings in C++ are mutable.", "code": " # Example in C++: std::string greeting = \"hi\";" },
+          { "comment": "# In C++ you can modify characters directly.", "code": " # greeting[0] = 'H'; // Works in C++" },
+          { "comment": "# Difference — Python strings are immutable, while C++ std::string allows direct modification.", "code": " # This shows Python prioritizes safety and consistency, while C++ gives more control." }
+        ]
+      },
+      {
+        "title": "CHAPTER 5: Exploring Python Data Types with New Examples",
+        "steps": [
+          { "comment": "# Function definition — Creates a reusable block to demonstrate data types with fresh values.", "code": "def demonstrate_data_types_v2():" },
+          { "comment": "# Integer — Whole number, often used for counts or IDs.", "code": " my_integer_var = 42" },
+          { "comment": "# Print integer value.", "code": " print('Integer:', my_integer_var)" },
+          { "comment": "# Float — Number with decimals, useful for precise measurements.", "code": " my_float_var = -3.14159" },
+          { "comment": "# Print float value.", "code": " print('Float:', my_float_var)" },
+          { "comment": "# String — Text data, enclosed in quotes.", "code": " my_string_var = \"Python is powerful\"" },
+          { "comment": "# Print string value.", "code": " print('String:', my_string_var)" },
+          { "comment": "# Boolean — True or False values, often used in conditions.", "code": " my_boolean_var = False" },
+          { "comment": "# Print boolean value.", "code": " print('Boolean:', my_boolean_var)" },
+          { "comment": "# Set — Unordered collection of unique elements.", "code": " my_set_var = {1, 2, 2, 3, 4}" },
+          { "comment": "# Print set value — duplicates are removed automatically.", "code": " print('Set:', my_set_var)" },
+          { "comment": "# Dictionary — Key-value pairs, useful for structured data.", "code": " my_dictionary_var = {'language': 'Python', 'version': 3.11}" },
+          { "comment": "# Print dictionary value.", "code": " print('Dictionary:', my_dictionary_var)" },
+          { "comment": "# Tuple — Immutable ordered collection.", "code": " my_tuple_var = ('apple', 'banana', 'cherry')" },
+          { "comment": "# Print tuple value.", "code": " print('Tuple:', my_tuple_var)" },
+          { "comment": "# Range — Sequence of numbers, commonly used in loops.", "code": " my_range_var = range(1, 6)" },
+          { "comment": "# Print range value.", "code": " print('Range:', my_range_var)" },
+          { "comment": "# List — Ordered collection, can mix types.", "code": " my_list = ['Cody', 99, 3.14, False]" },
+          { "comment": "# Print list value.", "code": " print('List:', my_list)" },
+          { "comment": "# None — Special value representing 'no value' or 'empty'.", "code": " my_none_var = None" },
+          { "comment": "# Print None value.", "code": " print('None:', my_none_var)" },
+          { "comment": "# type() function — Reveals the data type of each variable.", "code": " print(type(my_integer_var)) # <class 'int'>" },
+          { "comment": "# Example with float.", "code": " print(type(my_float_var)) # <class 'float'>" },
+          { "comment": "# Example with string.", "code": " print(type(my_string_var)) # <class 'str'>" },
+          { "comment": "# Example with boolean.", "code": " print(type(my_boolean_var)) # <class 'bool'>" },
+          { "comment": "# Example with set.", "code": " print(type(my_set_var)) # <class 'set'>" },
+          { "comment": "# Example with dictionary.", "code": " print(type(my_dictionary_var)) # <class 'dict'>" },
+          { "comment": "# Example with tuple.", "code": " print(type(my_tuple_var)) # <class 'tuple'>" },
+          { "comment": "# Example with range.", "code": " print(type(my_range_var)) # <class 'range'>" },
+          { "comment": "# Example with list.", "code": " print(type(my_list)) # <class 'list'>" },
+          { "comment": "# Example with None.", "code": " print(type(my_none_var)) # <class 'NoneType'>" },
+          { "comment": "# isinstance() — Checks if a variable matches a specific type.", "code": " print(isinstance(my_string_var, str)) # True" },
+          { "comment": "# isinstance() example with integer.", "code": " print(isinstance(my_integer_var, int)) # True" },
+          { "comment": "# isinstance() example with float.", "code": " print(isinstance(my_float_var, float)) # True" },
+          { "comment": "# isinstance() example with mismatched type.", "code": " print(isinstance(my_boolean_var, str)) # False" },
+          { "comment": "# Comparison note — Python infers types dynamically, unlike C++ or Java which require explicit type declarations.", "code": " # Example in C++: int number = 42; string text = \"Python is powerful\";" },
+          { "comment": "# Final note — Python catches type errors only at runtime, while compiled languages catch them at compile time.", "code": " # This makes Python flexible but requires careful testing." }
+        ]
+      },
+      {
+        "title": "CHAPTER. Calculating Plant Density",
+        "steps": [
+          { "comment": "# Function definition — Declares a reusable block of code with parameters.", "code": "def get_number_of_plants(field_size, unit, crop):" },
+          { "comment": "# Conversion dictionary — Maps units to their square meter equivalents.", "code": " conversion = {" },
+          { "comment": "# Key-value pair — 'acres' corresponds to 4046.86 m².", "code": " \"acres\": 4046.86," },
+          { "comment": "# Key-value pair — 'hectares' corresponds to 10,000 m².", "code": " \"hectares\": 10000" },
+          { "comment": "# Closing brace — Ends the conversion dictionary.", "code": " }" },
+          { "comment": "# Crop spacing dictionary — Maps crop names to required area per plant in m².", "code": " crop_space = {" },
+          { "comment": "# Corn requires 1 m² per plant.", "code": " \"corn\": 1," },
+          { "comment": "# Wheat requires 0.1 m² per plant.", "code": " \"wheat\": 0.1," },
+          { "comment": "# Soybeans require 0.5 m² per plant.", "code": " \"soybeans\": 0.5," },
+          { "comment": "# Tomatoes require 0.25 m² per plant.", "code": " \"tomatoes\": 0.25," },
+          { "comment": "# Lettuce requires 0.2 m² per plant.", "code": " \"lettuce\": 0.2" },
+          { "comment": "# Closing brace — Ends the crop_space dictionary.", "code": " }" },
+          { "comment": "# Step 1 — Convert field size into square meters using the appropriate unit multiplier.", "code": " field_size_in_sqm = field_size * conversion[unit]" },
+          { "comment": "# Step 2 — Divide total area by crop spacing to calculate raw plant count.", "code": " plants = field_size_in_sqm / crop_space[crop]" },
+          { "comment": "# Step 3 — Round down to nearest whole number since fractional plants are not possible.", "code": " return int(plants)" },
+          { "comment": "# Final Output — When run with inputs, returns the integer number of plants fitting in the field.", "code": "# Example: get_number_of_plants(1, \"acres\", \"corn\") → 4046" }
+        ]
+      },
+      {
+        "title": "CHAPTER 2: Variables and Data Types",
+        "steps": [
+          { "comment": "# Variables — In Python, variables are created when assigned. No type declaration needed.", "code": "name = 'Python Learner'" },
+          { "comment": "# Integers — Whole numbers, dynamically typed.", "code": "age = 25" },
+          { "comment": "# Floats — Decimal numbers.", "code": "height = 5.9" },
+          { "comment": "# Strings — Text data, enclosed in quotes.", "code": "greeting = \"Hello, \" + name" },
+          { "comment": "# Booleans — True or False values.", "code": "is_learning = True" },
+          { "comment": "# Printing variables — Use print to display values.", "code": "print(greeting)" },
+          { "comment": "# Type checking — Use type() to see variable types.", "code": "print(type(age))" },
+          { "comment": "# Final Output — Example output:", "code": "# Hello, Python Learner\n# <class 'int'>" }
+        ]
+      },
+      {
+        "title": "CHAPTER 2.1: Escape Characters and String Syntax in Python vs C++",
+        "steps": [
+          { "comment": "# Function definition — Demonstrates escape characters in Python strings.", "code": "def demonstrate_escape_characters():" },
+          { "comment": "# String with single quotes inside — escaped with backslash.", "code": " msg = 'It\\'s a sunny day'" },
+          { "comment": "# Print string — backslash tells Python to treat the quote literally.", "code": " print(msg) # Output: It's a sunny day" },
+          { "comment": "# String with double quotes inside — escaped with backslash.", "code": " quote = \"She said, \\\"Hello!\\\"\"" },
+          { "comment": "# Print string — backslash makes inner quotes part of the text.", "code": " print(quote) # Output: She said, \"Hello!\"" },
+          { "comment": "# Explanation — The backslash (\\) is an escape character in Python.", "code": " # It prevents Python from misinterpreting quotes as the end of the string." },
+          { "comment": "# Alternative — Use opposite quotes to avoid escaping.", "code": " msg_alt = \"It's a sunny day\"" },
+          { "comment": "# Print alternative string — no backslash needed here.", "code": " print(msg_alt)" },
+          { "comment": "# Comparison with C++ — Strings in C++ also use escape characters.", "code": " # Example in C++: std::string msg = \"It\\'s a sunny day\";" },
+          { "comment": "# In C++ you can also use opposite quotes, but std::string is mutable unlike Python str.", "code": " # Example in C++: std::string quote = \"She said, \\\"Hello!\\\"\";" },
+          { "comment": "# Difference — Python strings are immutable objects, while C++ std::string allows direct modification.", "code": " # Both languages use backslash for escaping, but Python enforces immutability for safety." }
+        ]
+      },
+      {
+        "title": "CHAPTER 3: Control Structures — If Statements",
+        "steps": [
+          { "comment": "# If statement — Checks a condition and executes code if true.", "code": "if age >= 18:" },
+          { "comment": "# Indentation — Python uses spaces or tabs for blocks (4 spaces recommended).", "code": " print('You are an adult.')" },
+          { "comment": "# Else clause — Runs if the if condition is false.", "code": "else:" },
+          { "comment": "# Alternative block.", "code": " print('You are a minor.')" },
+          { "comment": "# Elif for multiple conditions.", "code": "elif age < 0:" },
+          { "comment": "# Handles edge cases.", "code": " print('Invalid age.')" },
+          { "comment": "# Final Output — Depending on age:", "code": "# You are an adult." }
+        ]
+      },
+      {
+        "title": "CHAPTER 4: Loops — For and While",
+        "steps": [
+          { "comment": "# For loop — Iterates over a sequence like range or list.", "code": "for i in range(5):" },
+          { "comment": "# Prints numbers 0 to 4.", "code": " print(i)" },
+          { "comment": "# While loop — Repeats while condition is true.", "code": "count = 0" },
+          { "comment": "# Loop body.", "code": "while count < 3:" },
+          { "comment": "# Increment to avoid infinite loop.", "code": " print('Looping...')" },
+          { "comment": "# Update variable.", "code": " count += 1" },
+          { "comment": "# Break and continue — Control flow inside loops.", "code": "# Use break to exit, continue to skip." },
+          { "comment": "# Final Output — Example:", "code": "# 0\n# 1\n# 2\n# 3\n# 4\n# Looping...\n# Looping...\n# Looping..." }
+        ]
+      },
+      {
+        "title": "CHAPTER 5: Functions",
+        "steps": [
+          { "comment": "# Defining a function — Use def keyword.", "code": "def greet(name):" },
+          { "comment": "# Function body — Indented.", "code": " return f'Hello, {name}!'" },
+          { "comment": "# Calling the function.", "code": "message = greet('World')" },
+          { "comment": "# Print result.", "code": "print(message)" },
+          { "comment": "# Default parameters.", "code": "def add(a, b=0):" },
+          { "comment": "# Returns sum.", "code": " return a + b" },
+          { "comment": "# Lambda functions — Anonymous one-liners.", "code": "double = lambda x: x * 2" },
+          { "comment": "# Final Output:", "code": "# Hello, World!" }
+        ]
+      },
+      {
+        "title": "CHAPTER 6: Lists and Dictionaries",
+        "steps": [
+          { "comment": "# Lists — Ordered, mutable collections.", "code": "fruits = ['apple', 'banana', 'cherry']" },
+          { "comment": "# Access by index.", "code": "print(fruits[0])" },
+          { "comment": "# Append item.", "code": "fruits.append('date')" },
+          { "comment": "# Dictionaries — Key-value pairs.", "code": "person = {'name': 'Alice', 'age': 30}" },
+          { "comment": "# Access value.", "code": "print(person['name'])" },
+          { "comment": "# Add key.", "code": "person['city'] = 'Wonderland'" },
+          { "comment": "# Iteration.", "code": "for key, value in person.items():" },
+          { "comment": "# Print pairs.", "code": " print(f'{key}: {value}')" },
+          { "comment": "# Final Output — Example:", "code": "# apple\n# Alice\n# name: Alice\n# age: 30\n# city: Wonderland" }
+        ]
+      },
+      {
+        "title": "CHAPTER 7: Exception Handling",
+        "steps": [
+          { "comment": "# Try-except — Handles errors gracefully.", "code": "try:" },
+          { "comment": "# Code that might fail.", "code": " result = 10 / 0" },
+          { "comment": "# Catch specific exception.", "code": "except ZeroDivisionError:" },
+          { "comment": "# Handle error.", "code": " print('Cannot divide by zero.')" },
+          { "comment": "# Else — Runs if no exception.", "code": "else:" },
+          { "comment": "# Success code.", "code": " print('Division successful.')" },
+          { "comment": "# Finally — Always runs.", "code": "finally:" },
+          { "comment": "# Cleanup.", "code": " print('Execution complete.')" },
+          { "comment": "# Raise exceptions manually.", "code": "# raise ValueError('Invalid input')" },
+          { "comment": "# Final Output:", "code": "# Cannot divide by zero.\n# Execution complete." }
+        ]
+      },
+      {
+        "title": "CHAPTER 8: File Handling",
+        "steps": [
+          { "comment": "# Opening a file — Use open() with mode.", "code": "with open('example.txt', 'w') as file:" },
+          { "comment": "# Write to file.", "code": " file.write('Hello, Python!')" },
+          { "comment": "# Reading a file.", "code": "with open('example.txt', 'r') as file:" },
+          { "comment": "# Read content.", "code": " content = file.read()" },
+          { "comment": "# Print content.", "code": "print(content)" },
+          { "comment": "# Append mode.", "code": "with open('example.txt', 'a') as file:" },
+          { "comment": "# Add more text.", "code": " file.write('\\nMore text.')" },
+          { "comment": "# Handle file not found.", "code": "# Use try-except for errors." },
+          { "comment": "# Final Output:", "code": "# Hello, Python!" }
+        ]
+      },
+      {
+        "title": "CHAPTER 9: Modules and Packages",
+        "steps": [
+          { "comment": "# Import module — Access external code.", "code": "import math" },
+          { "comment": "# Use function from module.", "code": "print(math.sqrt(16))" },
+          { "comment": "# From import — Specific items.", "code": "from datetime import datetime" },
+          { "comment": "# Use imported item.", "code": "now = datetime.now()" },
+          { "comment": "# Print current time.", "code": "print(now)" },
+          { "comment": "# Alias import.", "code": "import random as rnd" },
+          { "comment": "# Random number.", "code": "print(rnd.randint(1, 10))" },
+          { "comment": "# Creating modules — Save functions in .py files.", "code": "# Then import them." },
+          { "comment": "# Final Output — Example:", "code": "# 4.0\n# 2026-01-15 07:48:00 (approx)\n# Random number like 7" }
+        ]
+      },
+      {
+        "title": "CHAPTER 10: Object-Oriented Programming",
+        "steps": [
+          { "comment": "# Class definition — Blueprint for objects.", "code": "class Animal:" },
+          { "comment": "# Constructor — Special method called when an instance is created. Indented under the class.", "code": " def __init__(self, name):" },
+          { "comment": "# Instance variable — Stores data unique to each instance. Further indented under the method.", "code": " self.name = name" },
+          { "comment": "# Method — Function defined inside a class. Indented under the class.", "code": " def speak(self):" },
+          { "comment": "# Default behavior — Code inside the method, further indented.", "code": " print('Animal sound')" },
+          { "comment": "# Inheritance — Creating a subclass that inherits from the base class. No indentation for new class definition.", "code": "class Dog(Animal):" },
+          { "comment": "# Override method — Redefine a method from the parent class. Indented under the subclass.", "code": " def speak(self):" },
+          { "comment": "# Specific sound — Customized behavior in the overridden method.", "code": " print('Woof!')" },
+          { "comment": "# Create instance — Instantiate the subclass with arguments for the constructor.", "code": "my_dog = Dog('Buddy')" },
+          { "comment": "# Call method — Invoke the overridden method on the instance.", "code": "my_dog.speak()" },
+          { "comment": "# Final Output — When run, the console displays:", "code": "# Woof!" }
+        ]
+      }
+    ];
 
-function populateChapters() {
-  chapterList.innerHTML = '';
-  chapters.forEach((ch, idx) => {
-    const item = document.createElement('div');
-    item.classList.add('chapter-item');
-    item.textContent = ch.title;
-    item.onclick = () => selectChapter(idx);
-    chapterList.appendChild(item);
-  });
-}
+    let currentChapter = 0;
+    let currentStep = 0;
+    const codeArea = document.getElementById('code-area');
+    const commentBox = document.getElementById('comment-box');
+    const hintArea = document.getElementById('hint-area');
+    const codeInput = document.getElementById('code-input');
+    const submitBtn = document.getElementById('submit-btn');
+    const skipBtn = document.getElementById('skip-btn');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const resetBtn = document.getElementById('reset');
+    const chapterBtn = document.getElementById('chapter-btn');
+    const chapterList = document.getElementById('chapter-list');
 
-function selectChapter(idx) {
-  currentChapter = idx;
-  currentStep = 0;
-  chapterList.classList.remove('show');
-  resetChapter();
-}
+    function populateChapters() {
+      chapterList.innerHTML = '';
+      chapters.forEach((ch, idx) => {
+        const item = document.createElement('div');
+        item.classList.add('chapter-item');
+        item.textContent = ch.title;
+        item.onclick = () => selectChapter(idx);
+        chapterList.appendChild(item);
+      });
+    }
 
-function resetChapter() {
-  codeArea.innerHTML = '';
-  commentBox.textContent = '';
-  codeInput.value = '';
-  hintArea.textContent = 'Type exactly:';
-  nextBtn.disabled = true;
+    function selectChapter(idx) {
+      currentChapter = idx;
+      currentStep = 0;
+      chapterList.classList.remove('show');
+      resetChapter();
+    }
 
-  // ✅ Re‑enable input and buttons when starting a new chapter
-  codeInput.disabled = false;
-  submitBtn.disabled = false;
-  skipBtn.disabled = false;
+    function resetChapter() {
+      codeArea.innerHTML = '';
+      commentBox.textContent = '';
+      codeInput.value = '';
+      hintArea.textContent = 'Type exactly:';
+      nextBtn.disabled = true;
+      // Fix: Re-enable input and buttons when starting a new chapter
+      codeInput.disabled = false;
+      submitBtn.disabled = false;
+      skipBtn.disabled = false;
+      loadStep();
+    }
 
-  loadStep();
-}
+    function loadStep() {
+      const step = chapters[currentChapter].steps[currentStep];
+      if (step) {
+        commentBox.textContent = step.comment;
+        hintArea.textContent = `Type exactly: ${step.code || '(empty line - just press submit)'}`;
+        codeInput.placeholder = step.code;
+        codeInput.focus();
+      } else {
+        hintArea.textContent = 'Chapter complete!';
+        codeInput.disabled = true;
+        submitBtn.disabled = true;
+        skipBtn.disabled = true;
+        nextBtn.disabled = false;
+      }
+    }
 
-function loadStep() {
-  const step = chapters[currentChapter].steps[currentStep];
-  if (step) {
-    commentBox.textContent = step.comment;
-    hintArea.textContent = `Type exactly: ${step.code || '(empty line - just press submit)'}`;
-    codeInput.placeholder = step.code;
-    codeInput.focus();
-  } else {
-    hintArea.textContent = 'Chapter complete!';
-    codeInput.disabled = true;
-    submitBtn.disabled = true;
-    skipBtn.disabled = true;
-    nextBtn.disabled = false;
-  }
-}
+    function addLine(code) {
+      const line = document.createElement('div');
+      line.classList.add('line', 'new');
+      line.textContent = code;
+      codeArea.appendChild(line);
+      codeArea.scrollTop = codeArea.scrollHeight;
+    }
 
-function addLine(code) {
-  const line = document.createElement('div');
-  line.classList.add('line', 'new');
-  line.textContent = code;
-  codeArea.appendChild(line);
-  codeArea.scrollTop = codeArea.scrollHeight;
-}
+    function shineLine() {
+      const lines = codeArea.querySelectorAll('.line');
+      if (lines.length > 0) {
+        const lastLine = lines[lines.length - 1];
+        lastLine.classList.add('line-shine');
+        setTimeout(() => lastLine.classList.remove('line-shine'), 1800);
+      }
+    }
 
-function shineLine() {
-  const lines = codeArea.querySelectorAll('.line');
-  if (lines.length > 0) {
-    const lastLine = lines[lines.length - 1];
-    lastLine.classList.add('line-shine');
-    setTimeout(() => lastLine.classList.remove('line-shine'), 1800);
-  }
-}
+    submitBtn.onclick = () => {
+      const input = codeInput.value.trim();
+      const expected = chapters[currentChapter].steps[currentStep].code.trim();
+      if (input === expected) {
+        addLine(input);
+        shineLine();
+        currentStep++;
+        codeInput.value = '';
+        loadStep();
+      } else {
+        codeInput.classList.add('action-shine');
+        setTimeout(() => codeInput.classList.remove('action-shine'), 1000);
+      }
+    };
 
-submitBtn.onclick = () => {
-  const input = codeInput.value.trim();
-  const expected = chapters[currentChapter].steps[currentStep].code.trim();
-  if (input === expected) {
-    addLine(input);
-    shineLine();
-    currentStep++;
-    codeInput.value = '';
-    loadStep();
-  } else {
-    codeInput.classList.add('action-shine');
-    setTimeout(() => codeInput.classList.remove('action-shine'), 1000);
-  }
-};
+    skipBtn.onclick = () => {
+      const step = chapters[currentChapter].steps[currentStep];
+      addLine(step.code);
+      currentStep++;
+      loadStep();
+    };
 
-skipBtn.onclick = () => {
-  const step = chapters[currentChapter].steps[currentStep];
-  addLine(step.code);
-  currentStep++;
-  loadStep();
-};
+    prevBtn.onclick = () => {
+      if (currentChapter > 0) {
+        currentChapter--;
+        resetChapter();
+      }
+    };
 
-prevBtn.onclick = () => {
-  if (currentChapter > 0) {
-    currentChapter--;
+    nextBtn.onclick = () => {
+      if (currentChapter < chapters.length - 1) {
+        currentChapter++;
+        resetChapter();
+      }
+    };
+
+    resetBtn.onclick = resetChapter;
+
+    chapterBtn.onclick = () => {
+      chapterList.classList.toggle('show');
+    };
+
+    populateChapters();
     resetChapter();
-  }
-};
-
-nextBtn.onclick = () => {
-  if (currentChapter < chapters.length - 1) {
-    currentChapter++;
-    resetChapter();
-  }
-};
-
-resetBtn.onclick = resetChapter;
-chapterBtn.onclick = () => {
-  chapterList.classList.toggle('show');
-};
-
-populateChapters();
-resetChapter();
-</script>
+  </script>
 </body>
 </html>
