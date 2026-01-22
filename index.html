@@ -945,6 +945,30 @@
           { "comment": "# Difference — Python strings are immutable objects, while C++ std::string allows direct modification.", "code": " # Both languages use backslash for escaping, but Python enforces immutability for safety." }
         ]
       },
+{
+  "title": "CHAPTER X: Circle of Fifths Cipher — Musical Caesar Shift",
+  "steps": [
+    { "comment": "# def circle_of_fifths_cipher(note, octave): — 'def' begins a function definition in Python. 'circle_of_fifths_cipher' is the chosen name, descriptive of its purpose. '(note, octave)' are parameters: 'note' will hold the musical pitch name (like 'A'), and 'octave' will hold the register number (like 2).", "code": "def circle_of_fifths_cipher(note, octave):" },
+    { "comment": "# notes = [...] — This list defines the chromatic scale: 12 semitones per octave. Each element is a string literal representing a pitch class. Square brackets [] create a list in Python. Commas separate items. Strings are enclosed in quotes.", "code": "    notes = [\"C\", \"C#\", \"D\", \"D#\", \"E\", \"F\", \"F#\", \"G\", \"G#\", \"A\", \"A#\", \"B\"]" },
+    { "comment": "# modes = [...] — This list cycles through the seven musical modes. Each string is the name of a mode. The list allows us to assign a modal flavor to each ciphered note. Again, [] creates a list, and commas separate items.", "code": "    modes = [\"Ionian\", \"Dorian\", \"Phrygian\", \"Lydian\", \"Mixolydian\", \"Aeolian\", \"Locrian\"]" },
+    { "comment": "# keys = [...] — This list represents the circle of fifths progression of major keys. Each string is a tonic key center. The order matches the 7-semitone shift logic. This is our 'alphabet' for the cipher.", "code": "    keys = [\"C\", \"G\", \"D\", \"A\", \"E\", \"B\", \"F#\", \"C#\", \"G#\", \"D#\", \"A#\", \"F\"]" },
+    { "comment": "# if note not in notes: — This conditional checks if the input 'note' exists in our chromatic scale list. 'not in' is a membership test operator in Python. If the condition is true, the function returns an error message.", "code": "    if note not in notes:" },
+    { "comment": "# return f\"Error: {note} is not a valid note.\" — 'return' exits the function immediately. The 'f' before the string denotes an f-string, allowing variable interpolation. {note} inserts the actual input value into the error message.", "code": "        return f\"Error: {note} is not a valid note.\"" },
+    { "comment": "# idx = notes.index(note) — 'idx' stores the position of the input note in the chromatic scale list. '.index()' is a list method that returns the integer index of the first matching element.", "code": "    idx = notes.index(note)" },
+    { "comment": "# new_idx = (idx + 7) % 12 — This calculates the cipher shift. 'idx + 7' moves forward by 7 semitones (a perfect fifth). '% 12' ensures wrap-around within the 12-note scale (modulo arithmetic).", "code": "    new_idx = (idx + 7) % 12" },
+    { "comment": "# new_note = notes[new_idx] — Retrieves the note name at the shifted index. This is the ciphered pitch class.", "code": "    new_note = notes[new_idx]" },
+    { "comment": "# new_octave = octave + (idx + 7) // 12 — Adjusts the octave if the shift crosses into the next register. '//' is integer division. If idx+7 is 12 or more, we add 1 to the octave.", "code": "    new_octave = octave + (idx + 7) // 12" },
+    { "comment": "# semitone_distance = (new_octave - 4) * 12 + (new_idx - notes.index(\"A\")) — Calculates how far the ciphered note is from A4 (the tuning reference at 440 Hz). '(new_octave - 4) * 12' counts octave steps in semitones. '(new_idx - notes.index(\"A\"))' counts semitone offset within the octave.", "code": "    semitone_distance = (new_octave - 4) * 12 + (new_idx - notes.index(\"A\"))" },
+    { "comment": "# frequency = 440 * (2 ** (semitone_distance / 12)) — Converts semitone distance into frequency. '440' is the reference Hz for A4. '2 ** (n/12)' raises 2 to the power of n/12, scaling by the twelfth root of 2 per semitone.", "code": "    frequency = 440 * (2 ** (semitone_distance / 12))" },
+    { "comment": "# key = keys[new_idx] — Selects the key center from the circle of fifths list, aligned with the shifted note index.", "code": "    key = keys[new_idx]" },
+    { "comment": "# mode = modes[new_idx % len(modes)] — Assigns a mode by cycling through the modes list. '% len(modes)' ensures wrap-around after 7 modes.", "code": "    mode = modes[new_idx % len(modes)]" },
+    { "comment": "# return {...} — Returns a dictionary containing all results. Curly braces {} define a dictionary. Keys are strings ('original_note', 'cipher_note', etc.). Values are variables or expressions. 'round(frequency, 2)' rounds the frequency to 2 decimal places.", "code": "    return {\"original_note\": f\"{note}{octave}\", \"cipher_note\": f\"{new_note}{new_octave}\", \"frequency_Hz\": round(frequency, 2), \"key\": f\"{new_note} major\", \"mode\": mode}" },
+    { "comment": "# Example usage — Calling the function with specific inputs. 'print()' outputs the returned dictionary to the console.", "code": "print(circle_of_fifths_cipher(\"A\", 2))" },
+    { "comment": "# Example usage — Another call with C2 as input.", "code": "print(circle_of_fifths_cipher(\"C\", 2))" },
+    { "comment": "# Example usage — Another call with E2 as input.", "code": "print(circle_of_fifths_cipher(\"E\", 2))" },
+    { "comment": "# Final Output — When run, the console displays dictionaries with original note, ciphered note, frequency in Hz, key, and mode.", "code": "# {'original_note': 'A2', 'cipher_note': 'E3', 'frequency_Hz': 164.81, 'key': 'E major', 'mode': 'Phrygian'}" }
+  ]
+},      
       {
         "title": "CHAPTER 3: Control Structures — If Statements",
         "steps": [
