@@ -210,6 +210,31 @@
         ]
       },
       {
+  "title": "CHAPTER 5.1: Building the Caesar Cipher with Encrypt and Decrypt",
+  "steps": [
+    { "comment": "# Function definition — Defines the Caesar cipher function with parameters.", "code": "def caesar(text, shift, encrypt=True):" },
+    { "comment": "# If encrypt is not truthy, flip the shift to go backwards (decryption mode).", "code": "    if not encrypt:" },
+    { "comment": "# Reassign shift to its negative value to reverse the direction of rotation.", "code": "        shift = -shift" },
+    { "comment": "# Define a string containing all lowercase letters in order.", "code": "    alphabet = 'abcdefghijklmnopqrstuvwxyz'" },
+    { "comment": "# Slice and concatenate alphabet to create the rotated version based on shift.", "code": "    shifted_alphabet = alphabet[shift:] + alphabet[:shift]" },
+    { "comment": "# Build translation table mapping original letters to shifted letters (lower + upper).", "code": "    translation_table = str.maketrans(" },
+    { "comment": "# Concatenate lowercase and uppercase alphabets for full mapping.", "code": "        alphabet + alphabet.upper()," },
+    { "comment": "# Concatenate rotated lowercase and uppercase alphabets for shifted mapping.", "code": "        shifted_alphabet + shifted_alphabet.upper()" },
+    { "comment": "# Close str.maketrans() call.", "code": "    )" },
+    { "comment": "# Apply translation table to text and return encrypted/decrypted string.", "code": "    return text.translate(translation_table)" },
+
+    { "comment": "# Define wrapper function for encryption.", "code": "def encrypt(text, shift):" },
+    { "comment": "# Call caesar with encrypt=True to perform forward shift.", "code": "    return caesar(text, shift, True)" },
+
+    { "comment": "# Define wrapper function for decryption.", "code": "def decrypt(text, shift):" },
+    { "comment": "# Call caesar with encrypt=False to flip shift and reverse process.", "code": "    return caesar(text, shift, False)" },
+
+    { "comment": "# Assign ROT13-encrypted string to variable encrypted_text.", "code": "encrypted_text = \"Pbhentr vf sbhaq va hayvxryl cynprf..\"" },
+    { "comment": "# Call decrypt with encrypted_text and shift=13, assign result to decrypted_text.", "code": "decrypted_text = decrypt(encrypted_text, 13)" },
+    { "comment": "# Print the final decrypted message to the terminal.", "code": "print(decrypted_text)" }
+  ]
+},
+      {
         "title": "CHAPTER 1.1: Variables and Naming in Python",
         "steps": [
           { "comment": "# Function definition — Declares a reusable block of code.", "code": "def demonstrate_variables():" },
