@@ -222,16 +222,35 @@
     { "comment": "# Concatenate rotated lowercase and uppercase alphabets for shifted mapping.", "code": "        shifted_alphabet + shifted_alphabet.upper()" },
     { "comment": "# Close str.maketrans() call.", "code": "    )" },
     { "comment": "# Apply translation table to text and return encrypted/decrypted string.", "code": "    return text.translate(translation_table)" },
-
     { "comment": "# Define wrapper function for encryption.", "code": "def encrypt(text, shift):" },
     { "comment": "# Call caesar with encrypt=True to perform forward shift.", "code": "    return caesar(text, shift, True)" },
-
     { "comment": "# Define wrapper function for decryption.", "code": "def decrypt(text, shift):" },
     { "comment": "# Call caesar with encrypt=False to flip shift and reverse process.", "code": "    return caesar(text, shift, False)" },
-
     { "comment": "# Assign ROT13-encrypted string to variable encrypted_text.", "code": "encrypted_text = \"Pbhentr vf sbhaq va hayvxryl cynprf..\"" },
     { "comment": "# Call decrypt with encrypted_text and shift=13, assign result to decrypted_text.", "code": "decrypted_text = decrypt(encrypted_text, 13)" },
     { "comment": "# Print the final decrypted message to the terminal.", "code": "print(decrypted_text)" }
+  ]
+},
+      {
+  "title": "CHAPTER 22: Python — Character Creation with Validation and Stats",
+  "steps": [
+    { "comment": "# Define the function create_character with four parameters: name, strength, intelligence, charisma.", "code": "def create_character(name, strength, intelligence, charisma):" },
+    { "comment": "# Validate that name is a string using isinstance. If not, return the exact error message required.", "code": "    if not isinstance(name, str):\n        return \"The character name should be a string.\"" },
+    { "comment": "# Check if name is empty (== \"\"). If so, return the error message.", "code": "    if name == \"\":\n        return \"The character should have a name.\"" },
+    { "comment": "# Check if name length exceeds 10 characters. If so, return the error message.", "code": "    if len(name) > 10:\n        return \"The character name is too long.\"" },
+    { "comment": "# Check if name contains a space. If so, return the error message.", "code": "    if \" \" in name:\n        return \"The character name should not contain spaces.\"" },
+    { "comment": "# Group the three stats into a list for easier validation.", "code": "    stats = [strength, intelligence, charisma]" },
+    { "comment": "# Validate that all stats are integers. all() ensures every stat passes isinstance(stat, int).", "code": "    if not all(isinstance(stat, int) for stat in stats):\n        return \"All stats should be integers.\"" },
+    { "comment": "# Validate that all stats are >= 1. not all(...) triggers if any stat is less than 1.", "code": "    if not all(stat >= 1 for stat in stats):\n        return \"All stats should be no less than 1.\"" },
+    { "comment": "# Validate that all stats are <= 4. not all(...) triggers if any stat is greater than 4.", "code": "    if not all(stat <= 4 for stat in stats):\n        return \"All stats should be no more than 4.\"" },
+    { "comment": "# Validate that the sum of all stats equals 7. If not, return the error message.", "code": "    if sum(stats) != 7:\n        return \"The character should start with 7 points.\"" },
+    { "comment": "# Define a helper function stat_line to build one stat line with dots.", "code": "    def stat_line(label, value):" },
+    { "comment": "# full_dots = \"●\" * value — repeat the full dot symbol as many times as the stat value.", "code": "        full_dots = \"●\" * value" },
+    { "comment": "# empty_dots = \"○\" * (10 - value) — fill the rest with empty dots so the line always has 10.", "code": "        empty_dots = \"○\" * (10 - value)" },
+    { "comment": "# Return the formatted line: label + space + full dots + empty dots.", "code": "        return f\"{label} {full_dots}{empty_dots}\"" },
+    { "comment": "# Build the final result string with four lines: name, STR line, INT line, CHA line.", "code": "    result = (\n        f\"{name}\n\"\n        f\"{stat_line('STR', strength)}\\n\"\n        f\"{stat_line('INT', intelligence)}\\n\"\n        f\"{stat_line('CHA', charisma)}\"\n    )" },
+    { "comment": "# Return the result string. This is the final output of the function.", "code": "    return result" },
+    { "comment": "# Example Output — For create_character('ren', 4, 2, 1), the function returns:", "code": "# ren\\nSTR ●●●●○○○○○○\\nINT ●●○○○○○○○○\nCHA ●○○○○○○○○○" }
   ]
 },
       {
